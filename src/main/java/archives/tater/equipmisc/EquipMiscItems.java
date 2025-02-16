@@ -8,6 +8,8 @@ import net.minecraft.item.*;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -23,7 +25,7 @@ public class EquipMiscItems {
         return register(EquipMisc.id(path), item);
     }
 
-    public static ArmorMaterial REINFORCED_LEATHER = FabricLoader.getInstance().getGameDir().endsWith("datagen") ? ArmorMaterials.LEATHER : new RArmorMaterial(
+    public static final ArmorMaterial REINFORCED_LEATHER = FabricLoader.getInstance().getGameDir().endsWith("datagen") ? ArmorMaterials.LEATHER : new RArmorMaterial(
             "equipmisc_reinforced_leather",
             20,
             RArmorMaterial.armorTypeMap(2, 6, 5, 2),
@@ -34,16 +36,16 @@ public class EquipMiscItems {
             () -> Ingredient.ofItems(Items.LEATHER, Items.IRON_INGOT)
     );
 
-    public static ArmorItem REINFORCED_LEATHER_HELMET = register("reinforced_leather_helmet",
+    public static final ArmorItem REINFORCED_LEATHER_HELMET = register("reinforced_leather_helmet",
             new DyeableArmorItem(REINFORCED_LEATHER, ArmorItem.Type.HELMET, new FabricItemSettings()));
-    public static ArmorItem REINFORCED_LEATHER_CHESTPLATE = register("reinforced_leather_chestplate",
+    public static final ArmorItem REINFORCED_LEATHER_CHESTPLATE = register("reinforced_leather_chestplate",
             new DyeableArmorItem(REINFORCED_LEATHER, ArmorItem.Type.CHESTPLATE, new FabricItemSettings()));
-    public static ArmorItem REINFORCED_LEATHER_LEGGINGS = register("reinforced_leather_leggings",
+    public static final ArmorItem REINFORCED_LEATHER_LEGGINGS = register("reinforced_leather_leggings",
             new DyeableArmorItem(REINFORCED_LEATHER, ArmorItem.Type.LEGGINGS, new FabricItemSettings()));
-    public static ArmorItem REINFORCED_LEATHER_BOOTS = register("reinforced_leather_boots",
+    public static final ArmorItem REINFORCED_LEATHER_BOOTS = register("reinforced_leather_boots",
             new DyeableArmorItem(REINFORCED_LEATHER, ArmorItem.Type.BOOTS, new FabricItemSettings()));
 
-    public static Item LEATHER_REINFORCEMENT_SMITHING_TEMPLATE = register("leather_reinforcement_smithing_template", new SmithingTemplateItem(
+    public static final Item LEATHER_REINFORCEMENT_SMITHING_TEMPLATE = register("leather_reinforcement_smithing_template", new SmithingTemplateItem(
             Text.translatable(EquipMiscSmithingTemplates.LEATHER_REINFORCEMENT_APPLIES_TO),
             Text.translatable(EquipMiscSmithingTemplates.LEATHER_REINFORCEMENT_INGREDIENT),
             Text.translatable(EquipMiscSmithingTemplates.LEATHER_REINFORCEMENT_TITLE),
@@ -59,9 +61,9 @@ public class EquipMiscItems {
                     EquipMiscSmithingTemplates.EMPTY_CHAIN_BOOTS_TEXTURE)
     ));
 
-    public static Item RAW_BRONZE = register("raw_bronze", new Item(new FabricItemSettings()));
-    public static Item BRONZE_INGOT = register("bronze_ingot", new Item(new FabricItemSettings()));
-    public static Item BRONZE_UPGRADE_SMITHING_TEMPLATE = register("bronze_upgrade_smithing_template", new SmithingTemplateItem(
+    public static final Item RAW_BRONZE = register("raw_bronze", new Item(new FabricItemSettings()));
+    public static final Item BRONZE_INGOT = register("bronze_ingot", new Item(new FabricItemSettings()));
+    public static final Item BRONZE_UPGRADE_SMITHING_TEMPLATE = register("bronze_upgrade_smithing_template", new SmithingTemplateItem(
             Text.translatable(EquipMiscSmithingTemplates.BRONZE_UPGRADE_APPLIES_TO),
             Text.translatable(EquipMiscSmithingTemplates.BRONZE_UPGRADE_INGREDIENT),
             Text.translatable(EquipMiscSmithingTemplates.BRONZE_UPGRADE_TITLE),
@@ -79,7 +81,7 @@ public class EquipMiscItems {
             List.of(EquipMiscSmithingTemplates.EMPTY_INGOT_TEXTURE)
     ));
 
-    public static ArmorMaterial BRONZE_ARMOR = new RArmorMaterial(
+    public static final ArmorMaterial BRONZE_ARMOR = new RArmorMaterial(
             "equipmisc_bronze",
             24,
             RArmorMaterial.armorTypeMap(2, 6, 5, 2),
@@ -89,7 +91,7 @@ public class EquipMiscItems {
             0.05f,
             () -> Ingredient.ofItems(BRONZE_INGOT)
     );
-    public static ToolMaterial BRONZE_TOOL = new RToolMaterial(
+    public static final ToolMaterial BRONZE_TOOL = new RToolMaterial(
             MiningLevels.IRON,
             700,
             6.0F,
@@ -98,25 +100,27 @@ public class EquipMiscItems {
             () -> Ingredient.ofItems(BRONZE_INGOT)
     );
 
-    public static Item BRONZE_PICKAXE = register("bronze_pickaxe",
+    public static final Item BRONZE_PICKAXE = register("bronze_pickaxe",
             new PickaxeItem(BRONZE_TOOL, 1, -2.8f, new FabricItemSettings()));
-    public static Item BRONZE_AXE = register("bronze_axe",
+    public static final Item BRONZE_AXE = register("bronze_axe",
             new AxeItem(BRONZE_TOOL, 1, -2.8f, new FabricItemSettings()));
-    public static Item BRONZE_SHOVEL = register("bronze_shovel",
+    public static final Item BRONZE_SHOVEL = register("bronze_shovel",
             new ShovelItem(BRONZE_TOOL, 1, -2.8f, new FabricItemSettings()));
-    public static Item BRONZE_HOE = register("bronze_hoe",
+    public static final Item BRONZE_HOE = register("bronze_hoe",
             new HoeItem(BRONZE_TOOL, 1, -2.8f, new FabricItemSettings()));
-    public static Item BRONZE_SWORD = register("bronze_sword",
+    public static final Item BRONZE_SWORD = register("bronze_sword",
             new SwordItem(BRONZE_TOOL, 1, -2.8f, new FabricItemSettings()));
 
-    public static ArmorItem BRONZE_HELMET = register("bronze_helmet",
+    public static final ArmorItem BRONZE_HELMET = register("bronze_helmet",
             new ArmorItem(BRONZE_ARMOR, ArmorItem.Type.HELMET, new FabricItemSettings()));
-    public static ArmorItem BRONZE_CHESTPLATE = register("bronze_chestplate",
+    public static final ArmorItem BRONZE_CHESTPLATE = register("bronze_chestplate",
             new ArmorItem(BRONZE_ARMOR, ArmorItem.Type.CHESTPLATE, new FabricItemSettings()));
-    public static ArmorItem BRONZE_LEGGINGS = register("bronze_leggings",
+    public static final ArmorItem BRONZE_LEGGINGS = register("bronze_leggings",
             new ArmorItem(BRONZE_ARMOR, ArmorItem.Type.LEGGINGS, new FabricItemSettings()));
-    public static ArmorItem BRONZE_BOOTS = register("bronze_boots",
+    public static final ArmorItem BRONZE_BOOTS = register("bronze_boots",
             new ArmorItem(BRONZE_ARMOR, ArmorItem.Type.BOOTS, new FabricItemSettings()));
+
+    public static final TagKey<Item> INVISIBLE_ARMOR = TagKey.of(RegistryKeys.ITEM, EquipMisc.id("invisible_armor"));
 
     public static void register() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {

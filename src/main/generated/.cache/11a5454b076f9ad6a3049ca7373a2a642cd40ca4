@@ -1,4 +1,5 @@
-// 1.20.1	2025-02-15T22:18:25.493437016	EquipMisc/Tags for minecraft:item
+// 1.20.1	2025-02-15T22:22:57.968641138	EquipMisc/Tags for minecraft:item
+7aef459bac018d7a71feddfe31f52f71f94da2a6 data/equipmisc/tags/items/invisible_armor.json
 16f8aa2b5aa70a487994f6b0d46979eef7742d46 data/minecraft/tags/items/trimmable_armor.json
 82b2f022d9e470df66d6534d8d0647710c1d7966 data/minecraft/tags/items/pickaxes.json
 82b2f022d9e470df66d6534d8d0647710c1d7966 data/minecraft/tags/items/cluster_max_harvestables.json

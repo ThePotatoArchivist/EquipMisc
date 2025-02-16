@@ -3,6 +3,7 @@ package archives.tater.equipmisc.datagen;
 import archives.tater.equipmisc.EquipMiscItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 
@@ -27,5 +28,11 @@ public class EquipMiscTagGenerator extends FabricTagProvider.ItemTagProvider {
         );
         getOrCreateTagBuilder(ItemTags.CLUSTER_MAX_HARVESTABLES).add(EquipMiscItems.BRONZE_PICKAXE);
         getOrCreateTagBuilder(ItemTags.PICKAXES).add(EquipMiscItems.BRONZE_PICKAXE);
+        getOrCreateTagBuilder(EquipMiscItems.INVISIBLE_ARMOR).add(
+                Items.CHAINMAIL_HELMET,
+                Items.CHAINMAIL_CHESTPLATE,
+                Items.CHAINMAIL_LEGGINGS,
+                Items.CHAINMAIL_BOOTS
+        );
     }
 }
