@@ -10,6 +10,6 @@
     "item": "equipmisc:reinforced_leather_leggings"
   },
   "template": {
-    "item": "equipmisc:smithing_template_leather_reinforcement"
+    "item": "equipmisc:leather_reinforcement_smithing_template"
   }
 }

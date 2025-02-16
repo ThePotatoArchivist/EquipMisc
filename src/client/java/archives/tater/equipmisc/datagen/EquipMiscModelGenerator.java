@@ -24,6 +24,19 @@ public class EquipMiscModelGenerator extends FabricModelProvider {
         itemModelGenerator.registerArmor(EquipMiscItems.REINFORCED_LEATHER_CHESTPLATE);
         itemModelGenerator.registerArmor(EquipMiscItems.REINFORCED_LEATHER_LEGGINGS);
         itemModelGenerator.registerArmor(EquipMiscItems.REINFORCED_LEATHER_BOOTS);
-        itemModelGenerator.register(EquipMiscItems.SMITHING_TEMPLATE_LEATHER_REINFORCEMENT, Models.GENERATED);
+        itemModelGenerator.register(EquipMiscItems.LEATHER_REINFORCEMENT_SMITHING_TEMPLATE, Models.GENERATED);
+
+        itemModelGenerator.register(EquipMiscItems.RAW_BRONZE, Models.GENERATED);
+        itemModelGenerator.register(EquipMiscItems.BRONZE_INGOT, Models.GENERATED);
+        itemModelGenerator.register(EquipMiscItems.BRONZE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
+        itemModelGenerator.register(EquipMiscItems.BRONZE_PICKAXE, Models.HANDHELD);
+        itemModelGenerator.register(EquipMiscItems.BRONZE_AXE, Models.HANDHELD);
+        itemModelGenerator.register(EquipMiscItems.BRONZE_SHOVEL, Models.HANDHELD);
+        itemModelGenerator.register(EquipMiscItems.BRONZE_HOE, Models.HANDHELD);
+        itemModelGenerator.register(EquipMiscItems.BRONZE_SWORD, Models.HANDHELD);
+        itemModelGenerator.registerArmor(EquipMiscItems.BRONZE_HELMET);
+        itemModelGenerator.registerArmor(EquipMiscItems.BRONZE_CHESTPLATE);
+        itemModelGenerator.registerArmor(EquipMiscItems.BRONZE_LEGGINGS);
+        itemModelGenerator.registerArmor(EquipMiscItems.BRONZE_BOOTS);
     }
 }

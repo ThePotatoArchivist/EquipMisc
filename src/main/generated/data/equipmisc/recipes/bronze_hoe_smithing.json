@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "equipmisc:bronze_ingot"
+  },
+  "base": {
+    "item": "minecraft:iron_hoe"
+  },
+  "result": {
+    "item": "equipmisc:bronze_hoe"
+  },
+  "template": {
+    "item": "equipmisc:bronze_upgrade_smithing_template"
+  }
+}

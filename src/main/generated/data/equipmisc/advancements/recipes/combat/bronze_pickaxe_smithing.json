@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_smithing_template_leather_reinforcement": {
+    "has_bronze_ingot": {
       "conditions": {
         "items": [
           {
             "items": [
-              "equipmisc:smithing_template_leather_reinforcement"
+              "equipmisc:bronze_ingot"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "equipmisc:smithing_template_leather_reinforcement"
+        "recipe": "minecraft:bronze_pickaxe_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_smithing_template_leather_reinforcement",
+      "has_bronze_ingot",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "equipmisc:smithing_template_leather_reinforcement"
+      "minecraft:bronze_pickaxe_smithing"
     ]
   },
   "sends_telemetry_event": false

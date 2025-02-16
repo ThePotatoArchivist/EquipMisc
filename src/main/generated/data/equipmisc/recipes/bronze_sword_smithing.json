@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "equipmisc:bronze_ingot"
+  },
+  "base": {
+    "item": "minecraft:iron_sword"
+  },
+  "result": {
+    "item": "equipmisc:bronze_sword"
+  },
+  "template": {
+    "item": "equipmisc:bronze_upgrade_smithing_template"
+  }
+}
