@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "equipmisc:item/smithing_template_leather_reinforcement"
+  }
+}

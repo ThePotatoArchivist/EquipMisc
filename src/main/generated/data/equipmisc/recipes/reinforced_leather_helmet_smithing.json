@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:chainmail_helmet"
+  },
+  "base": {
+    "item": "minecraft:leather_helmet"
+  },
+  "result": {
+    "item": "equipmisc:reinforced_leather_helmet"
+  },
+  "template": {
+    "item": "equipmisc:smithing_template_leather_reinforcement"
+  }
+}

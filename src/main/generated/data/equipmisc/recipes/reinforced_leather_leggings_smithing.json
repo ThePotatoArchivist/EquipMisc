@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:chainmail_leggings"
+  },
+  "base": {
+    "item": "minecraft:leather_leggings"
+  },
+  "result": {
+    "item": "equipmisc:reinforced_leather_leggings"
+  },
+  "template": {
+    "item": "equipmisc:smithing_template_leather_reinforcement"
+  }
+}

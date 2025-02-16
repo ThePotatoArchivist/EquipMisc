@@ -1,0 +1,12 @@
+{
+  "item.equipmisc.reinforced_leather_boots": "Reinforced Leather Boots",
+  "item.equipmisc.reinforced_leather_chestplate": "Reinforced Leather Chestplate",
+  "item.equipmisc.reinforced_leather_helmet": "Reinforced Leather Helmet",
+  "item.equipmisc.reinforced_leather_leggings": "Reinforced Leather Leggings",
+  "item.equipmisc.smithing_template.leather_reinforcement.additions_slot_description": "Add Matching Chainmail Armor",
+  "item.equipmisc.smithing_template.leather_reinforcement.applies_to": "Leather Armor",
+  "item.equipmisc.smithing_template.leather_reinforcement.base_slot_description": "Add Leather Armor",
+  "item.equipmisc.smithing_template.leather_reinforcement.ingredients": "Matching Chainmail Armor",
+  "item.minecraft.smithing_template": "Smithing Template",
+  "upgrade.equipmisc.leather_reinforcement": "Leather Reinforcement"
+}
