@@ -48,6 +48,7 @@ public class EMRecipeGenerator extends RecipeGenerator {
                 .offerTo(exporter);
 
         offerSmelting(List.of(RAW_BRONZE), RecipeCategory.MISC, BRONZE_INGOT, 1.5f, 200, "");
+        offerBlasting(List.of(RAW_BRONZE), RecipeCategory.MISC, BRONZE_INGOT, 1.5f, 100, "");
 
         offerBronzeUpgrade(IRON_HELMET, BRONZE_HELMET);
         offerBronzeUpgrade(IRON_CHESTPLATE, BRONZE_CHESTPLATE);
