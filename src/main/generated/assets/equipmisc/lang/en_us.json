@@ -1,4 +1,6 @@
 {
+  "advancements.story.equipmisc.bronze_tools.description": "Improve the durability of your iron tools by upgrading them with bronze",
+  "advancements.story.equipmisc.bronze_tools.title": "Incremental Upgrades",
   "item.equipmisc.bronze_axe": "Bronze Axe",
   "item.equipmisc.bronze_boots": "Bronze Boots",
   "item.equipmisc.bronze_chestplate": "Bronze Chestplate",
@@ -18,6 +20,7 @@
   "item.equipmisc.smithing_template.bronze_upgrade.applies_to": "Iron Equipment",
   "item.equipmisc.smithing_template.bronze_upgrade.base_slot_description": "Add iron armor, weapon, or tool",
   "item.equipmisc.smithing_template.bronze_upgrade.ingredients": "Bronze Ingot",
+  "tag.item.equipmisc.bronze_equipment": "Bronze Equipment",
   "tag.item.equipmisc.bronze_tool_materials": "Bronze Tool Materials",
   "tag.item.equipmisc.repairs_bronze_armor": "Repairs Bronze Armor"
 }

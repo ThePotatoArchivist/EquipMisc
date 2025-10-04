@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#equipmisc:bronze_tool_materials",
+  "base": "minecraft:iron_sword",
+  "result": {
+    "id": "equipmisc:bronze_sword"
+  },
+  "template": "equipmisc:bronze_upgrade_smithing_template"
+}

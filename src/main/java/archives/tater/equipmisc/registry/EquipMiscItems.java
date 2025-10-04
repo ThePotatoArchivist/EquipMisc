@@ -56,6 +56,7 @@ public class EquipMiscItems {
 
     public static final TagKey<Item> REPAIRS_BRONZE_ARMOR = tagOf("repairs_bronze_armor");
     public static final TagKey<Item> BRONZE_TOOL_MATERIALS = tagOf("bronze_tool_materials");
+    public static final TagKey<Item> BRONZE_EQUIPMENT = tagOf("bronze_equipment");
 
     public static final ArmorMaterial BRONZE_ARMOR = new ArmorMaterial(
             25,
@@ -132,6 +133,8 @@ public class EquipMiscItems {
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.addAfter(Items.IRON_INGOT, BRONZE_INGOT);
+            entries.addAfter(Items.RAW_IRON, RAW_BRONZE);
+            entries.addBefore(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, BRONZE_UPGRADE_SMITHING_TEMPLATE);
         });
 
         DispenserBlock.registerBehavior(BRONZE_SHEARS, new ShearsDispenserBehavior());

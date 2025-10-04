@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#equipmisc:bronze_tool_materials",
+  "base": "minecraft:shield",
+  "result": {
+    "id": "equipmisc:bronze_shield"
+  },
+  "template": "equipmisc:bronze_upgrade_smithing_template"
+}

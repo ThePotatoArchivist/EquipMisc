@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:raw_materials/copper",
+    "#c:raw_materials/copper",
+    "#c:raw_materials/copper",
+    "#c:raw_materials/copper",
+    "#c:nuggets/iron",
+    "#c:nuggets/iron",
+    "#c:nuggets/iron",
+    "#c:nuggets/iron"
+  ],
+  "result": {
+    "count": 1,
+    "id": "equipmisc:raw_bronze"
+  }
+}

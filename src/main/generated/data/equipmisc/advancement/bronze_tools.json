@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:story/iron_tools",
+  "criteria": {
+    "has_bronze_equipment": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#equipmisc:bronze_equipment"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.story.equipmisc.bronze_tools.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "equipmisc:bronze_pickaxe"
+    },
+    "title": {
+      "translate": "advancements.story.equipmisc.bronze_tools.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_bronze_equipment"
+    ]
+  ]
+}

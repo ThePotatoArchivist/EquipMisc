@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#equipmisc:bronze_tool_materials",
+  "base": "minecraft:flint_and_steel",
+  "result": {
+    "id": "equipmisc:flint_and_bronze"
+  },
+  "template": "equipmisc:bronze_upgrade_smithing_template"
+}

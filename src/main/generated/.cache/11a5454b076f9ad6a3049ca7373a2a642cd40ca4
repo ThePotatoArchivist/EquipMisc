@@ -2,11 +2,14 @@
 815b3b3f58650caf9d2429a2484fdf6d0e951416 data/c/tags/item/armors.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/c/tags/item/ingots.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/c/tags/item/ingots/bronze.json
+60cb77862f9d28cee2fe29a4143af70df78cf86a data/c/tags/item/raw_materials.json
+60cb77862f9d28cee2fe29a4143af70df78cf86a data/c/tags/item/raw_materials/bronze.json
 fe367b407427137bdb321635672e039e3e2ea137 data/c/tags/item/tools/igniter.json
 ce0f2ffe001bcb8dfc131006c48593d19fe54c2a data/c/tags/item/tools/melee_weapon.json
 46d5ee68f6020eff45167cfe7704f6bcd15456ed data/c/tags/item/tools/mining_tool.json
 ac8e06adb7f67108be4cb97e96681870bfa24060 data/c/tags/item/tools/shear.json
 ab5becde6d81be0a773f66ed180771ae6e47956e data/c/tags/item/tools/shield.json
+c4c4cbf3ebf2ea672dd361f228be28ede40d5fe6 data/equipmisc/tags/item/bronze_equipment.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/equipmisc/tags/item/bronze_tool_materials.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/equipmisc/tags/item/repairs_bronze_armor.json
 a12cf1beeed81bb7026b91e97f8ed7f9297b18b2 data/minecraft/tags/item/axes.json

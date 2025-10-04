@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#equipmisc:bronze_tool_materials",
+  "base": "minecraft:iron_boots",
+  "result": {
+    "id": "equipmisc:bronze_boots"
+  },
+  "template": "equipmisc:bronze_upgrade_smithing_template"
+}

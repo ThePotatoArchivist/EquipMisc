@@ -3,7 +3,6 @@ package archives.tater.equipmisc.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.TagUtil;
-
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
 import net.minecraft.registry.tag.TagKey;
@@ -25,6 +24,20 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
     protected void configure(WrapperLookup wrapperLookup) {
         valueLookupBuilder(REPAIRS_BRONZE_ARMOR).add(BRONZE_INGOT);
         valueLookupBuilder(BRONZE_TOOL_MATERIALS).add(BRONZE_INGOT);
+        valueLookupBuilder(BRONZE_EQUIPMENT).add(
+                BRONZE_HELMET,
+                BRONZE_CHESTPLATE,
+                BRONZE_LEGGINGS,
+                BRONZE_BOOTS,
+                BRONZE_SWORD,
+                BRONZE_SHOVEL,
+                BRONZE_PICKAXE,
+                BRONZE_AXE,
+                BRONZE_HOE,
+                BRONZE_SHIELD,
+                BRONZE_SHEARS,
+                FLINT_AND_BRONZE
+        );
 
         valueLookupBuilder(SWORDS).add(BRONZE_SWORD);
         valueLookupBuilder(SHOVELS).add(BRONZE_SHOVEL);
@@ -49,6 +62,8 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         valueLookupBuilder(SHEAR_TOOLS).add(BRONZE_SHEARS);
         valueLookupBuilder(ARMORS).add(BRONZE_HELMET, BRONZE_CHESTPLATE, BRONZE_LEGGINGS, BRONZE_BOOTS);
         valueLookupBuilder(INGOTS).add(BRONZE_INGOT);
+        valueLookupBuilder(RAW_MATERIALS).add(RAW_BRONZE);
         valueLookupBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(TagUtil.C_TAG_NAMESPACE, "ingots/bronze"))).add(BRONZE_INGOT);
+        valueLookupBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(TagUtil.C_TAG_NAMESPACE, "raw_materials/bronze"))).add(RAW_BRONZE);
     }
 }

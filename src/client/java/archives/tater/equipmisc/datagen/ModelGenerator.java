@@ -28,6 +28,8 @@ public class ModelGenerator extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
+        itemModelGenerator.register(BRONZE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
+        itemModelGenerator.register(RAW_BRONZE, Models.GENERATED);
         itemModelGenerator.register(BRONZE_INGOT, Models.GENERATED);
 
         itemModelGenerator.registerArmor(BRONZE_HELMET, BRONZE_ARMOR.assetId(), HELMET_TRIM_ID_PREFIX, false);
