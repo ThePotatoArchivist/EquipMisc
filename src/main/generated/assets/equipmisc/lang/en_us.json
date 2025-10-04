@@ -11,7 +11,13 @@
   "item.equipmisc.bronze_shield": "Bronze Shield",
   "item.equipmisc.bronze_shovel": "Bronze Shovel",
   "item.equipmisc.bronze_sword": "Bronze Sword",
+  "item.equipmisc.bronze_upgrade_smithing_template": "Bronze Upgrade",
   "item.equipmisc.flint_and_bronze": "Flint and Bronze",
+  "item.equipmisc.raw_bronze": "Raw Bronze",
+  "item.equipmisc.smithing_template.bronze_upgrade.additions_slot_description": "Add Bronze Ingot",
+  "item.equipmisc.smithing_template.bronze_upgrade.applies_to": "Iron Equipment",
+  "item.equipmisc.smithing_template.bronze_upgrade.base_slot_description": "Add iron armor, weapon, or tool",
+  "item.equipmisc.smithing_template.bronze_upgrade.ingredients": "Bronze Ingot",
   "tag.item.equipmisc.bronze_tool_materials": "Bronze Tool Materials",
   "tag.item.equipmisc.repairs_bronze_armor": "Repairs Bronze Armor"
 }

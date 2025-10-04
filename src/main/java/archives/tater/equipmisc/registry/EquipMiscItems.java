@@ -1,6 +1,7 @@
 package archives.tater.equipmisc.registry;
 
 import archives.tater.equipmisc.EquipMisc;
+import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 
@@ -78,6 +79,8 @@ public class EquipMiscItems {
             BRONZE_TOOL_MATERIALS
     );
 
+    public static final Item BRONZE_UPGRADE_SMITHING_TEMPLATE = register("bronze_upgrade_smithing_template", EquipMiscSmithingTemplates::createBronzeUpgrade);
+    public static final Item RAW_BRONZE = register("raw_bronze", new Item.Settings());
     public static final Item BRONZE_INGOT = register("bronze_ingot", new Item.Settings());
 
     public static final Item BRONZE_HELMET = register("bronze_helmet", new Item.Settings().armor(BRONZE_ARMOR, EquipmentType.HELMET));

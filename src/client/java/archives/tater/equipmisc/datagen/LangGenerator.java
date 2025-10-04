@@ -1,5 +1,6 @@
 package archives.tater.equipmisc.datagen;
 
+import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
 import archives.tater.equipmisc.registry.EquipMiscItems;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -19,6 +20,13 @@ public class LangGenerator extends FabricLanguageProvider {
         translationBuilder.add(EquipMiscItems.BRONZE_TOOL_MATERIALS, "Bronze Tool Materials");
         translationBuilder.add(EquipMiscItems.REPAIRS_BRONZE_ARMOR, "Repairs Bronze Armor");
 
+        translationBuilder.add(EquipMiscItems.BRONZE_UPGRADE_SMITHING_TEMPLATE, "Bronze Upgrade");
+        translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPRADE_APPLIES_TO_KEY, "Iron Equipment");
+        translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPRADE_INGREDIENTS_KEY, "Bronze Ingot");
+        translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPGRADE_BASE_SLOT_DESCRIPTION_KEY, "Add iron armor, weapon, or tool");
+        translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION_KEY, "Add Bronze Ingot");
+
+        translationBuilder.add(EquipMiscItems.RAW_BRONZE, "Raw Bronze");
         translationBuilder.add(EquipMiscItems.BRONZE_INGOT, "Bronze Ingot");
         translationBuilder.add(EquipMiscItems.BRONZE_HELMET, "Bronze Helmet");
         translationBuilder.add(EquipMiscItems.BRONZE_CHESTPLATE, "Bronze Chestplate");
