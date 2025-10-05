@@ -10,6 +10,7 @@ public class EquipMiscDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         var pack = fabricDataGenerator.createPack();
         pack.addProvider(ItemTagGenerator::new);
+        pack.addProvider(BlockTagGenerator::new);
         pack.addProvider(AdvancementGenerator::new);
         pack.addProvider(EMRecipeGenerator.Provider::new);
 

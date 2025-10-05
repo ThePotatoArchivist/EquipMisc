@@ -3,6 +3,7 @@ package archives.tater.equipmisc.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.data.recipe.SmithingTransformRecipeJsonBuilder;
@@ -11,7 +12,6 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.List;
@@ -39,8 +39,6 @@ public class EMRecipeGenerator extends RecipeGenerator {
 
     @Override
     public void generate() {
-        var items = registries.getOrThrow(RegistryKeys.ITEM);
-
         createShapeless(RecipeCategory.MISC, RAW_BRONZE)
                 .input(ingredientFromTag(ConventionalItemTags.COPPER_RAW_MATERIALS), 4)
                 .input(ingredientFromTag(ConventionalItemTags.IRON_NUGGETS), 4)

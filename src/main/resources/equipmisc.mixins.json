@@ -5,12 +5,14 @@
   "mixins": [
     "ItemPredicateMixin",
     "ItemStackMixin",
-    "ShieldDecorationRecipeMixin"
+    "OreVeinSamplerMixin",
+    "ShieldDecorationRecipeMixin",
+    "VeinTypeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "overwrites": {
     "requireAnnotations": true
-	}
+  }
 }
