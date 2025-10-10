@@ -11,6 +11,7 @@ ac8e06adb7f67108be4cb97e96681870bfa24060 data/c/tags/item/tools/shear.json
 ab5becde6d81be0a773f66ed180771ae6e47956e data/c/tags/item/tools/shield.json
 c4c4cbf3ebf2ea672dd361f228be28ede40d5fe6 data/equipmisc/tags/item/bronze_equipment.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/equipmisc/tags/item/bronze_tool_materials.json
+c5a26a067322c2b399964ab7cff330066442dc1d data/equipmisc/tags/item/enchanted_invisible_equipment.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/equipmisc/tags/item/repairs_bronze_armor.json
 a12cf1beeed81bb7026b91e97f8ed7f9297b18b2 data/minecraft/tags/item/axes.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/minecraft/tags/item/beacon_payment_items.json

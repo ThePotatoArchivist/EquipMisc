@@ -61,6 +61,7 @@ public class EquipMiscItems {
     public static final TagKey<Item> REPAIRS_BRONZE_ARMOR = tagOf("repairs_bronze_armor");
     public static final TagKey<Item> BRONZE_TOOL_MATERIALS = tagOf("bronze_tool_materials");
     public static final TagKey<Item> BRONZE_EQUIPMENT = tagOf("bronze_equipment");
+    public static final TagKey<Item> ENCHANTED_INVISIBLE_EQUIPMENT = tagOf("enchanted_invisible_equipment");
 
     public static final ArmorMaterial BRONZE_ARMOR = new ArmorMaterial(
             25,

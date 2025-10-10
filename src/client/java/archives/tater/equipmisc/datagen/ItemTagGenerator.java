@@ -3,6 +3,8 @@ package archives.tater.equipmisc.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.TagUtil;
+
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
 import net.minecraft.registry.tag.TagKey;
@@ -37,6 +39,12 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 BRONZE_SHIELD,
                 BRONZE_SHEARS,
                 FLINT_AND_BRONZE
+        );
+        valueLookupBuilder(ENCHANTED_INVISIBLE_EQUIPMENT).add(
+                Items.CHAINMAIL_HELMET,
+                Items.CHAINMAIL_CHESTPLATE,
+                Items.CHAINMAIL_LEGGINGS,
+                Items.CHAINMAIL_BOOTS
         );
 
         valueLookupBuilder(SWORDS).add(BRONZE_SWORD);

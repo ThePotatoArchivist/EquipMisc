@@ -23,6 +23,7 @@ public class LangGenerator extends FabricLanguageProvider {
         translationBuilder.add(EquipMiscItems.BRONZE_TOOL_MATERIALS, "Bronze Tool Materials");
         translationBuilder.add(EquipMiscItems.REPAIRS_BRONZE_ARMOR, "Repairs Bronze Armor");
         translationBuilder.add(EquipMiscItems.BRONZE_EQUIPMENT, "Bronze Equipment");
+        translationBuilder.add(EquipMiscItems.ENCHANTED_INVISIBLE_EQUIPMENT, "Works with Invisibility when Enchanted");
 
         translationBuilder.add(EquipMiscItems.BRONZE_UPGRADE_SMITHING_TEMPLATE, "Bronze Upgrade");
         translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPRADE_APPLIES_TO_KEY, "Iron Equipment");
