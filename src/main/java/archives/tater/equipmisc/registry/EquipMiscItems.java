@@ -3,14 +3,18 @@ package archives.tater.equipmisc.registry;
 import archives.tater.equipmisc.EquipMisc;
 import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
 
+import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ShearsDispenserBehavior;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.BannerPatternsComponent;
 import net.minecraft.component.type.BlocksAttacksComponent;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributeModifier.Operation;
 import net.minecraft.item.*;
 import net.minecraft.item.Item.Settings;
 import net.minecraft.item.equipment.ArmorMaterial;
@@ -135,6 +139,16 @@ public class EquipMiscItems {
             entries.addAfter(Items.IRON_INGOT, BRONZE_INGOT);
             entries.addAfter(Items.RAW_IRON, RAW_BRONZE);
             entries.addBefore(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, BRONZE_UPGRADE_SMITHING_TEMPLATE);
+        });
+
+        DefaultItemComponentEvents.MODIFY.register(context -> {
+            context.modify(Items.TURTLE_HELMET, builder -> {
+                var attributes = Items.TURTLE_HELMET.getComponents().get(DataComponentTypes.ATTRIBUTE_MODIFIERS);
+                if (attributes == null) return;
+                builder.add(DataComponentTypes.ATTRIBUTE_MODIFIERS, attributes
+                        .with(EquipMiscAttributes.MAX_AIR, new EntityAttributeModifier(EquipMisc.id("turtle_air"), 30.0, Operation.ADD_VALUE), AttributeModifierSlot.HEAD)
+                );
+            });
         });
 
         DispenserBlock.registerBehavior(BRONZE_SHEARS, new ShearsDispenserBehavior());

@@ -1,6 +1,7 @@
 {
   "advancements.story.equipmisc.bronze_tools.description": "Improve the durability of your iron tools by upgrading them with bronze",
   "advancements.story.equipmisc.bronze_tools.title": "Incremental Upgrades",
+  "attribute.name.equipmisc.max_air": "Max Air",
   "item.equipmisc.bronze_axe": "Bronze Axe",
   "item.equipmisc.bronze_boots": "Bronze Boots",
   "item.equipmisc.bronze_chestplate": "Bronze Chestplate",

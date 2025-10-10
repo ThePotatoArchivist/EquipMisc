@@ -1,6 +1,7 @@
 package archives.tater.equipmisc.datagen;
 
 import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
+import archives.tater.equipmisc.registry.EquipMiscAttributes;
 import archives.tater.equipmisc.registry.EquipMiscItems;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -17,6 +18,8 @@ public class LangGenerator extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(WrapperLookup registryLookup, TranslationBuilder translationBuilder) {
+        translationBuilder.add(EquipMiscAttributes.MAX_AIR, "Max Air");
+
         translationBuilder.add(EquipMiscItems.BRONZE_TOOL_MATERIALS, "Bronze Tool Materials");
         translationBuilder.add(EquipMiscItems.REPAIRS_BRONZE_ARMOR, "Repairs Bronze Armor");
         translationBuilder.add(EquipMiscItems.BRONZE_EQUIPMENT, "Bronze Equipment");

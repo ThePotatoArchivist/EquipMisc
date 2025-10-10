@@ -1,11 +1,13 @@
 {
-	"required": true,
-	"package": "archives.tater.equipmisc.mixin.client",
-	"compatibilityLevel": "JAVA_21",
-	"client": [
-      "ShieldModelRendererMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	}
+  "required": true,
+  "package": "archives.tater.equipmisc.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "InGameHudMixin",
+    "ShieldModelRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixinextras": {"minVersion": "0.5.0"}
 }

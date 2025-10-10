@@ -1,4 +1,4 @@
-package archives.tater.equipmisc.mixin;
+package archives.tater.equipmisc.mixin.shears;
 
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
