@@ -45,6 +45,7 @@ public class LangGenerator extends FabricLanguageProvider {
         translationBuilder.add(EquipMiscItems.BRONZE_SHIELD, "Bronze Shield");
         translationBuilder.add(EquipMiscItems.BRONZE_SHEARS, "Bronze Shears");
         translationBuilder.add(EquipMiscItems.FLINT_AND_BRONZE, "Flint and Bronze");
+        translationBuilder.add(EquipMiscItems.BRONZE_KNIFE, "Bronze Knife");
 
         translationBuilder.add(AdvancementGenerator.BRONZE_TOOLS_TITLE, "Incremental Upgrades");
         translationBuilder.add(AdvancementGenerator.BRONZE_TOOLS_DESCRIPTION, "Improve the durability of your iron tools by upgrading them with bronze");

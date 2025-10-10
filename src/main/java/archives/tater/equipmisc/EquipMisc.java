@@ -6,6 +6,7 @@ import archives.tater.equipmisc.registry.EquipMiscItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.fabricmc.loader.api.FabricLoader;
 
 import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.loot.LootTables;
@@ -29,6 +30,9 @@ public class EquipMisc implements ModInitializer {
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+    public static final String FARMERS_DELIGHT = "farmersdelight";
+    public static final boolean FARMERS_DELIGHT_INSTALLED = FabricLoader.getInstance().isModLoaded(FARMERS_DELIGHT);
 
 	@Override
 	public void onInitialize() {

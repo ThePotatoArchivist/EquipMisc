@@ -1,0 +1,17 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "minecraft:smithing_transform",
+  "addition": "#equipmisc:bronze_tool_materials",
+  "base": "farmersdelight:iron_knife",
+  "result": {
+    "id": "equipmisc:bronze_knife"
+  },
+  "template": "equipmisc:bronze_upgrade_smithing_template"
+}

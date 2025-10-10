@@ -1,8 +1,13 @@
 package archives.tater.equipmisc.datagen;
 
+import archives.tater.equipmisc.EquipMisc;
+
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.fabricmc.fabric.impl.resource.conditions.conditions.AllModsLoadedResourceCondition;
+
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.data.recipe.SmithingTransformRecipeJsonBuilder;
@@ -11,8 +16,9 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+
+import vectorwing.farmersdelight.common.registry.ModItems;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -21,11 +27,15 @@ import static archives.tater.equipmisc.registry.EquipMiscItems.*;
 import static net.minecraft.item.Items.*;
 
 public class EMRecipeGenerator extends RecipeGenerator {
-    protected EMRecipeGenerator(RegistryWrapper.WrapperLookup registries, RecipeExporter exporter) {
+
+    private final RecipeExporterProvider exporterProvider;
+
+    protected EMRecipeGenerator(RegistryWrapper.WrapperLookup registries, RecipeExporter exporter, RecipeExporterProvider exporterProvider) {
         super(registries, exporter);
+        this.exporterProvider = exporterProvider;
     }
 
-    private void offerBronzeUpgrade(ItemConvertible input, Item result) {
+    private void offerBronzeUpgrade(ItemConvertible input, Item result, RecipeExporter exporter) {
         SmithingTransformRecipeJsonBuilder.create(
                         Ingredient.ofItem(BRONZE_UPGRADE_SMITHING_TEMPLATE),
                         Ingredient.ofItem(input),
@@ -34,13 +44,16 @@ public class EMRecipeGenerator extends RecipeGenerator {
                         result
                 )
                 .criterion(hasItem(BRONZE_INGOT), conditionsFromTag(BRONZE_TOOL_MATERIALS))
-                .offerTo(this.exporter, getItemPath(result) + "_smithing");
+                .offerTo(exporter, getItemPath(result) + "_smithing");
     }
 
+    private void offerBronzeUpgrade(ItemConvertible input, Item result) {
+        offerBronzeUpgrade(input, result, exporter);
+    }
+
+    @SuppressWarnings("UnstableApiUsage")
     @Override
     public void generate() {
-        var items = registries.getOrThrow(RegistryKeys.ITEM);
-
         createShapeless(RecipeCategory.MISC, RAW_BRONZE)
                 .input(ingredientFromTag(ConventionalItemTags.COPPER_RAW_MATERIALS), 4)
                 .input(ingredientFromTag(ConventionalItemTags.IRON_NUGGETS), 4)
@@ -62,6 +75,12 @@ public class EMRecipeGenerator extends RecipeGenerator {
         offerBronzeUpgrade(SHIELD, BRONZE_SHIELD);
         offerBronzeUpgrade(SHEARS, BRONZE_SHEARS);
         offerBronzeUpgrade(FLINT_AND_STEEL, FLINT_AND_BRONZE);
+        createShapeless(RecipeCategory.TOOLS, FLINT_AND_BRONZE)
+                .input(BRONZE_INGOT)
+                .input(FLINT)
+                .criterion(hasItem(BRONZE_INGOT), conditionsFromItem(BRONZE_INGOT))
+                .offerTo(exporter);
+        offerBronzeUpgrade(ModItems.IRON_KNIFE.get(), BRONZE_KNIFE, exporterProvider.get(new AllModsLoadedResourceCondition(List.of(EquipMisc.FARMERS_DELIGHT))));
     }
 
     public static class Provider extends FabricRecipeProvider {
@@ -72,12 +91,16 @@ public class EMRecipeGenerator extends RecipeGenerator {
 
         @Override
         protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup wrapperLookup, RecipeExporter recipeExporter) {
-            return new EMRecipeGenerator(wrapperLookup, recipeExporter);
+            return new EMRecipeGenerator(wrapperLookup, recipeExporter, conditions -> withConditions(recipeExporter, conditions));
         }
 
         @Override
         public String getName() {
             return "Recipes";
         }
+    }
+
+    protected interface RecipeExporterProvider {
+        RecipeExporter get(ResourceCondition... conditions);
     }
 }

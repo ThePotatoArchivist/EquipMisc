@@ -32,6 +32,9 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 
+import vectorwing.farmersdelight.common.item.KnifeItem;
+import vectorwing.farmersdelight.common.registry.ModItems;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -123,6 +126,7 @@ public class EquipMiscItems {
     public static final Item FLINT_AND_BRONZE = register("flint_and_bronze", FlintAndSteelItem::new, new Item.Settings()
             .maxDamage(BRONZE_TOOL_DURABILITY)
     );
+    public static final Item BRONZE_KNIFE = EquipMisc.FARMERS_DELIGHT_INSTALLED ? register("bronze_knife", KnifeItem::new, ModItems.knifeItem(BRONZE_TOOL)) : null;
 
     public static void init() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {

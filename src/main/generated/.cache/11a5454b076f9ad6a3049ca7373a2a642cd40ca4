@@ -1,4 +1,4 @@
-// 1.21.9	-999999999-01-01T00:00:00	EquipMisc/Tags for minecraft:item
+// 1.21.10	-999999999-01-01T00:00:00	EquipMisc/Tags for minecraft:item
 815b3b3f58650caf9d2429a2484fdf6d0e951416 data/c/tags/item/armors.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/c/tags/item/ingots.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/c/tags/item/ingots/bronze.json
@@ -13,6 +13,7 @@ c4c4cbf3ebf2ea672dd361f228be28ede40d5fe6 data/equipmisc/tags/item/bronze_equipme
 05588bd80b47996a219f3828b29c80dccc5d2361 data/equipmisc/tags/item/bronze_tool_materials.json
 c5a26a067322c2b399964ab7cff330066442dc1d data/equipmisc/tags/item/enchanted_invisible_equipment.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/equipmisc/tags/item/repairs_bronze_armor.json
+1662b4afe6c001fb5cd9ff956c84724c802c4a17 data/farmersdelight/tags/item/tools/knives.json
 a12cf1beeed81bb7026b91e97f8ed7f9297b18b2 data/minecraft/tags/item/axes.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/minecraft/tags/item/beacon_payment_items.json
 7edd09be14c30e8c24bb91c1078134ad3a04a87f data/minecraft/tags/item/chest_armor.json

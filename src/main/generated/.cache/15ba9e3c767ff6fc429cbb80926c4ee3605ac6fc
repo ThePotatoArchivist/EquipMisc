@@ -1,10 +1,11 @@
-// 1.21.9	-999999999-01-01T00:00:00	EquipMisc/Model Definitions
+// 1.21.10	-999999999-01-01T00:00:00	EquipMisc/Model Definitions
 98adb5ebdd8b5bb7c249ae7c97a318b8861baac8 assets/equipmisc/items/bronze_axe.json
 9329d2822f1c95e2023daef92d87df1cb7bae256 assets/equipmisc/items/bronze_boots.json
 57df545653bc2d47fd8aac91e9fe5b039a52609d assets/equipmisc/items/bronze_chestplate.json
 5a8c080d6627da7add70173ce91be7186a182999 assets/equipmisc/items/bronze_helmet.json
 26f90984eb419e756edbb3fd770ad9cbc73826fd assets/equipmisc/items/bronze_hoe.json
 0b676ceb11075af118481b412beeb09fddb9ffc9 assets/equipmisc/items/bronze_ingot.json
+3d533e102d9c2776dca10a7e331ec7ef92c17aa4 assets/equipmisc/items/bronze_knife.json
 5cc80a5ecbbffdb8fc080fae108d4558b49d220f assets/equipmisc/items/bronze_leggings.json
 e3e6f3eedb2c30c13823647385615a2e2766e678 assets/equipmisc/items/bronze_pickaxe.json
 ffe228bf43e78f741d2ff095fb0d6351bbe49290 assets/equipmisc/items/bronze_shears.json
@@ -53,6 +54,7 @@ d75d09439ca91bea63dc1d06683c81190b35c307 assets/equipmisc/models/item/bronze_hel
 4fcde44e7b49343eb51ccf613767a2b9ee148284 assets/equipmisc/models/item/bronze_helmet_resin_trim.json
 7554a3431490fb0c16684a08047c688c5227c217 assets/equipmisc/models/item/bronze_hoe.json
 50038084dc08fdae9453eae991fe6718a8116c2f assets/equipmisc/models/item/bronze_ingot.json
+51847ab6090fed72ffb3fe1c11bee1b829d9dbce assets/equipmisc/models/item/bronze_knife.json
 5958573f4be58dfce511ecb61c5f670e3f6cb4ec assets/equipmisc/models/item/bronze_leggings.json
 51be1f983d2c893662419d11f08b03d4b53e1c37 assets/equipmisc/models/item/bronze_leggings_amethyst_trim.json
 4b40f0606a79202ced507e81e7a5590234e23287 assets/equipmisc/models/item/bronze_leggings_copper_trim.json

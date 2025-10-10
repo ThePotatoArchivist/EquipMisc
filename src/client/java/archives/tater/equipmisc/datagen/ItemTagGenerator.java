@@ -10,6 +10,8 @@ import net.minecraft.registry.RegistryWrapper.WrapperLookup;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
+import vectorwing.farmersdelight.common.tag.ModTags;
+
 import java.util.concurrent.CompletableFuture;
 
 import static archives.tater.equipmisc.registry.EquipMiscItems.*;
@@ -73,5 +75,7 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         valueLookupBuilder(RAW_MATERIALS).add(RAW_BRONZE);
         valueLookupBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(TagUtil.C_TAG_NAMESPACE, "ingots/bronze"))).add(BRONZE_INGOT);
         valueLookupBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of(TagUtil.C_TAG_NAMESPACE, "raw_materials/bronze"))).add(RAW_BRONZE);
+
+        valueLookupBuilder(ModTags.KNIVES).add(BRONZE_KNIFE);
     }
 }
