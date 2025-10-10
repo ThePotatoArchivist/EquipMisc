@@ -1,0 +1,9 @@
+{
+  "type": "equipmisc:smithing_patch",
+  "addition": "minecraft:chainmail_helmet",
+  "base": "#minecraft:head_armor",
+  "result": {
+    "equipmisc:chainmail_upgrade": {}
+  },
+  "template": "equipmisc:bronze_upgrade_smithing_template"
+}

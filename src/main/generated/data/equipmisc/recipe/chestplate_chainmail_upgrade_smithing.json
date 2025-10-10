@@ -1,0 +1,9 @@
+{
+  "type": "equipmisc:smithing_patch",
+  "addition": "minecraft:chainmail_chestplate",
+  "base": "#minecraft:chest_armor",
+  "result": {
+    "equipmisc:chainmail_upgrade": {}
+  },
+  "template": "equipmisc:bronze_upgrade_smithing_template"
+}

@@ -1,7 +1,9 @@
 package archives.tater.equipmisc;
 
 import archives.tater.equipmisc.registry.EquipMiscAttributes;
+import archives.tater.equipmisc.registry.EquipMiscComponents;
 import archives.tater.equipmisc.registry.EquipMiscItems;
+import archives.tater.equipmisc.registry.EquipMiscRecipes;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
@@ -40,7 +42,9 @@ public class EquipMisc implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
         EquipMiscAttributes.init();
+        EquipMiscComponents.init();
         EquipMiscItems.init();
+        EquipMiscRecipes.init();
 
         UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             if (!(entity instanceof TurtleEntity turtleEntity) || turtleEntity.isBaby()) return ActionResult.PASS;

@@ -1,6 +1,8 @@
 package archives.tater.equipmisc.datagen;
 
 import archives.tater.equipmisc.EquipMisc;
+import archives.tater.equipmisc.recipe.SmithingPatchRecipe;
+import archives.tater.equipmisc.registry.EquipMiscComponents;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -8,6 +10,10 @@ import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.fabricmc.fabric.impl.resource.conditions.conditions.AllModsLoadedResourceCondition;
 
+import net.minecraft.advancement.AdvancementRequirements;
+import net.minecraft.advancement.AdvancementRewards;
+import net.minecraft.advancement.criterion.RecipeUnlockedCriterion;
+import net.minecraft.component.ComponentChanges;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.data.recipe.SmithingTransformRecipeJsonBuilder;
@@ -16,7 +22,12 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Unit;
 
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -51,6 +62,25 @@ public class EMRecipeGenerator extends RecipeGenerator {
         offerBronzeUpgrade(input, result, exporter);
     }
 
+    private void offerChainmailUpgrade(String name, TagKey<Item> input, ItemConvertible addition) {
+        var id = EquipMisc.id(name + "_chainmail_upgrade_smithing");
+        var recipeKey = RegistryKey.of(RegistryKeys.RECIPE, id);
+
+        var advancement = exporter.getAdvancementBuilder()
+                .criterion("has_the_recipe", RecipeUnlockedCriterion.create(recipeKey))
+                .criterion(hasItem(BRONZE_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(BRONZE_UPGRADE_SMITHING_TEMPLATE))
+                .rewards(AdvancementRewards.Builder.recipe(recipeKey))
+                .criteriaMerger(AdvancementRequirements.CriterionMerger.OR)
+                .build(id.withPrefixedPath("recipes/" + RecipeCategory.COMBAT.getName() + "/"));
+
+        exporter.accept(recipeKey, new SmithingPatchRecipe(
+                Ingredient.ofItem(BRONZE_UPGRADE_SMITHING_TEMPLATE),
+                ingredientFromTag(input),
+                Ingredient.ofItem(addition),
+                ComponentChanges.builder().add(EquipMiscComponents.CHAINMAIL_UPGRADE, Unit.INSTANCE).build()
+        ), advancement);
+    }
+
     @SuppressWarnings("UnstableApiUsage")
     @Override
     public void generate() {
@@ -81,6 +111,11 @@ public class EMRecipeGenerator extends RecipeGenerator {
                 .criterion(hasItem(BRONZE_INGOT), conditionsFromItem(BRONZE_INGOT))
                 .offerTo(exporter);
         offerBronzeUpgrade(ModItems.IRON_KNIFE.get(), BRONZE_KNIFE, exporterProvider.get(new AllModsLoadedResourceCondition(List.of(EquipMisc.FARMERS_DELIGHT))));
+
+        offerChainmailUpgrade("helmet", ItemTags.HEAD_ARMOR, CHAINMAIL_HELMET);
+        offerChainmailUpgrade("chestplate", ItemTags.CHEST_ARMOR, CHAINMAIL_CHESTPLATE);
+        offerChainmailUpgrade("leggings", ItemTags.LEG_ARMOR, CHAINMAIL_LEGGINGS);
+        offerChainmailUpgrade("boots", ItemTags.FOOT_ARMOR, CHAINMAIL_BOOTS);
     }
 
     public static class Provider extends FabricRecipeProvider {
