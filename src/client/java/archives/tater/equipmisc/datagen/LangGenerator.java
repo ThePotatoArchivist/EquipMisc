@@ -1,5 +1,6 @@
 package archives.tater.equipmisc.datagen;
 
+import archives.tater.equipmisc.item.ChainmailUpgradeLogic;
 import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
 import archives.tater.equipmisc.registry.EquipMiscAttributes;
 import archives.tater.equipmisc.registry.EquipMiscItems;
@@ -26,10 +27,16 @@ public class LangGenerator extends FabricLanguageProvider {
         translationBuilder.add(EquipMiscItems.ENCHANTED_INVISIBLE_EQUIPMENT, "Works with Invisibility when Enchanted");
 
         translationBuilder.add(EquipMiscItems.BRONZE_UPGRADE_SMITHING_TEMPLATE, "Bronze Upgrade");
-        translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPRADE_APPLIES_TO_KEY, "Iron Equipment");
-        translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPRADE_INGREDIENTS_KEY, "Bronze Ingot");
-        translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPGRADE_BASE_SLOT_DESCRIPTION_KEY, "Add iron armor, weapon, or tool");
-        translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION_KEY, "Add Bronze Ingot");
+        translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPRADE_APPLIES_TO.key, "Iron Equipment");
+        translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPRADE_INGREDIENTS.key, "Bronze Ingot");
+        translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPGRADE_BASE_SLOT_DESCRIPTION.key, "Add iron armor, weapon, or tool");
+        translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION.key, "Add Bronze Ingot");
+
+        translationBuilder.add(EquipMiscItems.CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, "Chainmail Upgrade");
+        translationBuilder.add(EquipMiscSmithingTemplates.CHAINMAIL_UPRADE_APPLIES_TO.key, "Armor");
+        translationBuilder.add(EquipMiscSmithingTemplates.CHAINMAIL_UPRADE_INGREDIENTS.key, "Chainmail Armor");
+        translationBuilder.add(EquipMiscSmithingTemplates.CHAINMAIL_UPGRADE_BASE_SLOT_DESCRIPTION.key, "Add a piece of armor");
+        translationBuilder.add(EquipMiscSmithingTemplates.CHAINMAIL_UPGRADE_ADDITIONS_SLOT_DESCRIPTION.key, "Add matching chainmail armor");
 
         translationBuilder.add(EquipMiscItems.RAW_BRONZE, "Raw Bronze");
         translationBuilder.add(EquipMiscItems.BRONZE_INGOT, "Bronze Ingot");
@@ -46,6 +53,8 @@ public class LangGenerator extends FabricLanguageProvider {
         translationBuilder.add(EquipMiscItems.BRONZE_SHEARS, "Bronze Shears");
         translationBuilder.add(EquipMiscItems.FLINT_AND_BRONZE, "Flint and Bronze");
         translationBuilder.add(EquipMiscItems.BRONZE_KNIFE, "Bronze Knife");
+
+        translationBuilder.add(ChainmailUpgradeLogic.CHAINMAIL_UPGRADE.key, "Chainmail Upgrade");
 
         translationBuilder.add(AdvancementGenerator.BRONZE_TOOLS_TITLE, "Incremental Upgrades");
         translationBuilder.add(AdvancementGenerator.BRONZE_TOOLS_DESCRIPTION, "Improve the durability of your iron tools by upgrading them with bronze");

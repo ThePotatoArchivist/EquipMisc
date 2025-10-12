@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ShieldDecorationRecipeMixin",
+    "chainmail.ItemStackMixin",
     "shears.ItemPredicateMixin",
     "shears.ItemStackMixin",
     "turtle.EntityMixin",

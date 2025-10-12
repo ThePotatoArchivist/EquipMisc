@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_bronze_upgrade_smithing_template": {
+    "has_chainmail_upgrade_smithing_template": {
       "conditions": {
         "items": [
           {
-            "items": "equipmisc:bronze_upgrade_smithing_template"
+            "items": "equipmisc:chainmail_upgrade_smithing_template"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "equipmisc:leggings_chainmail_upgrade_smithing"
+        "recipe": "equipmisc:chainmail_leggings_upgrade_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_bronze_upgrade_smithing_template"
+      "has_chainmail_upgrade_smithing_template"
     ]
   ],
   "rewards": {
     "recipes": [
-      "equipmisc:leggings_chainmail_upgrade_smithing"
+      "equipmisc:chainmail_leggings_upgrade_smithing"
     ]
   }
 }

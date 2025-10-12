@@ -51,5 +51,7 @@ public class ModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(BRONZE_SHEARS, Models.GENERATED);
         itemModelGenerator.register(FLINT_AND_BRONZE, Models.GENERATED);
         itemModelGenerator.register(BRONZE_KNIFE, Models.HANDHELD);
+
+        itemModelGenerator.register(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
     }
 }

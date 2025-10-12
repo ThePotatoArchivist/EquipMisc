@@ -27,30 +27,36 @@ public class SmithingPatchRecipe implements SmithingRecipe {
     final Optional<Ingredient> template;
     final Ingredient base;
     final Optional<Ingredient> addition;
-    final ComponentChanges result;
+    final ComponentChanges patch;
     @Nullable
     private IngredientPlacement ingredientPlacement;
 
-    public SmithingPatchRecipe(Optional<Ingredient> template, Ingredient base, Optional<Ingredient> addition, ComponentChanges result) {
+    public SmithingPatchRecipe(Optional<Ingredient> template, Ingredient base, Optional<Ingredient> addition, ComponentChanges patch) {
         this.template = template;
         this.base = base;
         this.addition = addition;
-        this.result = result;
+        this.patch = patch;
     }
 
-    public SmithingPatchRecipe(@Nullable Ingredient template, Ingredient base, @Nullable Ingredient addition, ComponentChanges result) {
-        this(Optional.ofNullable(template), base, Optional.ofNullable(addition), result);
+    public SmithingPatchRecipe(@Nullable Ingredient template, Ingredient base, @Nullable Ingredient addition, ComponentChanges patch) {
+        this(Optional.ofNullable(template), base, Optional.ofNullable(addition), patch);
+    }
+
+    private static ItemStack withChanges(ItemStack base, ComponentChanges changes) {
+        var stack = base.copy();
+        stack.applyChanges(changes);
+        return stack;
     }
 
     @Override
     public boolean matches(SmithingRecipeInput smithingRecipeInput, World world) {
-        return SmithingRecipe.super.matches(smithingRecipeInput, world) && addition.map(it -> !it.test(smithingRecipeInput.base())).orElse(true);
+        return SmithingRecipe.super.matches(smithingRecipeInput, world)
+                && addition.map(it -> !it.test(smithingRecipeInput.base())).orElse(true)
+                && !ItemStack.areItemsAndComponentsEqual(smithingRecipeInput.base(), withChanges(smithingRecipeInput.base(), patch));
     }
 
     public ItemStack craft(SmithingRecipeInput smithingRecipeInput, WrapperLookup wrapperLookup) {
-        var output = smithingRecipeInput.base().copy();
-        output.applyChanges(result);
-        return output;
+        return withChanges(smithingRecipeInput.base(), patch);
     }
 
     @Override
@@ -101,7 +107,7 @@ public class SmithingPatchRecipe implements SmithingRecipe {
                                 Ingredient.CODEC.optionalFieldOf("template").forGetter(recipe -> recipe.template),
                                 Ingredient.CODEC.fieldOf("base").forGetter(recipe -> recipe.base),
                                 Ingredient.CODEC.optionalFieldOf("addition").forGetter(recipe -> recipe.addition),
-                                ComponentChanges.CODEC.fieldOf("result").forGetter(recipe -> recipe.result)
+                                ComponentChanges.CODEC.fieldOf("patch").forGetter(recipe -> recipe.patch)
                         )
                         .apply(instance, SmithingPatchRecipe::new)
         );
@@ -113,7 +119,7 @@ public class SmithingPatchRecipe implements SmithingRecipe {
                 Ingredient.OPTIONAL_PACKET_CODEC,
                 recipe -> recipe.addition,
                 ComponentChanges.PACKET_CODEC,
-                recipe -> recipe.result,
+                recipe -> recipe.patch,
                 SmithingPatchRecipe::new
         );
 

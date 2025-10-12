@@ -63,18 +63,18 @@ public class EMRecipeGenerator extends RecipeGenerator {
     }
 
     private void offerChainmailUpgrade(String name, TagKey<Item> input, ItemConvertible addition) {
-        var id = EquipMisc.id(name + "_chainmail_upgrade_smithing");
+        var id = EquipMisc.id("chainmail_" + name + "_upgrade_smithing");
         var recipeKey = RegistryKey.of(RegistryKeys.RECIPE, id);
 
         var advancement = exporter.getAdvancementBuilder()
                 .criterion("has_the_recipe", RecipeUnlockedCriterion.create(recipeKey))
-                .criterion(hasItem(BRONZE_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(BRONZE_UPGRADE_SMITHING_TEMPLATE))
+                .criterion(hasItem(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE))
                 .rewards(AdvancementRewards.Builder.recipe(recipeKey))
                 .criteriaMerger(AdvancementRequirements.CriterionMerger.OR)
                 .build(id.withPrefixedPath("recipes/" + RecipeCategory.COMBAT.getName() + "/"));
 
         exporter.accept(recipeKey, new SmithingPatchRecipe(
-                Ingredient.ofItem(BRONZE_UPGRADE_SMITHING_TEMPLATE),
+                Ingredient.ofItem(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE),
                 ingredientFromTag(input),
                 Ingredient.ofItem(addition),
                 ComponentChanges.builder().add(EquipMiscComponents.CHAINMAIL_UPGRADE, Unit.INSTANCE).build()

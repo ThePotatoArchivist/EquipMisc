@@ -128,6 +128,8 @@ public class EquipMiscItems {
     );
     public static final Item BRONZE_KNIFE = EquipMisc.FARMERS_DELIGHT_INSTALLED ? register("bronze_knife", KnifeItem::new, ModItems.knifeItem(BRONZE_TOOL)) : null;
 
+    public static final Item CHAINMAIL_UPGRADE_SMITHING_TEMPLATE = register("chainmail_upgrade_smithing_template", EquipMiscSmithingTemplates::createChainmailUpgrade);
+
     public static void init() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             entries.addAfter(Items.IRON_HOE, BRONZE_SHOVEL, BRONZE_PICKAXE, BRONZE_AXE, BRONZE_HOE);
@@ -143,8 +145,12 @@ public class EquipMiscItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.addAfter(Items.IRON_INGOT, BRONZE_INGOT);
             entries.addAfter(Items.RAW_IRON, RAW_BRONZE);
-            entries.addBefore(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, BRONZE_UPGRADE_SMITHING_TEMPLATE);
+            entries.addBefore(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, BRONZE_UPGRADE_SMITHING_TEMPLATE, CHAINMAIL_UPGRADE_SMITHING_TEMPLATE);
         });
+        if (EquipMisc.FARMERS_DELIGHT_INSTALLED)
+            ItemGroupEvents.modifyEntriesEvent(RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(EquipMisc.FARMERS_DELIGHT, EquipMisc.FARMERS_DELIGHT))).register(entries -> {
+                entries.addAfter(Registries.ITEM.get(Identifier.of(EquipMisc.FARMERS_DELIGHT, "copper_knife")), BRONZE_KNIFE);
+            });
 
         DefaultItemComponentEvents.MODIFY.register(context -> {
             context.modify(Items.TURTLE_HELMET, builder -> {
