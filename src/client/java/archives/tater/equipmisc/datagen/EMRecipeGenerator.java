@@ -116,6 +116,18 @@ public class EMRecipeGenerator extends RecipeGenerator {
         offerChainmailUpgrade("chestplate", ItemTags.CHEST_ARMOR, CHAINMAIL_CHESTPLATE);
         offerChainmailUpgrade("leggings", ItemTags.LEG_ARMOR, CHAINMAIL_LEGGINGS);
         offerChainmailUpgrade("boots", ItemTags.FOOT_ARMOR, CHAINMAIL_BOOTS);
+
+        createShaped(RecipeCategory.MISC, BRONZE_UPGRADE_SMITHING_TEMPLATE, 2)
+                .input('#', COPPER_INGOT)
+                .input('C', COBBLESTONE)
+                .input('S', BRONZE_UPGRADE_SMITHING_TEMPLATE)
+                .pattern("#S#")
+                .pattern("#C#")
+                .pattern("###")
+                .criterion(hasItem(BRONZE_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(BRONZE_UPGRADE_SMITHING_TEMPLATE))
+                .offerTo(exporter);
+        offerSmithingTemplateCopyingRecipe(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, NETHER_BRICK);
+
     }
 
     public static class Provider extends FabricRecipeProvider {

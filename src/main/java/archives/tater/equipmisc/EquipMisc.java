@@ -45,6 +45,7 @@ public class EquipMisc implements ModInitializer {
         EquipMiscComponents.init();
         EquipMiscItems.init();
         EquipMiscRecipes.init();
+        EquipMiscLoot.init();
 
         UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             if (!(entity instanceof TurtleEntity turtleEntity) || turtleEntity.isBaby()) return ActionResult.PASS;
