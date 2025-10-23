@@ -10,6 +10,7 @@ import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTable.Builder;
 import net.minecraft.loot.context.LootContextTypes;
+import net.minecraft.loot.entry.EmptyEntry;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
@@ -26,9 +27,24 @@ public class LootTableGenerator extends SimpleFabricLootTableProvider {
     public void accept(BiConsumer<RegistryKey<LootTable>, Builder> lootTableBiConsumer) {
         lootTableBiConsumer.accept(EquipMiscLoot.NETHER_FORTRESS_INJECT, new LootTable.Builder()
                 .pool(LootPool.builder()
-                        .with(ItemEntry.builder(EquipMiscItems.CHAINMAIL_UPGRADE_SMITHING_TEMPLATE))));
-        lootTableBiConsumer.accept(EquipMiscLoot.OCEAN_RUINS_INJECT, new LootTable.Builder()
+                        .with(ItemEntry.builder(EquipMiscItems.CHAINMAIL_UPGRADE_SMITHING_TEMPLATE)
+                                .weight(1))
+                        .with(EmptyEntry.builder()
+                                .weight(3))
+                )
+        );
+        lootTableBiConsumer.accept(EquipMiscLoot.OCEAN_RUINS_SMALL_INJECT, new LootTable.Builder()
                 .pool(LootPool.builder()
-                        .with(ItemEntry.builder(EquipMiscItems.BRONZE_UPGRADE_SMITHING_TEMPLATE))));
+                        .with(ItemEntry.builder(EquipMiscItems.BRONZE_UPGRADE_SMITHING_TEMPLATE)
+                                .weight(1))
+                        .with(EmptyEntry.builder()
+                                .weight(1))
+                )
+        );
+        lootTableBiConsumer.accept(EquipMiscLoot.OCEAN_RUINS_BIG_INJECT, new LootTable.Builder()
+                .pool(LootPool.builder()
+                        .with(ItemEntry.builder(EquipMiscItems.BRONZE_UPGRADE_SMITHING_TEMPLATE))
+                )
+        );
     }
 }

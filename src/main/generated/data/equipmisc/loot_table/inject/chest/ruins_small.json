@@ -6,11 +6,10 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "equipmisc:chainmail_upgrade_smithing_template"
+          "name": "equipmisc:bronze_upgrade_smithing_template"
         },
         {
-          "type": "minecraft:empty",
-          "weight": 3
+          "type": "minecraft:empty"
         }
       ],
       "rolls": 1.0

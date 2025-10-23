@@ -18,13 +18,16 @@ public class EquipMiscLoot {
         return of("inject/" + subpath);
     }
 
-    public static final RegistryKey<LootTable> OCEAN_RUINS_INJECT = injectOf("chest/ruins");
+    public static final RegistryKey<LootTable> OCEAN_RUINS_SMALL_INJECT = injectOf("chest/ruins_small");
+    public static final RegistryKey<LootTable> OCEAN_RUINS_BIG_INJECT = injectOf("chest/ruins_big");
     public static final RegistryKey<LootTable> NETHER_FORTRESS_INJECT = injectOf("chest/fortress");
 
     public static void init() {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
+            if (key == LootTables.UNDERWATER_RUIN_SMALL_CHEST)
+                tableBuilder.pool(LootPool.builder().with(LootTableEntry.builder(OCEAN_RUINS_SMALL_INJECT)).build());
             if (key == LootTables.UNDERWATER_RUIN_BIG_CHEST)
-                tableBuilder.pool(LootPool.builder().with(LootTableEntry.builder(OCEAN_RUINS_INJECT)).build());
+                tableBuilder.pool(LootPool.builder().with(LootTableEntry.builder(OCEAN_RUINS_BIG_INJECT)).build());
             if (key == LootTables.NETHER_BRIDGE_CHEST)
                 tableBuilder.pool(LootPool.builder().with(LootTableEntry.builder(NETHER_FORTRESS_INJECT)).build());
         });
