@@ -2,14 +2,13 @@ package archives.tater.equipmisc.registry;
 
 import archives.tater.equipmisc.EquipMisc;
 import archives.tater.equipmisc.recipe.SmithingPatchRecipe;
-
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public class EquipMiscRecipes {
     public static RecipeSerializer<SmithingPatchRecipe> SMITHING_PATCH = Registry.register(
-            Registries.RECIPE_SERIALIZER,
+            BuiltInRegistries.RECIPE_SERIALIZER,
             EquipMisc.id("smithing_patch"),
             new SmithingPatchRecipe.Serializer()
     );

@@ -7,18 +7,16 @@ import archives.tater.equipmisc.registry.EquipMiscItems;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
-
-import net.minecraft.registry.RegistryWrapper.WrapperLookup;
-
+import net.minecraft.core.HolderLookup.Provider;
 import java.util.concurrent.CompletableFuture;
 
 public class LangGenerator extends FabricLanguageProvider {
-    public LangGenerator(FabricDataOutput dataOutput, CompletableFuture<WrapperLookup> registryLookup) {
+    public LangGenerator(FabricDataOutput dataOutput, CompletableFuture<Provider> registryLookup) {
         super(dataOutput, registryLookup);
     }
 
     @Override
-    public void generateTranslations(WrapperLookup registryLookup, TranslationBuilder translationBuilder) {
+    public void generateTranslations(Provider registryLookup, TranslationBuilder translationBuilder) {
         translationBuilder.add(EquipMiscAttributes.MAX_AIR, "Max Air");
 
         translationBuilder.add(EquipMiscItems.BRONZE_TOOL_MATERIALS, "Bronze Tool Materials");

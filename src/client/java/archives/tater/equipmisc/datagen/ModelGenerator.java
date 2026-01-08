@@ -7,11 +7,16 @@ import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 
 import net.minecraft.client.data.*;
-import net.minecraft.item.Items;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.model.ItemModelUtils;
+import net.minecraft.client.data.models.model.ModelLocationUtils;
+import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Items;
 
 import static archives.tater.equipmisc.registry.EquipMiscItems.*;
-import static net.minecraft.client.data.ItemModelGenerator.*;
+import static net.minecraft.client.data.models.ItemModelGenerators.*;
 
 public class ModelGenerator extends FabricModelProvider {
     public ModelGenerator(FabricDataOutput output) {
@@ -22,36 +27,36 @@ public class ModelGenerator extends FabricModelProvider {
     public static final Identifier BRONZE_SHIELD_BASE_NO_PATTERN = EquipMisc.id("entity/bronze_shield_base_nopattern");
 
     @Override
-    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+    public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
 
     }
 
     @Override
-    public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        itemModelGenerator.register(BRONZE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
-        itemModelGenerator.register(RAW_BRONZE, Models.GENERATED);
-        itemModelGenerator.register(BRONZE_INGOT, Models.GENERATED);
+    public void generateItemModels(ItemModelGenerators itemModelGenerator) {
+        itemModelGenerator.generateFlatItem(BRONZE_UPGRADE_SMITHING_TEMPLATE, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(RAW_BRONZE, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(BRONZE_INGOT, ModelTemplates.FLAT_ITEM);
 
-        itemModelGenerator.registerArmor(BRONZE_HELMET, BRONZE_ARMOR.assetId(), HELMET_TRIM_ID_PREFIX, false);
-        itemModelGenerator.registerArmor(BRONZE_CHESTPLATE, BRONZE_ARMOR.assetId(), CHESTPLATE_TRIM_ID_PREFIX, false);
-        itemModelGenerator.registerArmor(BRONZE_LEGGINGS, BRONZE_ARMOR.assetId(), LEGGINGS_TRIM_ID_PREFIX, false);
-        itemModelGenerator.registerArmor(BRONZE_BOOTS, BRONZE_ARMOR.assetId(), BOOTS_TRIM_ID_PREFIX, false);
+        itemModelGenerator.generateTrimmableItem(BRONZE_HELMET, BRONZE_ARMOR.assetId(), TRIM_PREFIX_HELMET, false);
+        itemModelGenerator.generateTrimmableItem(BRONZE_CHESTPLATE, BRONZE_ARMOR.assetId(), TRIM_PREFIX_CHESTPLATE, false);
+        itemModelGenerator.generateTrimmableItem(BRONZE_LEGGINGS, BRONZE_ARMOR.assetId(), TRIM_PREFIX_LEGGINGS, false);
+        itemModelGenerator.generateTrimmableItem(BRONZE_BOOTS, BRONZE_ARMOR.assetId(), TRIM_PREFIX_BOOTS, false);
 
-        itemModelGenerator.register(BRONZE_SWORD, Models.HANDHELD);
-        itemModelGenerator.register(BRONZE_SHOVEL, Models.HANDHELD);
-        itemModelGenerator.register(BRONZE_PICKAXE, Models.HANDHELD);
-        itemModelGenerator.register(BRONZE_AXE, Models.HANDHELD);
-        itemModelGenerator.register(BRONZE_HOE, Models.HANDHELD);
+        itemModelGenerator.generateFlatItem(BRONZE_SWORD, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(BRONZE_SHOVEL, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(BRONZE_PICKAXE, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(BRONZE_AXE, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(BRONZE_HOE, ModelTemplates.FLAT_HANDHELD_ITEM);
 
         var shieldSpecial = new Unbaked(BRONZE_SHIELD_BASE, BRONZE_SHIELD_BASE_NO_PATTERN);
-        var shield = ItemModels.special(ModelIds.getItemModelId(Items.SHIELD), shieldSpecial);
-        var shieldBlocking = ItemModels.special(ModelIds.getItemSubModelId(Items.SHIELD, "_blocking"), shieldSpecial);
-        itemModelGenerator.registerCondition(BRONZE_SHIELD, ItemModels.usingItemProperty(), shieldBlocking, shield);
+        var shield = ItemModelUtils.specialModel(ModelLocationUtils.getModelLocation(Items.SHIELD), shieldSpecial);
+        var shieldBlocking = ItemModelUtils.specialModel(ModelLocationUtils.getModelLocation(Items.SHIELD, "_blocking"), shieldSpecial);
+        itemModelGenerator.generateBooleanDispatch(BRONZE_SHIELD, ItemModelUtils.isUsingItem(), shieldBlocking, shield);
 
-        itemModelGenerator.register(BRONZE_SHEARS, Models.GENERATED);
-        itemModelGenerator.register(FLINT_AND_BRONZE, Models.GENERATED);
-        itemModelGenerator.register(BRONZE_KNIFE, Models.HANDHELD);
+        itemModelGenerator.generateFlatItem(BRONZE_SHEARS, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(FLINT_AND_BRONZE, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(BRONZE_KNIFE, ModelTemplates.FLAT_HANDHELD_ITEM);
 
-        itemModelGenerator.register(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
+        itemModelGenerator.generateFlatItem(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, ModelTemplates.FLAT_ITEM);
     }
 }

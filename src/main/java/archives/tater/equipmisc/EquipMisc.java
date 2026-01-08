@@ -9,15 +9,13 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.fabricmc.loader.api.FabricLoader;
-
-import net.minecraft.entity.passive.TurtleEntity;
-import net.minecraft.loot.LootTables;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.event.GameEvent;
-
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.animal.turtle.Turtle;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +23,7 @@ public class EquipMisc implements ModInitializer {
 	public static final String MOD_ID = "equipmisc";
 
 	public static Identifier id(String path) {
-		return Identifier.of(MOD_ID, path);
+		return Identifier.fromNamespaceAndPath(MOD_ID, path);
 	}
 
 	// This logger is used to write text to the console and the log file.
@@ -48,19 +46,19 @@ public class EquipMisc implements ModInitializer {
         EquipMiscLoot.init();
 
         UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
-            if (!(entity instanceof TurtleEntity turtleEntity) || turtleEntity.isBaby()) return ActionResult.PASS;
-            var stack = player.getStackInHand(hand);
-            if (!stack.isIn(ConventionalItemTags.BRUSH_TOOLS)) return ActionResult.PASS;
-            if (!(world instanceof ServerWorld serverWorld)) {
-                stack.damage(16, player, hand);
-                return ActionResult.SUCCESS;
+            if (!(entity instanceof Turtle turtleEntity) || turtleEntity.isBaby()) return InteractionResult.PASS;
+            var stack = player.getItemInHand(hand);
+            if (!stack.is(ConventionalItemTags.BRUSH_TOOLS)) return InteractionResult.PASS;
+            if (!(world instanceof ServerLevel serverWorld)) {
+                stack.hurtAndBreak(16, player, hand);
+                return InteractionResult.SUCCESS;
             }
-            turtleEntity.forEachBrushedItem(serverWorld, LootTables.TURTLE_GROW_GAMEPLAY, player, stack, entity::dropStack);
-            entity.playSoundIfNotSilent(SoundEvents.ENTITY_ARMADILLO_BRUSH); // TODO custom sound event
-            entity.emitGameEvent(GameEvent.ENTITY_INTERACT);
+            turtleEntity.dropFromEntityInteractLootTable(serverWorld, BuiltInLootTables.TURTLE_GROW, player, stack, entity::spawnAtLocation);
+            entity.playSound(SoundEvents.ARMADILLO_BRUSH); // TODO custom sound event
+            entity.gameEvent(GameEvent.ENTITY_INTERACT);
 
-            stack.damage(16, player, hand);
-            return ActionResult.SUCCESS;
+            stack.hurtAndBreak(16, player, hand);
+            return InteractionResult.SUCCESS;
         });
 	}
 }

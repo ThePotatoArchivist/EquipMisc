@@ -6,6 +6,10 @@ import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalIntRef;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -14,21 +18,16 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Identifier;
-
-@Mixin(InGameHud.class)
+@Mixin(Gui.class)
 public abstract class InGameHudMixin {
 
     @Shadow
-    private static int getAirBubbles(int air, int maxAir, int delay) {
+    private static int getCurrentAirSupplyBubble(int air, int maxAir, int delay) {
         throw new AssertionError();
     }
 
     @ModifyVariable(
-            method = "getAirBubbles",
+            method = "getCurrentAirSupplyBubble",
             at = @At("HEAD"),
             argsOnly = true,
             ordinal = 1
@@ -39,11 +38,11 @@ public abstract class InGameHudMixin {
 
     @Inject(
             method = "renderAirBubbles",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;getAirBubbleY(II)I")
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/Gui;getAirBubbleYLine(II)I")
     )
-    private void setMaxBubbles(DrawContext context, PlayerEntity player, int heartCount, int top, int left, CallbackInfo ci, @Share("maxBubbles") LocalIntRef maxBubbles) {
-        var maxAir = player.getMaxAir();
-        maxBubbles.set(getAirBubbles(maxAir, maxAir, 0));
+    private void setMaxBubbles(GuiGraphics context, Player player, int heartCount, int top, int left, CallbackInfo ci, @Share("maxBubbles") LocalIntRef maxBubbles) {
+        var maxAir = player.getMaxAirSupply();
+        maxBubbles.set(getCurrentAirSupplyBubble(maxAir, maxAir, 0));
     }
 
     @ModifyExpressionValue(
@@ -66,7 +65,7 @@ public abstract class InGameHudMixin {
 
     @ModifyArg(
             method = "renderAirBubbles",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/util/Identifier;IIII)V"),
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V"),
             index = 3
     )
     private int shiftRows(int x, @Share("posIndex") LocalIntRef posIndex) {
@@ -75,7 +74,7 @@ public abstract class InGameHudMixin {
 
     @ModifyExpressionValue(
             method = "renderAirBubbles",
-            at = @At(value = "FIELD", target = "Lnet/minecraft/client/gui/hud/InGameHud;AIR_TEXTURE:Lnet/minecraft/util/Identifier;")
+            at = @At(value = "FIELD", target = "Lnet/minecraft/client/gui/Gui;AIR_SPRITE:Lnet/minecraft/resources/Identifier;")
     )
     private Identifier useTurtleTexture1(Identifier original, @Share("posIndex") LocalIntRef posIndex) {
         return posIndex.get() >= 10 ? EquipMiscClient.TURTLE_AIR_TEXTURE : original;
@@ -83,7 +82,7 @@ public abstract class InGameHudMixin {
 
     @ModifyExpressionValue(
             method = "renderAirBubbles",
-            at = @At(value = "FIELD", target = "Lnet/minecraft/client/gui/hud/InGameHud;AIR_BURSTING_TEXTURE:Lnet/minecraft/util/Identifier;")
+            at = @At(value = "FIELD", target = "Lnet/minecraft/client/gui/Gui;AIR_POPPING_SPRITE:Lnet/minecraft/resources/Identifier;")
     )
     private Identifier useTurtleTexture2(Identifier original, @Share("posIndex") LocalIntRef posIndex) {
         return posIndex.get() >= 10 ? EquipMiscClient.TURTLE_AIR_BURSTING_TEXTURE : original;

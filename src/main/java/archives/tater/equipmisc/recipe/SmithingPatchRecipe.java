@@ -4,19 +4,21 @@ import archives.tater.equipmisc.registry.EquipMiscRecipes;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.component.ComponentChanges;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.display.RecipeDisplay;
-import net.minecraft.recipe.display.SlotDisplay;
-import net.minecraft.recipe.display.SmithingRecipeDisplay;
-import net.minecraft.recipe.input.SmithingRecipeInput;
-import net.minecraft.registry.RegistryWrapper.WrapperLookup;
-import net.minecraft.world.World;
-
+import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.PlacementInfo;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.SmithingRecipe;
+import net.minecraft.world.item.crafting.SmithingRecipeInput;
+import net.minecraft.world.item.crafting.display.RecipeDisplay;
+import net.minecraft.world.item.crafting.display.SlotDisplay;
+import net.minecraft.world.item.crafting.display.SmithingRecipeDisplay;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -27,50 +29,51 @@ public class SmithingPatchRecipe implements SmithingRecipe {
     final Optional<Ingredient> template;
     final Ingredient base;
     final Optional<Ingredient> addition;
-    final ComponentChanges patch;
+    final DataComponentPatch patch;
     @Nullable
-    private IngredientPlacement ingredientPlacement;
+    private PlacementInfo ingredientPlacement;
 
-    public SmithingPatchRecipe(Optional<Ingredient> template, Ingredient base, Optional<Ingredient> addition, ComponentChanges patch) {
+    public SmithingPatchRecipe(Optional<Ingredient> template, Ingredient base, Optional<Ingredient> addition, DataComponentPatch patch) {
         this.template = template;
         this.base = base;
         this.addition = addition;
         this.patch = patch;
     }
 
-    public SmithingPatchRecipe(@Nullable Ingredient template, Ingredient base, @Nullable Ingredient addition, ComponentChanges patch) {
+    public SmithingPatchRecipe(@Nullable Ingredient template, Ingredient base, @Nullable Ingredient addition, DataComponentPatch patch) {
         this(Optional.ofNullable(template), base, Optional.ofNullable(addition), patch);
     }
 
-    private static ItemStack withChanges(ItemStack base, ComponentChanges changes) {
+    private static ItemStack withChanges(ItemStack base, DataComponentPatch changes) {
         var stack = base.copy();
-        stack.applyChanges(changes);
+        stack.applyComponentsAndValidate(changes);
         return stack;
     }
 
     @Override
-    public boolean matches(SmithingRecipeInput smithingRecipeInput, World world) {
+    public boolean matches(SmithingRecipeInput smithingRecipeInput, Level world) {
         return SmithingRecipe.super.matches(smithingRecipeInput, world)
                 && addition.map(it -> !it.test(smithingRecipeInput.base())).orElse(true)
-                && !ItemStack.areItemsAndComponentsEqual(smithingRecipeInput.base(), withChanges(smithingRecipeInput.base(), patch));
+                && !ItemStack.isSameItemSameComponents(smithingRecipeInput.base(), withChanges(smithingRecipeInput.base(), patch));
     }
 
-    public ItemStack craft(SmithingRecipeInput smithingRecipeInput, WrapperLookup wrapperLookup) {
+    @Override
+    public ItemStack assemble(SmithingRecipeInput smithingRecipeInput, Provider wrapperLookup) {
         return withChanges(smithingRecipeInput.base(), patch);
     }
 
     @Override
-    public Optional<Ingredient> template() {
+    public Optional<Ingredient> templateIngredient() {
         return this.template;
     }
 
     @Override
-    public Ingredient base() {
+    public Ingredient baseIngredient() {
         return this.base;
     }
 
     @Override
-    public Optional<Ingredient> addition() {
+    public Optional<Ingredient> additionIngredient() {
         return this.addition;
     }
 
@@ -80,22 +83,22 @@ public class SmithingPatchRecipe implements SmithingRecipe {
     }
 
     @Override
-    public IngredientPlacement getIngredientPlacement() {
+    public PlacementInfo placementInfo() {
         if (this.ingredientPlacement == null) {
-            this.ingredientPlacement = IngredientPlacement.forMultipleSlots(List.of(this.template, Optional.of(this.base), this.addition));
+            this.ingredientPlacement = PlacementInfo.createFromOptionals(List.of(this.template, Optional.of(this.base), this.addition));
         }
 
         return this.ingredientPlacement;
     }
 
     @Override
-    public List<RecipeDisplay> getDisplays() {
+    public List<RecipeDisplay> display() {
         return List.of(
                 new SmithingRecipeDisplay(
-                        Ingredient.toDisplay(this.template),
-                        this.base.toDisplay(),
-                        Ingredient.toDisplay(this.addition),
-                        this.base.toDisplay(),
+                        Ingredient.optionalIngredientToDisplay(this.template),
+                        this.base.display(),
+                        Ingredient.optionalIngredientToDisplay(this.addition),
+                        this.base.display(),
                         new SlotDisplay.ItemSlotDisplay(Items.SMITHING_TABLE)
                 )
         );
@@ -107,18 +110,18 @@ public class SmithingPatchRecipe implements SmithingRecipe {
                                 Ingredient.CODEC.optionalFieldOf("template").forGetter(recipe -> recipe.template),
                                 Ingredient.CODEC.fieldOf("base").forGetter(recipe -> recipe.base),
                                 Ingredient.CODEC.optionalFieldOf("addition").forGetter(recipe -> recipe.addition),
-                                ComponentChanges.CODEC.fieldOf("patch").forGetter(recipe -> recipe.patch)
+                                DataComponentPatch.CODEC.fieldOf("patch").forGetter(recipe -> recipe.patch)
                         )
                         .apply(instance, SmithingPatchRecipe::new)
         );
-        public static final PacketCodec<RegistryByteBuf, SmithingPatchRecipe> PACKET_CODEC = PacketCodec.tuple(
-                Ingredient.OPTIONAL_PACKET_CODEC,
+        public static final StreamCodec<RegistryFriendlyByteBuf, SmithingPatchRecipe> PACKET_CODEC = StreamCodec.composite(
+                Ingredient.OPTIONAL_CONTENTS_STREAM_CODEC,
                 recipe -> recipe.template,
-                Ingredient.PACKET_CODEC,
+                Ingredient.CONTENTS_STREAM_CODEC,
                 recipe -> recipe.base,
-                Ingredient.OPTIONAL_PACKET_CODEC,
+                Ingredient.OPTIONAL_CONTENTS_STREAM_CODEC,
                 recipe -> recipe.addition,
-                ComponentChanges.PACKET_CODEC,
+                DataComponentPatch.STREAM_CODEC,
                 recipe -> recipe.patch,
                 SmithingPatchRecipe::new
         );
@@ -129,7 +132,7 @@ public class SmithingPatchRecipe implements SmithingRecipe {
         }
 
         @Override
-        public PacketCodec<RegistryByteBuf, SmithingPatchRecipe> packetCodec() {
+        public StreamCodec<RegistryFriendlyByteBuf, SmithingPatchRecipe> streamCodec() {
             return PACKET_CODEC;
         }
     }

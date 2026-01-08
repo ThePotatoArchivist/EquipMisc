@@ -3,9 +3,8 @@ package archives.tater.equipmisc;
 import archives.tater.equipmisc.client.render.item.model.TexturedShieldModelRenderer;
 
 import net.fabricmc.api.ClientModInitializer;
-
-import net.minecraft.client.render.item.model.special.SpecialModelTypes;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.special.SpecialModelRenderers;
+import net.minecraft.resources.Identifier;
 
 public class EquipMiscClient implements ClientModInitializer {
 
@@ -15,6 +14,6 @@ public class EquipMiscClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
-        SpecialModelTypes.ID_MAPPER.put(EquipMisc.id("shield"), TexturedShieldModelRenderer.Unbaked.CODEC);
+        SpecialModelRenderers.ID_MAPPER.put(EquipMisc.id("shield"), TexturedShieldModelRenderer.Unbaked.CODEC);
 	}
 }

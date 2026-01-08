@@ -9,89 +9,87 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.fabricmc.fabric.impl.resource.conditions.conditions.AllModsLoadedResourceCondition;
-
-import net.minecraft.advancement.AdvancementRequirements;
-import net.minecraft.advancement.AdvancementRewards;
-import net.minecraft.advancement.criterion.RecipeUnlockedCriterion;
-import net.minecraft.component.ComponentChanges;
-import net.minecraft.data.recipe.RecipeExporter;
-import net.minecraft.data.recipe.RecipeGenerator;
-import net.minecraft.data.recipe.SmithingTransformRecipeJsonBuilder;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.book.RecipeCategory;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.registry.tag.TagKey;
+import net.minecraft.advancements.AdvancementRequirements;
+import net.minecraft.advancements.AdvancementRewards;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.Unit;
-
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import static archives.tater.equipmisc.registry.EquipMiscItems.*;
-import static net.minecraft.item.Items.*;
+import static net.minecraft.world.item.Items.*;
 
-public class EMRecipeGenerator extends RecipeGenerator {
+public class EMRecipeGenerator extends RecipeProvider {
 
     private final RecipeExporterProvider exporterProvider;
 
-    protected EMRecipeGenerator(RegistryWrapper.WrapperLookup registries, RecipeExporter exporter, RecipeExporterProvider exporterProvider) {
+    protected EMRecipeGenerator(HolderLookup.Provider registries, RecipeOutput exporter, RecipeExporterProvider exporterProvider) {
         super(registries, exporter);
         this.exporterProvider = exporterProvider;
     }
 
-    private void offerBronzeUpgrade(ItemConvertible input, Item result, RecipeExporter exporter) {
-        SmithingTransformRecipeJsonBuilder.create(
-                        Ingredient.ofItem(BRONZE_UPGRADE_SMITHING_TEMPLATE),
-                        Ingredient.ofItem(input),
-                        ingredientFromTag(BRONZE_TOOL_MATERIALS),
+    private void offerBronzeUpgrade(ItemLike input, Item result, RecipeOutput exporter) {
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(BRONZE_UPGRADE_SMITHING_TEMPLATE),
+                        Ingredient.of(input),
+                        tag(BRONZE_TOOL_MATERIALS),
                         RecipeCategory.MISC,
                         result
                 )
-                .criterion(hasItem(BRONZE_INGOT), conditionsFromTag(BRONZE_TOOL_MATERIALS))
-                .offerTo(exporter, getItemPath(result) + "_smithing");
+                .unlocks(getHasName(BRONZE_INGOT), has(BRONZE_TOOL_MATERIALS))
+                .save(exporter, getItemName(result) + "_smithing");
     }
 
-    private void offerBronzeUpgrade(ItemConvertible input, Item result) {
-        offerBronzeUpgrade(input, result, exporter);
+    private void offerBronzeUpgrade(ItemLike input, Item result) {
+        offerBronzeUpgrade(input, result, output);
     }
 
-    private void offerChainmailUpgrade(String name, TagKey<Item> input, ItemConvertible addition) {
+    private void offerChainmailUpgrade(String name, TagKey<Item> input, ItemLike addition) {
         var id = EquipMisc.id("chainmail_" + name + "_upgrade_smithing");
-        var recipeKey = RegistryKey.of(RegistryKeys.RECIPE, id);
+        var recipeKey = ResourceKey.create(Registries.RECIPE, id);
 
-        var advancement = exporter.getAdvancementBuilder()
-                .criterion("has_the_recipe", RecipeUnlockedCriterion.create(recipeKey))
-                .criterion(hasItem(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE))
+        var advancement = output.advancement()
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(recipeKey))
+                .addCriterion(getHasName(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE), has(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE))
                 .rewards(AdvancementRewards.Builder.recipe(recipeKey))
-                .criteriaMerger(AdvancementRequirements.CriterionMerger.OR)
-                .build(id.withPrefixedPath("recipes/" + RecipeCategory.COMBAT.getName() + "/"));
+                .requirements(AdvancementRequirements.Strategy.OR)
+                .build(id.withPrefix("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/"));
 
-        exporter.accept(recipeKey, new SmithingPatchRecipe(
-                Ingredient.ofItem(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE),
-                ingredientFromTag(input),
-                Ingredient.ofItem(addition),
-                ComponentChanges.builder().add(EquipMiscComponents.CHAINMAIL_UPGRADE, Unit.INSTANCE).build()
+        output.accept(recipeKey, new SmithingPatchRecipe(
+                Ingredient.of(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE),
+                tag(input),
+                Ingredient.of(addition),
+                DataComponentPatch.builder().set(EquipMiscComponents.CHAINMAIL_UPGRADE, Unit.INSTANCE).build()
         ), advancement);
     }
 
     @SuppressWarnings("UnstableApiUsage")
     @Override
-    public void generate() {
-        createShapeless(RecipeCategory.MISC, RAW_BRONZE)
-                .input(ingredientFromTag(ConventionalItemTags.COPPER_RAW_MATERIALS), 4)
-                .input(ingredientFromTag(ConventionalItemTags.IRON_NUGGETS), 4)
-                .criterion(hasItem(Items.RAW_COPPER), conditionsFromTag(ConventionalItemTags.COPPER_RAW_MATERIALS))
-                .offerTo(exporter);
+    public void buildRecipes() {
+        shapeless(RecipeCategory.MISC, RAW_BRONZE)
+                .requires(tag(ConventionalItemTags.COPPER_RAW_MATERIALS), 4)
+                .requires(tag(ConventionalItemTags.IRON_NUGGETS), 4)
+                .unlockedBy(getHasName(Items.RAW_COPPER), has(ConventionalItemTags.COPPER_RAW_MATERIALS))
+                .save(output);
 
-        offerSmelting(List.of(RAW_BRONZE), RecipeCategory.MISC, BRONZE_INGOT, 1.5f, 200, "");
-        offerBlasting(List.of(RAW_BRONZE), RecipeCategory.MISC, BRONZE_INGOT, 1.5f, 100, "");
+        oreSmelting(List.of(RAW_BRONZE), RecipeCategory.MISC, BRONZE_INGOT, 1.5f, 200, "");
+        oreBlasting(List.of(RAW_BRONZE), RecipeCategory.MISC, BRONZE_INGOT, 1.5f, 100, "");
 
         offerBronzeUpgrade(IRON_HELMET, BRONZE_HELMET);
         offerBronzeUpgrade(IRON_CHESTPLATE, BRONZE_CHESTPLATE);
@@ -105,11 +103,11 @@ public class EMRecipeGenerator extends RecipeGenerator {
         offerBronzeUpgrade(SHIELD, BRONZE_SHIELD);
         offerBronzeUpgrade(SHEARS, BRONZE_SHEARS);
         offerBronzeUpgrade(FLINT_AND_STEEL, FLINT_AND_BRONZE);
-        createShapeless(RecipeCategory.TOOLS, FLINT_AND_BRONZE)
-                .input(BRONZE_INGOT)
-                .input(FLINT)
-                .criterion(hasItem(BRONZE_INGOT), conditionsFromItem(BRONZE_INGOT))
-                .offerTo(exporter);
+        shapeless(RecipeCategory.TOOLS, FLINT_AND_BRONZE)
+                .requires(BRONZE_INGOT)
+                .requires(FLINT)
+                .unlockedBy(getHasName(BRONZE_INGOT), has(BRONZE_INGOT))
+                .save(output);
         offerBronzeUpgrade(ModItems.IRON_KNIFE.get(), BRONZE_KNIFE, exporterProvider.get(new AllModsLoadedResourceCondition(List.of(EquipMisc.FARMERS_DELIGHT))));
 
         offerChainmailUpgrade("helmet", ItemTags.HEAD_ARMOR, CHAINMAIL_HELMET);
@@ -117,27 +115,27 @@ public class EMRecipeGenerator extends RecipeGenerator {
         offerChainmailUpgrade("leggings", ItemTags.LEG_ARMOR, CHAINMAIL_LEGGINGS);
         offerChainmailUpgrade("boots", ItemTags.FOOT_ARMOR, CHAINMAIL_BOOTS);
 
-        createShaped(RecipeCategory.MISC, BRONZE_UPGRADE_SMITHING_TEMPLATE, 2)
-                .input('#', COPPER_INGOT)
-                .input('C', COBBLESTONE)
-                .input('S', BRONZE_UPGRADE_SMITHING_TEMPLATE)
+        shaped(RecipeCategory.MISC, BRONZE_UPGRADE_SMITHING_TEMPLATE, 2)
+                .define('#', COPPER_INGOT)
+                .define('C', COBBLESTONE)
+                .define('S', BRONZE_UPGRADE_SMITHING_TEMPLATE)
                 .pattern("#S#")
                 .pattern("#C#")
                 .pattern("###")
-                .criterion(hasItem(BRONZE_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(BRONZE_UPGRADE_SMITHING_TEMPLATE))
-                .offerTo(exporter);
-        offerSmithingTemplateCopyingRecipe(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, NETHER_BRICK);
+                .unlockedBy(getHasName(BRONZE_UPGRADE_SMITHING_TEMPLATE), has(BRONZE_UPGRADE_SMITHING_TEMPLATE))
+                .save(output);
+        copySmithingTemplate(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, NETHER_BRICK);
 
     }
 
     public static class Provider extends FabricRecipeProvider {
 
-        public Provider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        public Provider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
             super(output, registriesFuture);
         }
 
         @Override
-        protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup wrapperLookup, RecipeExporter recipeExporter) {
+        protected RecipeProvider createRecipeProvider(HolderLookup.Provider wrapperLookup, RecipeOutput recipeExporter) {
             return new EMRecipeGenerator(wrapperLookup, recipeExporter, conditions -> withConditions(recipeExporter, conditions));
         }
 
@@ -148,6 +146,6 @@ public class EMRecipeGenerator extends RecipeGenerator {
     }
 
     protected interface RecipeExporterProvider {
-        RecipeExporter get(ResourceCondition... conditions);
+        RecipeOutput get(ResourceCondition... conditions);
     }
 }

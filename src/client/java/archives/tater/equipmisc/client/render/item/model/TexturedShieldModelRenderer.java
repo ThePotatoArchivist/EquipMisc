@@ -2,26 +2,26 @@ package archives.tater.equipmisc.client.render.item.model;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.client.render.TexturedRenderLayers;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
-import net.minecraft.client.render.entity.model.ShieldEntityModel;
-import net.minecraft.client.render.item.model.special.ShieldModelRenderer;
-import net.minecraft.client.render.item.model.special.SpecialModelRenderer;
-import net.minecraft.client.texture.SpriteHolder;
-import net.minecraft.client.util.SpriteIdentifier;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.object.equipment.ShieldModel;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.special.ShieldSpecialRenderer;
+import net.minecraft.client.renderer.special.SpecialModelRenderer;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.MaterialSet;
+import net.minecraft.resources.Identifier;
 
 /**
  * @see archives.tater.equipmisc.mixin.client.ShieldModelRendererMixin
  */
-public class TexturedShieldModelRenderer extends ShieldModelRenderer {
-    public final SpriteIdentifier baseTexture;
-    public final SpriteIdentifier noPatternBaseTexture;
+public class TexturedShieldModelRenderer extends ShieldSpecialRenderer {
+    public final Material baseTexture;
+    public final Material noPatternBaseTexture;
 
-    public TexturedShieldModelRenderer(SpriteHolder spriteHolder, ShieldEntityModel model, Identifier baseTexture, Identifier noPatternBaseTexture) {
+    public TexturedShieldModelRenderer(MaterialSet spriteHolder, ShieldModel model, Identifier baseTexture, Identifier noPatternBaseTexture) {
         super(spriteHolder, model);
-        this.baseTexture = new SpriteIdentifier(TexturedRenderLayers.SHIELD_PATTERNS_ATLAS_TEXTURE, baseTexture);
-        this.noPatternBaseTexture = new SpriteIdentifier(TexturedRenderLayers.SHIELD_PATTERNS_ATLAS_TEXTURE, noPatternBaseTexture);
+        this.baseTexture = new Material(Sheets.SHIELD_SHEET, baseTexture);
+        this.noPatternBaseTexture = new Material(Sheets.SHIELD_SHEET, noPatternBaseTexture);
     }
 
     public record Unbaked(Identifier baseTexture, Identifier noPatternBaseTexture) implements SpecialModelRenderer.Unbaked {
@@ -32,12 +32,12 @@ public class TexturedShieldModelRenderer extends ShieldModelRenderer {
         ).apply(instance, TexturedShieldModelRenderer.Unbaked::new));
 
         @Override
-        public SpecialModelRenderer<?> bake(BakeContext context) {
-            return new TexturedShieldModelRenderer(context.spriteHolder(), new ShieldEntityModel(context.entityModelSet().getModelPart(EntityModelLayers.SHIELD)), baseTexture, noPatternBaseTexture);
+        public SpecialModelRenderer<?> bake(BakingContext context) {
+            return new TexturedShieldModelRenderer(context.materials(), new ShieldModel(context.entityModelSet().bakeLayer(ModelLayers.SHIELD)), baseTexture, noPatternBaseTexture);
         }
 
         @Override
-        public MapCodec<? extends SpecialModelRenderer.Unbaked> getCodec() {
+        public MapCodec<? extends SpecialModelRenderer.Unbaked> type() {
             return CODEC;
         }
     }

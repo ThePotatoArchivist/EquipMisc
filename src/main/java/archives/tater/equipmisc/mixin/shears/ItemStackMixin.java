@@ -1,36 +1,35 @@
 package archives.tater.equipmisc.mixin.shears;
 
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.minecraft.core.HolderSet;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.registry.entry.RegistryEntryList;
-import net.minecraft.registry.tag.TagKey;
-
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
     @Shadow
-    public abstract boolean isIn(TagKey<Item> tag);
+    public abstract boolean is(TagKey<Item> tag);
 
     @ModifyReturnValue(
-            method = "isOf",
+            method = "is(Lnet/minecraft/world/item/Item;)Z",
             at = @At("RETURN")
     )
     private boolean shearCheck(boolean original, @Local(argsOnly = true) Item item) {
-        return original || item == Items.SHEARS && isIn(ConventionalItemTags.SHEAR_TOOLS);
+        return original || item == Items.SHEARS && is(ConventionalItemTags.SHEAR_TOOLS);
     }
 
     @ModifyReturnValue(
-            method = "isIn(Lnet/minecraft/registry/entry/RegistryEntryList;)Z",
+            method = "is(Lnet/minecraft/core/HolderSet;)Z",
             at = @At("RETURN")
     )
-    private boolean shearCheck(boolean original, @Local(argsOnly = true) RegistryEntryList<Item> list) {
-        return original || list.isBound() && list.size() == 1 && list.get(0).value() == Items.SHEARS && this.isIn(ConventionalItemTags.SHEAR_TOOLS);
+    private boolean shearCheck(boolean original, @Local(argsOnly = true) HolderSet<Item> list) {
+        return original || list.isBound() && list.size() == 1 && list.get(0).value() == Items.SHEARS && this.is(ConventionalItemTags.SHEAR_TOOLS);
     }
 }

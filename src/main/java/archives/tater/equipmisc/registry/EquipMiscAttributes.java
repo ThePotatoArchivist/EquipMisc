@@ -3,31 +3,30 @@ package archives.tater.equipmisc.registry;
 import archives.tater.equipmisc.EquipMisc;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
-
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.entity.attribute.ClampedEntityAttribute;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 
 public class EquipMiscAttributes {
 
-    private static RegistryEntry<EntityAttribute> register(Identifier id, double fallback, double min, double max, boolean tracked) {
-        return Registry.registerReference(Registries.ATTRIBUTE, id, new ClampedEntityAttribute(id.toTranslationKey("attribute.name"), fallback, min, max).setTracked(tracked));
+    private static Holder<Attribute> register(Identifier id, double fallback, double min, double max, boolean tracked) {
+        return Registry.registerForHolder(BuiltInRegistries.ATTRIBUTE, id, new RangedAttribute(id.toLanguageKey("attribute.name"), fallback, min, max).setSyncable(tracked));
     }
 
     public static final int TICKS_PER_AIR = 30;
 
-    public static final RegistryEntry<EntityAttribute> MAX_AIR = register(EquipMisc.id("max_air"), 10.0, 0.0, 1024.0, true);
+    public static final Holder<Attribute> MAX_AIR = register(EquipMisc.id("max_air"), 10.0, 0.0, 1024.0, true);
 
     public static void init() {
         ServerEntityEvents.EQUIPMENT_CHANGE.register((livingEntity, equipmentSlot, itemStack, itemStack1) -> {
-            var attributes = itemStack.get(DataComponentTypes.ATTRIBUTE_MODIFIERS);
+            var attributes = itemStack.get(DataComponents.ATTRIBUTE_MODIFIERS);
             if (attributes == null) return;
-            if (livingEntity.getAir() > livingEntity.getMaxAir())
-                livingEntity.setAir(livingEntity.getMaxAir());
+            if (livingEntity.getAirSupply() > livingEntity.getMaxAirSupply())
+                livingEntity.setAirSupply(livingEntity.getMaxAirSupply());
         });
     }
 }
