@@ -5,6 +5,7 @@
   "mixins": [
     "ShieldDecorationRecipeMixin",
     "chainmail.ItemStackMixin",
+    "ravager.LivingEntityMixin",
     "shears.ItemStackMixin",
     "turtle.EntityMixin",
     "turtle.LivingEntityMixin",

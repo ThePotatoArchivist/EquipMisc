@@ -1,6 +1,7 @@
 package archives.tater.equipmisc.registry;
 
 import archives.tater.equipmisc.EquipMisc;
+import archives.tater.equipmisc.component.BreakInAreaComponent;
 import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
 
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
@@ -132,6 +133,10 @@ public class EquipMiscItems {
             : register("bronze_knife", new Item.Properties());
 
     public static final Item CHAINMAIL_UPGRADE_SMITHING_TEMPLATE = register("chainmail_upgrade_smithing_template", EquipMiscSmithingTemplates::createChainmailUpgrade);
+
+    public static final Item RAVAGER_HELMET = register("ravager_helmet", new Item.Properties()
+            .humanoidArmor(ArmorMaterials.DIAMOND, ArmorType.HELMET)
+            .component(EquipMiscComponents.BREAK_IN_AREA, new BreakInAreaComponent(0.2, EquipMiscBlocks.RAVAGER_HELMET_CAN_DESTROY, EquipmentSlotGroup.HEAD)));
 
     public static void init() {
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(entries -> {
