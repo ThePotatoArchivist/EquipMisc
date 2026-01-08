@@ -1,4 +1,4 @@
-// 1.21.10	-999999999-01-01T00:00:00	EquipMisc/Recipes
+// 1.21.11	-999999999-01-01T00:00:00	EquipMisc/Recipes
 4a7aa4a76317b05433de08ef437d83f27e716d15 data/equipmisc/advancement/recipes/combat/chainmail_boots_upgrade_smithing.json
 f1be805a12bbd8b6118e0e15f560ffc646c48a21 data/equipmisc/advancement/recipes/combat/chainmail_chestplate_upgrade_smithing.json
 cd5358af8c4fd6518523fb92609f17e753b393a4 data/equipmisc/advancement/recipes/combat/chainmail_helmet_upgrade_smithing.json
@@ -16,6 +16,7 @@ e1fc74e00e3bab853dc53006029e1833bb62b831 data/equipmisc/advancement/recipes/misc
 c6f94500deacaa51a7b28c8737e0d89e7683891d data/equipmisc/advancement/recipes/misc/bronze_shears_smithing.json
 866cf6c19094314ccd814fd1aef396e7569e1432 data/equipmisc/advancement/recipes/misc/bronze_shield_smithing.json
 23a2bb81e8ba547756b3fc398b519f604ef9b658 data/equipmisc/advancement/recipes/misc/bronze_shovel_smithing.json
+6fd8cedb79477204ffae01106e21c2080cbee5fe data/equipmisc/advancement/recipes/misc/bronze_spear_smithing.json
 c43987afb3fbb04e497657058b3e4616a18742cc data/equipmisc/advancement/recipes/misc/bronze_sword_smithing.json
 1a6146476b5151478788f6e633db017a821b4a90 data/equipmisc/advancement/recipes/misc/bronze_upgrade_smithing_template.json
 b50a9811c952e106274a686c7d2cabb983e2c620 data/equipmisc/advancement/recipes/misc/chainmail_upgrade_smithing_template.json
@@ -35,6 +36,7 @@ d1fe451960d67c87ade1c45ca428b8a8ba8e1622 data/equipmisc/recipe/bronze_pickaxe_sm
 6ccecb0e195f7fc9599beb2376064eb6e3f2c82e data/equipmisc/recipe/bronze_shears_smithing.json
 06fe18918adfbabc66a08b7f3d3a14f7f0f38f6d data/equipmisc/recipe/bronze_shield_smithing.json
 46ec68512c3560734424e643d4f34d145330169c data/equipmisc/recipe/bronze_shovel_smithing.json
+130b1b0ef76d1d35efd90008f03c482e23f57f7b data/equipmisc/recipe/bronze_spear_smithing.json
 c7884a49d895acb114d72f498ebfc16739f9b3b5 data/equipmisc/recipe/bronze_sword_smithing.json
 4540daa862c67a55538c7c85eb568258916691e9 data/equipmisc/recipe/bronze_upgrade_smithing_template.json
 051390f3f86c60ad914a42bd1502ea9f15892d45 data/equipmisc/recipe/chainmail_boots_upgrade_smithing.json

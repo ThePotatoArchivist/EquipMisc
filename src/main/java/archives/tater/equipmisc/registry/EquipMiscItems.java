@@ -5,6 +5,7 @@ import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
 
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
@@ -21,17 +22,8 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.FlintAndSteelItem;
-import net.minecraft.world.item.HoeItem;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.Item.Properties;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ShearsItem;
-import net.minecraft.world.item.ShieldItem;
-import net.minecraft.world.item.ShovelItem;
-import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorMaterials;
@@ -39,6 +31,7 @@ import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
+
 import vectorwing.farmersdelight.common.item.KnifeItem;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -109,6 +102,7 @@ public class EquipMiscItems {
     public static final Item BRONZE_PICKAXE = register("bronze_pickaxe", new Item.Properties().pickaxe(BRONZE_TOOL, 1f, -2.8f));
     public static final Item BRONZE_AXE = register("bronze_axe", settings -> new AxeItem(BRONZE_TOOL, 6f, -3.1f, settings));
     public static final Item BRONZE_HOE = register("bronze_hoe", settings -> new HoeItem(BRONZE_TOOL, -2f, -1f, settings));
+    public static final Item BRONZE_SPEAR = register("bronze_spear", new Item.Properties().spear(BRONZE_TOOL, 0.95F, 0.95F, 0.6F, 2.5F, 8.0F, 6.75F, 5.1F, 11.25F, 4.6F));
 
     public static final Item BRONZE_SHIELD = register("bronze_shield", ShieldItem::new, new Properties()
             .durability(BRONZE_TOOL_DURABILITY)
@@ -133,7 +127,9 @@ public class EquipMiscItems {
     public static final Item FLINT_AND_BRONZE = register("flint_and_bronze", FlintAndSteelItem::new, new Item.Properties()
             .durability(BRONZE_TOOL_DURABILITY)
     );
-    public static final Item BRONZE_KNIFE = EquipMisc.FARMERS_DELIGHT_INSTALLED ? register("bronze_knife", KnifeItem::new, ModItems.knifeItem(BRONZE_TOOL)) : null;
+    public static final Item BRONZE_KNIFE = EquipMisc.FARMERS_DELIGHT_INSTALLED
+            ? register("bronze_knife", KnifeItem::new, ModItems.knifeItem(BRONZE_TOOL))
+            : register("bronze_knife", new Item.Properties());
 
     public static final Item CHAINMAIL_UPGRADE_SMITHING_TEMPLATE = register("chainmail_upgrade_smithing_template", EquipMiscSmithingTemplates::createChainmailUpgrade);
 
@@ -146,6 +142,7 @@ public class EquipMiscItems {
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COMBAT).register(entries -> {
             entries.addAfter(Items.IRON_SWORD, BRONZE_SWORD);
             entries.addAfter(Items.IRON_AXE, BRONZE_AXE);
+            entries.addAfter(Items.IRON_SPEAR, BRONZE_SPEAR);
             entries.addAfter(Items.SHIELD, BRONZE_SHIELD);
             entries.addAfter(Items.IRON_BOOTS, BRONZE_HELMET, BRONZE_CHESTPLATE, BRONZE_LEGGINGS, BRONZE_BOOTS);
         });

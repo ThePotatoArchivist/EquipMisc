@@ -3,11 +3,14 @@ package archives.tater.equipmisc.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.TagUtil;
+
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+
 import vectorwing.farmersdelight.common.tag.ModTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -36,9 +39,11 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 BRONZE_PICKAXE,
                 BRONZE_AXE,
                 BRONZE_HOE,
+                BRONZE_SPEAR,
                 BRONZE_SHIELD,
                 BRONZE_SHEARS,
-                FLINT_AND_BRONZE
+                FLINT_AND_BRONZE,
+                BRONZE_KNIFE
         );
         valueLookupBuilder(ENCHANTED_INVISIBLE_EQUIPMENT).add(
                 Items.CHAINMAIL_HELMET,
@@ -52,6 +57,7 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         valueLookupBuilder(PICKAXES).add(BRONZE_PICKAXE);
         valueLookupBuilder(AXES).add(BRONZE_AXE);
         valueLookupBuilder(HOES).add(BRONZE_HOE);
+        valueLookupBuilder(SPEARS).add(BRONZE_SPEAR);
         valueLookupBuilder(HEAD_ARMOR).add(BRONZE_HELMET);
         valueLookupBuilder(CHEST_ARMOR).add(BRONZE_CHESTPLATE);
         valueLookupBuilder(LEG_ARMOR).add(BRONZE_LEGGINGS);
@@ -68,12 +74,17 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         valueLookupBuilder(SHIELD_TOOLS).add(BRONZE_SHIELD);
         valueLookupBuilder(IGNITER_TOOLS).add(FLINT_AND_BRONZE);
         valueLookupBuilder(SHEAR_TOOLS).add(BRONZE_SHEARS);
+        valueLookupBuilder(commonTag("tools/knife")).add(BRONZE_KNIFE);
         valueLookupBuilder(ARMORS).add(BRONZE_HELMET, BRONZE_CHESTPLATE, BRONZE_LEGGINGS, BRONZE_BOOTS);
         valueLookupBuilder(INGOTS).add(BRONZE_INGOT);
         valueLookupBuilder(RAW_MATERIALS).add(RAW_BRONZE);
-        valueLookupBuilder(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "ingots/bronze"))).add(BRONZE_INGOT);
-        valueLookupBuilder(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "raw_materials/bronze"))).add(RAW_BRONZE);
+        valueLookupBuilder(commonTag("ingots/bronze")).add(BRONZE_INGOT);
+        valueLookupBuilder(commonTag("raw_materials/bronze")).add(RAW_BRONZE);
 
         valueLookupBuilder(ModTags.KNIVES).add(BRONZE_KNIFE);
+    }
+
+    private static TagKey<Item> commonTag(String path) {
+        return TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, path));
     }
 }

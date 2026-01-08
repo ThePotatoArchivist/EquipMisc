@@ -47,6 +47,7 @@ public class LangGenerator extends FabricLanguageProvider {
         translationBuilder.add(EquipMiscItems.BRONZE_PICKAXE, "Bronze Pickaxe");
         translationBuilder.add(EquipMiscItems.BRONZE_AXE, "Bronze Axe");
         translationBuilder.add(EquipMiscItems.BRONZE_HOE, "Bronze Hoe");
+        translationBuilder.add(EquipMiscItems.BRONZE_SPEAR, "Bronze Spear");
         translationBuilder.add(EquipMiscItems.BRONZE_SHIELD, "Bronze Shield");
         translationBuilder.add(EquipMiscItems.BRONZE_SHEARS, "Bronze Shears");
         translationBuilder.add(EquipMiscItems.FLINT_AND_BRONZE, "Flint and Bronze");

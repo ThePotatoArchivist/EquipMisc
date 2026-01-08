@@ -9,8 +9,10 @@
     "equipmisc:bronze_pickaxe",
     "equipmisc:bronze_axe",
     "equipmisc:bronze_hoe",
+    "equipmisc:bronze_spear",
     "equipmisc:bronze_shield",
     "equipmisc:bronze_shears",
-    "equipmisc:flint_and_bronze"
+    "equipmisc:flint_and_bronze",
+    "equipmisc:bronze_knife"
   ]
 }

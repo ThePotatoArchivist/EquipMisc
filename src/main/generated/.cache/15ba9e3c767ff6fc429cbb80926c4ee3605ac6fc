@@ -1,4 +1,4 @@
-// 1.21.10	-999999999-01-01T00:00:00	EquipMisc/Model Definitions
+// 1.21.11	-999999999-01-01T00:00:00	EquipMisc/Model Definitions
 98adb5ebdd8b5bb7c249ae7c97a318b8861baac8 assets/equipmisc/items/bronze_axe.json
 9329d2822f1c95e2023daef92d87df1cb7bae256 assets/equipmisc/items/bronze_boots.json
 57df545653bc2d47fd8aac91e9fe5b039a52609d assets/equipmisc/items/bronze_chestplate.json
@@ -11,6 +11,7 @@ e3e6f3eedb2c30c13823647385615a2e2766e678 assets/equipmisc/items/bronze_pickaxe.j
 ffe228bf43e78f741d2ff095fb0d6351bbe49290 assets/equipmisc/items/bronze_shears.json
 0e251be32ba9ff02059ce4a4354a0c0e2ed59b00 assets/equipmisc/items/bronze_shield.json
 86c7ea7e087553f025a553563af93966664fdec4 assets/equipmisc/items/bronze_shovel.json
+ce4049ce7c3cb5d84c30548b88078c47e88975ec assets/equipmisc/items/bronze_spear.json
 84a00cf41b6760fd24a885761e592f5ec49f84dd assets/equipmisc/items/bronze_sword.json
 6d7a677f96532599cecdadf06aee264e596687e3 assets/equipmisc/items/bronze_upgrade_smithing_template.json
 90150637436a9d17a714a6803170df7f61cab3de assets/equipmisc/items/chainmail_upgrade_smithing_template.json
@@ -71,6 +72,8 @@ b25ac5f7afca10fe1e563a90c8cc91fcc40eee6a assets/equipmisc/models/item/bronze_leg
 b00c72388f357eff9be2deb75550fd16c89d8587 assets/equipmisc/models/item/bronze_pickaxe.json
 371a7e956809acc74ff1f6d38646f97959f1b93f assets/equipmisc/models/item/bronze_shears.json
 b93021e56c8d88e722a72e363515e842b1a9c601 assets/equipmisc/models/item/bronze_shovel.json
+4efd3d17cf106c26b842e4f0293a4eca5fec46f7 assets/equipmisc/models/item/bronze_spear.json
+e5a8b90117fdaa3827e191595245cfe76ffe3257 assets/equipmisc/models/item/bronze_spear_in_hand.json
 e0054fd0b1b89427990a59be59712a73222b98b8 assets/equipmisc/models/item/bronze_sword.json
 9c7a479d62f649b6b10cdbcedd18916cebd38053 assets/equipmisc/models/item/bronze_upgrade_smithing_template.json
 e6f1e30e1779b938a65f076da238e3e07237ce8e assets/equipmisc/models/item/chainmail_upgrade_smithing_template.json

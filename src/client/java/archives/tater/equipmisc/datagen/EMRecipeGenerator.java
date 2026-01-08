@@ -100,6 +100,7 @@ public class EMRecipeGenerator extends RecipeProvider {
         offerBronzeUpgrade(IRON_PICKAXE, BRONZE_PICKAXE);
         offerBronzeUpgrade(IRON_AXE, BRONZE_AXE);
         offerBronzeUpgrade(IRON_HOE, BRONZE_HOE);
+        offerBronzeUpgrade(IRON_SPEAR, BRONZE_SPEAR);
         offerBronzeUpgrade(SHIELD, BRONZE_SHIELD);
         offerBronzeUpgrade(SHEARS, BRONZE_SHEARS);
         offerBronzeUpgrade(FLINT_AND_STEEL, FLINT_AND_BRONZE);
