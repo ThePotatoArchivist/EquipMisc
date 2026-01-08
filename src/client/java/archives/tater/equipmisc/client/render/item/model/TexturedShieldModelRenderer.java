@@ -26,10 +26,10 @@ public class TexturedShieldModelRenderer extends ShieldModelRenderer {
 
     public record Unbaked(Identifier baseTexture, Identifier noPatternBaseTexture) implements SpecialModelRenderer.Unbaked {
 
-        public static final MapCodec<Unbaked> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                Identifier.CODEC.fieldOf("base_texture").forGetter(Unbaked::baseTexture),
-                Identifier.CODEC.fieldOf("no_pattern_base_texture").forGetter(Unbaked::noPatternBaseTexture)
-        ).apply(instance, Unbaked::new));
+        public static final MapCodec<TexturedShieldModelRenderer.Unbaked> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+                Identifier.CODEC.fieldOf("base_texture").forGetter(TexturedShieldModelRenderer.Unbaked::baseTexture),
+                Identifier.CODEC.fieldOf("no_pattern_base_texture").forGetter(TexturedShieldModelRenderer.Unbaked::noPatternBaseTexture)
+        ).apply(instance, TexturedShieldModelRenderer.Unbaked::new));
 
         @Override
         public SpecialModelRenderer<?> bake(BakeContext context) {
