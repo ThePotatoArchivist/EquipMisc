@@ -49,15 +49,12 @@ public class EquipMisc implements ModInitializer {
             if (!(entity instanceof Turtle turtleEntity) || turtleEntity.isBaby()) return InteractionResult.PASS;
             var stack = player.getItemInHand(hand);
             if (!stack.is(ConventionalItemTags.BRUSH_TOOLS)) return InteractionResult.PASS;
-            if (!(world instanceof ServerLevel serverWorld)) {
-                stack.hurtAndBreak(16, player, hand);
-                return InteractionResult.SUCCESS;
+            if (world instanceof ServerLevel serverWorld) {
+                turtleEntity.dropFromEntityInteractLootTable(serverWorld, BuiltInLootTables.TURTLE_GROW, player, stack, entity::spawnAtLocation);
+                entity.playSound(SoundEvents.ARMADILLO_BRUSH); // TODO custom sound event
+                entity.gameEvent(GameEvent.ENTITY_INTERACT);
             }
-            turtleEntity.dropFromEntityInteractLootTable(serverWorld, BuiltInLootTables.TURTLE_GROW, player, stack, entity::spawnAtLocation);
-            entity.playSound(SoundEvents.ARMADILLO_BRUSH); // TODO custom sound event
-            entity.gameEvent(GameEvent.ENTITY_INTERACT);
-
-            stack.hurtAndBreak(16, player, hand);
+            stack.hurtAndBreak(24, player, hand);
             return InteractionResult.SUCCESS;
         });
 	}
