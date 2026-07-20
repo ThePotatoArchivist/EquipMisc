@@ -12,6 +12,7 @@ import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.renderer.special.ShieldSpecialRenderer;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Items;
 
@@ -52,7 +53,7 @@ public class ModelGenerator extends FabricModelProvider {
         var shieldSpecial = new Unbaked(BRONZE_SHIELD_BASE, BRONZE_SHIELD_BASE_NO_PATTERN);
         var shield = ItemModelUtils.specialModel(ModelLocationUtils.getModelLocation(Items.SHIELD), shieldSpecial);
         var shieldBlocking = ItemModelUtils.specialModel(ModelLocationUtils.getModelLocation(Items.SHIELD, "_blocking"), shieldSpecial);
-        itemModelGenerator.generateBooleanDispatch(BRONZE_SHIELD, ItemModelUtils.isUsingItem(), shieldBlocking, shield);
+        itemModelGenerator.itemModelOutput.accept(BRONZE_SHIELD, ItemModelUtils.conditional(ShieldSpecialRenderer.DEFAULT_TRANSFORMATION, ItemModelUtils.isUsingItem(), shieldBlocking, shield));
 
         itemModelGenerator.generateFlatItem(BRONZE_SHEARS, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(FLINT_AND_BRONZE, ModelTemplates.FLAT_ITEM);
