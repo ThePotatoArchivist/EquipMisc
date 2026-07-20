@@ -29,6 +29,7 @@
   "item.equipmisc.smithing_template.chainmail_upgrade.applies_to": "Armor",
   "item.equipmisc.smithing_template.chainmail_upgrade.base_slot_description": "Add a piece of armor",
   "item.equipmisc.smithing_template.chainmail_upgrade.ingredients": "Chainmail Armor",
+  "itemGroup.equipmisc.equipmisc": "EquipMisc",
   "tag.item.equipmisc.bronze_equipment": "Bronze Equipment",
   "tag.item.equipmisc.bronze_tool_materials": "Bronze Tool Materials",
   "tag.item.equipmisc.enchanted_invisible_equipment": "Works with Invisibility when Enchanted",

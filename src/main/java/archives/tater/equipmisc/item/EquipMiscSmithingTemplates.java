@@ -2,13 +2,13 @@ package archives.tater.equipmisc.item;
 
 import archives.tater.equipmisc.EquipMisc;
 import archives.tater.equipmisc.util.Translation;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SmithingTemplateItem;
+
+import java.util.List;
 
 import static net.minecraft.util.Util.makeDescriptionId;
 
@@ -44,7 +44,7 @@ public class EquipMiscSmithingTemplates {
 
     private EquipMiscSmithingTemplates() {}
 
-    private static @NotNull List<Identifier> getArmorSlots() {
+    private static List<Identifier> getArmorSlots() {
         return List.of(
                 EMPTY_ARMOR_SLOT_HELMET_TEXTURE,
                 EMPTY_ARMOR_SLOT_CHESTPLATE_TEXTURE,

@@ -3,8 +3,10 @@ package archives.tater.equipmisc.registry;
 import archives.tater.equipmisc.EquipMisc;
 import archives.tater.equipmisc.component.BreakInArea;
 import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
+import archives.tater.equipmisc.util.Translation;
 
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 
 import net.minecraft.core.Registry;
@@ -38,6 +40,9 @@ import vectorwing.farmersdelight.common.registry.ModItems;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Stream;
+
+import static net.minecraft.util.Util.makeDescriptionId;
 
 public class EquipMiscItems {
     private static Item register(ResourceKey<Item> key, Function<Item.Properties, Item> item, Item.Properties settings) {
@@ -84,11 +89,11 @@ public class EquipMiscItems {
     public static final Item BRONZE_BOOTS = register(EquipMiscItemIds.BRONZE_BOOTS, new Item.Properties().humanoidArmor(BRONZE_ARMOR, ArmorType.BOOTS));
 
     public static final Item BRONZE_SWORD = register(EquipMiscItemIds.BRONZE_SWORD, new Item.Properties().sword(BRONZE_TOOL, 3f, -2.4f));
+    public static final Item BRONZE_SPEAR = register(EquipMiscItemIds.BRONZE_SPEAR, new Item.Properties().spear(BRONZE_TOOL, 0.95F, 0.95F, 0.6F, 2.5F, 8.0F, 6.75F, 5.1F, 11.25F, 4.6F));
     public static final Item BRONZE_SHOVEL = register(EquipMiscItemIds.BRONZE_SHOVEL, settings -> new ShovelItem(BRONZE_TOOL, 1.5f, -3.0f, settings));
     public static final Item BRONZE_PICKAXE = register(EquipMiscItemIds.BRONZE_PICKAXE, new Item.Properties().pickaxe(BRONZE_TOOL, 1f, -2.8f));
     public static final Item BRONZE_AXE = register(EquipMiscItemIds.BRONZE_AXE, settings -> new AxeItem(BRONZE_TOOL, 6f, -3.1f, settings));
     public static final Item BRONZE_HOE = register(EquipMiscItemIds.BRONZE_HOE, settings -> new HoeItem(BRONZE_TOOL, -2f, -1f, settings));
-    public static final Item BRONZE_SPEAR = register(EquipMiscItemIds.BRONZE_SPEAR, new Item.Properties().spear(BRONZE_TOOL, 0.95F, 0.95F, 0.6F, 2.5F, 8.0F, 6.75F, 5.1F, 11.25F, 4.6F));
 
     public static final Item BRONZE_SHIELD = register(EquipMiscItemIds.BRONZE_SHIELD, ShieldItem::new, new Properties()
             .durability(BRONZE_TOOL_DURABILITY)
@@ -122,6 +127,43 @@ public class EquipMiscItems {
     public static final Item RAVAGER_HELMET = register(EquipMiscItemIds.RAVAGER_HELMET, new Item.Properties()
             .humanoidArmor(ArmorMaterials.DIAMOND, ArmorType.HELMET)
             .component(EquipMiscComponents.BREAK_IN_AREA, new BreakInArea(0.2, EquipMiscBlockTags.RAVAGER_HELMET_CAN_DESTROY, EquipmentSlotGroup.HEAD)));
+
+    public static final Identifier EQUIPMISC_TAB_ID = EquipMisc.id(EquipMisc.MOD_ID);
+    public static final Translation.Unit EQUIPMISC_TAB_TITLE = Translation.unit(makeDescriptionId("itemGroup", EQUIPMISC_TAB_ID));
+    public static final CreativeModeTab EQUIPMISC_TAB = Registry.register(
+            BuiltInRegistries.CREATIVE_MODE_TAB,
+            EQUIPMISC_TAB_ID,
+            FabricCreativeModeTab.builder()
+                    .icon(BRONZE_PICKAXE::getDefaultInstance)
+                    .title(EQUIPMISC_TAB_TITLE.text)
+                    .displayItems((_, output) -> {
+                        Stream.of(
+                                RAW_BRONZE,
+                                BRONZE_INGOT,
+                                BRONZE_UPGRADE_SMITHING_TEMPLATE,
+                                BRONZE_HELMET,
+                                BRONZE_CHESTPLATE,
+                                BRONZE_LEGGINGS,
+                                BRONZE_BOOTS,
+                                BRONZE_SWORD,
+                                BRONZE_SPEAR,
+                                BRONZE_SHOVEL,
+                                BRONZE_PICKAXE,
+                                BRONZE_AXE,
+                                BRONZE_HOE,
+                                BRONZE_SHIELD,
+                                BRONZE_SHEARS,
+                                FLINT_AND_BRONZE
+                        ).forEach(output::accept);
+                        if (EquipMisc.FARMERS_DELIGHT_INSTALLED)
+                            output.accept(BRONZE_KNIFE);
+                        Stream.of(
+                                CHAINMAIL_UPGRADE_SMITHING_TEMPLATE,
+                                RAVAGER_HELMET
+                        ).forEach(output::accept);
+                    })
+                    .build()
+    );
 
     public static void init() {
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(output -> {

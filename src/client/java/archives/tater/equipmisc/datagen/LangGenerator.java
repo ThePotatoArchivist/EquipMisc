@@ -54,6 +54,8 @@ public class LangGenerator extends FabricLanguageProvider {
         translationBuilder.add(EquipMiscItems.FLINT_AND_BRONZE, "Flint and Bronze");
         translationBuilder.add(EquipMiscItems.BRONZE_KNIFE, "Bronze Knife");
 
+        translationBuilder.add(EquipMiscItems.EQUIPMISC_TAB_TITLE.key, "EquipMisc");
+
         translationBuilder.add(ChainmailUpgrade.TOOLTIP.key, "Chainmail Upgrade");
 
         translationBuilder.add(AdvancementGenerator.BRONZE_TOOLS_TITLE, "Incremental Upgrades");
