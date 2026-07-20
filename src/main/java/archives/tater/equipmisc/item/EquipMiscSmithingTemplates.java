@@ -34,6 +34,7 @@ public class EquipMiscSmithingTemplates {
     private static final Identifier EMPTY_SLOT_AXE_TEXTURE = Identifier.withDefaultNamespace("container/slot/axe");
     private static final Identifier EMPTY_SLOT_SWORD_TEXTURE = Identifier.withDefaultNamespace("container/slot/sword");
     private static final Identifier EMPTY_SLOT_SHOVEL_TEXTURE = Identifier.withDefaultNamespace("container/slot/shovel");
+    private static final Identifier EMPTY_SLOT_SPEAR_TEXTURE = Identifier.withDefaultNamespace("container/slot/spear");
     private static final Identifier EMPTY_SLOT_PICKAXE_TEXTURE = Identifier.withDefaultNamespace("container/slot/pickaxe");
 
     private static final Identifier EMPTY_SLOT_SHIELD_TEXTURE = EquipMisc.id("container/slot/shield");
@@ -68,6 +69,7 @@ public class EquipMiscSmithingTemplates {
                         EMPTY_SLOT_AXE_TEXTURE,
                         EMPTY_SLOT_SWORD_TEXTURE,
                         EMPTY_SLOT_SHOVEL_TEXTURE,
+                        EMPTY_SLOT_SPEAR_TEXTURE,
                         EMPTY_SLOT_PICKAXE_TEXTURE,
                         EMPTY_SLOT_SHIELD_TEXTURE,
                         EMPTY_SLOT_SHEARS_TEXTURE,
