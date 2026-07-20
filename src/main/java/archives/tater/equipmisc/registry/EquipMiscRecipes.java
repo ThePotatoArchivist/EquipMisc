@@ -10,7 +10,7 @@ public class EquipMiscRecipes {
     public static RecipeSerializer<SmithingPatchRecipe> SMITHING_PATCH = Registry.register(
             BuiltInRegistries.RECIPE_SERIALIZER,
             EquipMisc.id("smithing_patch"),
-            new SmithingPatchRecipe.Serializer()
+            new RecipeSerializer<>(SmithingPatchRecipe.CODEC, SmithingPatchRecipe.STREAM_CODEC)
     );
 
     public static void init() {

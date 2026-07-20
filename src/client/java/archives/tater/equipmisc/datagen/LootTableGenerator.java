@@ -3,8 +3,9 @@ package archives.tater.equipmisc.datagen;
 import archives.tater.equipmisc.EquipMiscLoot;
 import archives.tater.equipmisc.registry.EquipMiscItems;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableSubProvider;
+
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -13,11 +14,12 @@ import net.minecraft.world.level.storage.loot.LootTable.Builder;
 import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
-public class LootTableGenerator extends SimpleFabricLootTableProvider {
-    public LootTableGenerator(FabricDataOutput output, CompletableFuture<Provider> registryLookup) {
+public class LootTableGenerator extends SimpleFabricLootTableSubProvider {
+    public LootTableGenerator(FabricPackOutput output, CompletableFuture<Provider> registryLookup) {
         super(output, registryLookup, LootContextParamSets.CHEST);
     }
 

@@ -12,7 +12,7 @@ public class EquipMiscDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ItemTagGenerator::new);
         pack.addProvider(BlockTagGenerator::new);
         pack.addProvider(AdvancementGenerator::new);
-        pack.addProvider(EMRecipeGenerator.Provider::new);
+        pack.addProvider(RecipeGenerator::new);
         pack.addProvider(LootTableGenerator::new);
 
         pack.addProvider(ModelGenerator::new);

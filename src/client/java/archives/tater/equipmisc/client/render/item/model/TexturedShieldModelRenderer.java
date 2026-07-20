@@ -7,24 +7,25 @@ import net.minecraft.client.model.object.equipment.ShieldModel;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.special.ShieldSpecialRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
-import net.minecraft.client.resources.model.Material;
-import net.minecraft.client.resources.model.MaterialSet;
+import net.minecraft.client.resources.model.sprite.SpriteId;
+import net.minecraft.client.resources.model.sprite.SpriteGetter;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.resources.Identifier;
 
 /**
  * @see archives.tater.equipmisc.mixin.client.ShieldModelRendererMixin
  */
 public class TexturedShieldModelRenderer extends ShieldSpecialRenderer {
-    public final Material baseTexture;
-    public final Material noPatternBaseTexture;
+    public final SpriteId baseTexture;
+    public final SpriteId noPatternBaseTexture;
 
-    public TexturedShieldModelRenderer(MaterialSet spriteHolder, ShieldModel model, Identifier baseTexture, Identifier noPatternBaseTexture) {
-        super(spriteHolder, model);
-        this.baseTexture = new Material(Sheets.SHIELD_SHEET, baseTexture);
-        this.noPatternBaseTexture = new Material(Sheets.SHIELD_SHEET, noPatternBaseTexture);
+    public TexturedShieldModelRenderer(SpriteGetter sprites, ShieldModel model, Identifier baseTexture, Identifier noPatternBaseTexture) {
+        super(sprites, model);
+        this.baseTexture = new SpriteId(Sheets.SHIELD_SHEET, baseTexture);
+        this.noPatternBaseTexture = new SpriteId(Sheets.SHIELD_SHEET, noPatternBaseTexture);
     }
 
-    public record Unbaked(Identifier baseTexture, Identifier noPatternBaseTexture) implements SpecialModelRenderer.Unbaked {
+    public record Unbaked(Identifier baseTexture, Identifier noPatternBaseTexture) implements SpecialModelRenderer.Unbaked<DataComponentMap> {
 
         public static final MapCodec<TexturedShieldModelRenderer.Unbaked> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                 Identifier.CODEC.fieldOf("base_texture").forGetter(TexturedShieldModelRenderer.Unbaked::baseTexture),
@@ -32,12 +33,12 @@ public class TexturedShieldModelRenderer extends ShieldSpecialRenderer {
         ).apply(instance, TexturedShieldModelRenderer.Unbaked::new));
 
         @Override
-        public SpecialModelRenderer<?> bake(BakingContext context) {
-            return new TexturedShieldModelRenderer(context.materials(), new ShieldModel(context.entityModelSet().bakeLayer(ModelLayers.SHIELD)), baseTexture, noPatternBaseTexture);
+        public SpecialModelRenderer<DataComponentMap> bake(BakingContext context) {
+            return new TexturedShieldModelRenderer(context.sprites(), new ShieldModel(context.entityModelSet().bakeLayer(ModelLayers.SHIELD)), baseTexture, noPatternBaseTexture);
         }
 
         @Override
-        public MapCodec<? extends SpecialModelRenderer.Unbaked> type() {
+        public MapCodec<? extends SpecialModelRenderer.Unbaked<DataComponentMap>> type() {
             return CODEC;
         }
     }

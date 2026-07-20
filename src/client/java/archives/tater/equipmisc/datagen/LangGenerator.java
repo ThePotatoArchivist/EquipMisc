@@ -3,15 +3,16 @@ package archives.tater.equipmisc.datagen;
 import archives.tater.equipmisc.item.ChainmailUpgradeLogic;
 import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
 import archives.tater.equipmisc.registry.EquipMiscAttributes;
+import archives.tater.equipmisc.registry.EquipMiscItemTags;
 import archives.tater.equipmisc.registry.EquipMiscItems;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.core.HolderLookup.Provider;
 import java.util.concurrent.CompletableFuture;
 
 public class LangGenerator extends FabricLanguageProvider {
-    public LangGenerator(FabricDataOutput dataOutput, CompletableFuture<Provider> registryLookup) {
+    public LangGenerator(FabricPackOutput dataOutput, CompletableFuture<Provider> registryLookup) {
         super(dataOutput, registryLookup);
     }
 
@@ -19,10 +20,10 @@ public class LangGenerator extends FabricLanguageProvider {
     public void generateTranslations(Provider registryLookup, TranslationBuilder translationBuilder) {
         translationBuilder.add(EquipMiscAttributes.MAX_AIR, "Max Air");
 
-        translationBuilder.add(EquipMiscItems.BRONZE_TOOL_MATERIALS, "Bronze Tool Materials");
-        translationBuilder.add(EquipMiscItems.REPAIRS_BRONZE_ARMOR, "Repairs Bronze Armor");
-        translationBuilder.add(EquipMiscItems.BRONZE_EQUIPMENT, "Bronze Equipment");
-        translationBuilder.add(EquipMiscItems.ENCHANTED_INVISIBLE_EQUIPMENT, "Works with Invisibility when Enchanted");
+        translationBuilder.add(EquipMiscItemTags.BRONZE_TOOL_MATERIALS, "Bronze Tool Materials");
+        translationBuilder.add(EquipMiscItemTags.REPAIRS_BRONZE_ARMOR, "Repairs Bronze Armor");
+        translationBuilder.add(EquipMiscItemTags.BRONZE_EQUIPMENT, "Bronze Equipment");
+        translationBuilder.add(EquipMiscItemTags.ENCHANTED_INVISIBLE_EQUIPMENT, "Works with Invisibility when Enchanted");
 
         translationBuilder.add(EquipMiscItems.BRONZE_UPGRADE_SMITHING_TEMPLATE, "Bronze Upgrade");
         translationBuilder.add(EquipMiscSmithingTemplates.BRONZE_UPRADE_APPLIES_TO.key, "Iron Equipment");

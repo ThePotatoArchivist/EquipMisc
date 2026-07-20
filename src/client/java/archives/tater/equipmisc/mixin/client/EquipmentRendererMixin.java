@@ -1,6 +1,7 @@
 package archives.tater.equipmisc.mixin.client;
 
-import archives.tater.equipmisc.registry.EquipMiscItems;
+import archives.tater.equipmisc.registry.EquipMiscItemTags;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,7 +27,7 @@ public class EquipmentRendererMixin {
             cancellable = true
     )
     private <S> void invisibleEquipment(LayerType layerType, ResourceKey<EquipmentAsset> assetKey, Model<? super S> model, S object, ItemStack itemStack, PoseStack matrixStack, SubmitNodeCollector orderedRenderCommandQueue, int i, @Nullable Identifier identifier, int j, int k, CallbackInfo ci) {
-        if (object instanceof LivingEntityRenderState renderState && renderState.isInvisible && itemStack.is(EquipMiscItems.ENCHANTED_INVISIBLE_EQUIPMENT) && itemStack.isEnchanted())
+        if (object instanceof LivingEntityRenderState renderState && renderState.isInvisible && itemStack.is(EquipMiscItemTags.ENCHANTED_INVISIBLE_EQUIPMENT) && itemStack.isEnchanted())
             ci.cancel();
     }
 }

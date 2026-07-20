@@ -1,28 +1,32 @@
 package archives.tater.equipmisc.datagen;
 
 import archives.tater.equipmisc.EquipMisc;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
+
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.DisplayInfo;
-import net.minecraft.advancements.criterion.InventoryChangeTrigger;
-import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.predicates.ItemPredicate;
+import net.minecraft.advancements.triggers.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.ItemStackTemplate;
+
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
-import static archives.tater.equipmisc.registry.EquipMiscItems.BRONZE_EQUIPMENT;
+import static archives.tater.equipmisc.registry.EquipMiscItemTags.BRONZE_EQUIPMENT;
 import static archives.tater.equipmisc.registry.EquipMiscItems.BRONZE_PICKAXE;
 import static net.minecraft.util.Util.makeDescriptionId;
 
 public class AdvancementGenerator extends FabricAdvancementProvider {
-    public AdvancementGenerator(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
+    public AdvancementGenerator(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(output, registryLookup);
     }
 
@@ -33,7 +37,7 @@ public class AdvancementGenerator extends FabricAdvancementProvider {
         consumer.accept(Advancement.Builder.recipeAdvancement()
                 .parent(new AdvancementHolder(Identifier.withDefaultNamespace("story/iron_tools"), null))
                 .display(new DisplayInfo(
-                        BRONZE_PICKAXE.getDefaultInstance(),
+                        new ItemStackTemplate(BRONZE_PICKAXE),
                         Component.translatable(BRONZE_TOOLS_TITLE),
                         Component.translatable(BRONZE_TOOLS_DESCRIPTION),
                         Optional.empty(),
