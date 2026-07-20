@@ -57,7 +57,7 @@ public class SmithingPatchRecipe extends SimpleSmithingRecipe {
         this(new CommonInfo(true), Optional.ofNullable(template), base, Optional.ofNullable(addition), patch);
     }
 
-    private static ItemStack withChanges(ItemStack base, DataComponentPatch changes) {
+    public static ItemStack withChanges(ItemStack base, DataComponentPatch changes) {
         var stack = base.copy();
         stack.applyComponentsAndValidate(changes);
         return stack;
@@ -88,6 +88,10 @@ public class SmithingPatchRecipe extends SimpleSmithingRecipe {
     @Override
     public Optional<Ingredient> additionIngredient() {
         return this.addition;
+    }
+
+    public DataComponentPatch patch() {
+        return patch;
     }
 
     @Override

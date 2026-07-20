@@ -27,6 +27,17 @@ repositories {
 			includeGroup "maven.modrinth"
 		}
 	}
+	exclusiveContent {
+		forRepository {
+			maven {
+				name = "Cassian's Maven"
+				url = uri("https://maven.cassian.cc")
+			}
+		}
+		filter {
+			includeGroupAndSubgroups("cc.cassian")
+		}
+	}
 }
 
 loom {
@@ -59,6 +70,8 @@ dependencies {
     implementation("maven.modrinth:farmers-delight-refabricated:${fdrf_version}") {
         exclude(group: "net.fabricmc")
     }
+
+	implementation("cc.cassian.rrv:reliable-recipe-viewer-fabric:${rrv_version}+${minecraft_version}")
 }
 
 processResources {
