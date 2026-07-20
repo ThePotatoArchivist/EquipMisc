@@ -1,8 +1,8 @@
 {
   "values": [
     "minecraft:bamboo",
-    "minecraft:bamboo_sapling",
     "minecraft:vine",
+    "minecraft:bamboo_sapling",
     "#minecraft:leaves"
   ]
 }

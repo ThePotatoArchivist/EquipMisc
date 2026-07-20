@@ -1,4 +1,4 @@
-// 1.21.11	-999999999-01-01T00:00:00	EquipMisc/minecraft:chest Loot Table
-8195f8f750e65977bbe19f93d929218e6d966050 data/equipmisc/loot_table/inject/chest/fortress.json
-20af67f11f1547c2cfb213b72a74f56ccdeffed7 data/equipmisc/loot_table/inject/chest/ruins_big.json
-bfb8a1610d1537d28ef0c771fd5daaefa02edb61 data/equipmisc/loot_table/inject/chest/ruins_small.json
+// 26.2	-999999999-01-01T00:00:00	EquipMisc/minecraft:chest Loot Table
+81d5077eee83234c607346d0802780fd158189f8 data/equipmisc/loot_table/inject/chest/fortress.json
+d7064bc1e8db21b9b12f7904c36d86c48e5dc1a3 data/equipmisc/loot_table/inject/chest/ruins_big.json
+2ac9da2afd4f8438617d96123bac1f05e0a6b187 data/equipmisc/loot_table/inject/chest/ruins_small.json

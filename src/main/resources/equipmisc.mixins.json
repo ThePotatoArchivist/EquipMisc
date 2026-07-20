@@ -3,10 +3,8 @@
   "package": "archives.tater.equipmisc.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
-    "ShieldDecorationRecipeMixin",
     "chainmail.ItemStackMixin",
     "ravager.LivingEntityMixin",
-    "shears.ItemStackMixin",
     "turtle.EntityMixin",
     "turtle.LivingEntityMixin",
     "turtle.PlayerEntityMixin"
