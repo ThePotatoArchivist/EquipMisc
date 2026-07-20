@@ -21,22 +21,22 @@ import net.minecraft.world.level.gamerules.GameRules;
 import static java.util.Objects.requireNonNullElse;
 import static net.minecraft.util.Mth.floor;
 
-public record BreakInAreaComponent(
+public record BreakInArea(
         double hitboxInflation,
         TagKey<Block> canBreak,
         EquipmentSlotGroup slots
 ) {
-    public static final Codec<BreakInAreaComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            Codec.doubleRange(0, 2.0).fieldOf("hitbox_inflate").forGetter(BreakInAreaComponent::hitboxInflation),
-            TagKey.codec(Registries.BLOCK).fieldOf("can_break").forGetter(BreakInAreaComponent::canBreak),
-            EquipmentSlotGroup.CODEC.fieldOf("slots").forGetter(BreakInAreaComponent::slots)
-    ).apply(instance, BreakInAreaComponent::new));
+    public static final Codec<BreakInArea> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            Codec.doubleRange(0, 2.0).fieldOf("hitbox_inflate").forGetter(BreakInArea::hitboxInflation),
+            TagKey.codec(Registries.BLOCK).fieldOf("can_break").forGetter(BreakInArea::canBreak),
+            EquipmentSlotGroup.CODEC.fieldOf("slots").forGetter(BreakInArea::slots)
+    ).apply(instance, BreakInArea::new));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, BreakInAreaComponent> STREAM_CODEC = StreamCodec.composite(
-            ByteBufCodecs.DOUBLE, BreakInAreaComponent::hitboxInflation,
-            TagKey.streamCodec(Registries.BLOCK), BreakInAreaComponent::canBreak,
-            EquipmentSlotGroup.STREAM_CODEC, BreakInAreaComponent::slots,
-            BreakInAreaComponent::new
+    public static final StreamCodec<RegistryFriendlyByteBuf, BreakInArea> STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.DOUBLE, BreakInArea::hitboxInflation,
+            TagKey.streamCodec(Registries.BLOCK), BreakInArea::canBreak,
+            EquipmentSlotGroup.STREAM_CODEC, BreakInArea::slots,
+            BreakInArea::new
     );
 
     public void breakBlocks(LivingEntity entity) {

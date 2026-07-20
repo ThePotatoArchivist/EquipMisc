@@ -2,12 +2,12 @@ package archives.tater.equipmisc.mixin.client;
 
 import archives.tater.equipmisc.registry.EquipMiscItemTags;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer;
@@ -17,6 +17,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.equipment.EquipmentAsset;
+
 import org.jetbrains.annotations.Nullable;
 
 @Mixin(EquipmentLayerRenderer.class)
@@ -26,8 +27,8 @@ public class EquipmentRendererMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private <S> void invisibleEquipment(LayerType layerType, ResourceKey<EquipmentAsset> assetKey, Model<? super S> model, S object, ItemStack itemStack, PoseStack matrixStack, SubmitNodeCollector orderedRenderCommandQueue, int i, @Nullable Identifier identifier, int j, int k, CallbackInfo ci) {
-        if (object instanceof LivingEntityRenderState renderState && renderState.isInvisible && itemStack.is(EquipMiscItemTags.ENCHANTED_INVISIBLE_EQUIPMENT) && itemStack.isEnchanted())
+    private <S> void invisibleEquipment(LayerType layerType, ResourceKey<EquipmentAsset> equipmentAssetId, Model<? super S> model, S state, ItemStack itemStack, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int lightCoords, @Nullable Identifier playerTextureOverride, int outlineColor, int order, CallbackInfo ci) {
+        if (state instanceof LivingEntityRenderState renderState && renderState.isInvisible && itemStack.is(EquipMiscItemTags.ENCHANTED_INVISIBLE_EQUIPMENT) && itemStack.isEnchanted())
             ci.cancel();
     }
 }

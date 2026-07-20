@@ -1,6 +1,6 @@
 package archives.tater.equipmisc.datagen;
 
-import archives.tater.equipmisc.item.ChainmailUpgradeLogic;
+import archives.tater.equipmisc.component.ChainmailUpgrade;
 import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
 import archives.tater.equipmisc.registry.EquipMiscAttributes;
 import archives.tater.equipmisc.registry.EquipMiscItemTags;
@@ -54,7 +54,7 @@ public class LangGenerator extends FabricLanguageProvider {
         translationBuilder.add(EquipMiscItems.FLINT_AND_BRONZE, "Flint and Bronze");
         translationBuilder.add(EquipMiscItems.BRONZE_KNIFE, "Bronze Knife");
 
-        translationBuilder.add(ChainmailUpgradeLogic.CHAINMAIL_UPGRADE.key, "Chainmail Upgrade");
+        translationBuilder.add(ChainmailUpgrade.TOOLTIP.key, "Chainmail Upgrade");
 
         translationBuilder.add(AdvancementGenerator.BRONZE_TOOLS_TITLE, "Incremental Upgrades");
         translationBuilder.add(AdvancementGenerator.BRONZE_TOOLS_DESCRIPTION, "Improve the durability of your iron tools by upgrading them with bronze");

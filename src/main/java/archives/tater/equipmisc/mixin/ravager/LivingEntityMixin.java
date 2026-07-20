@@ -1,6 +1,6 @@
 package archives.tater.equipmisc.mixin.ravager;
 
-import archives.tater.equipmisc.component.BreakInAreaComponent;
+import archives.tater.equipmisc.component.BreakInArea;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,6 +16,6 @@ public abstract class LivingEntityMixin {
             at = @At("HEAD")
     )
     private void breakLeaves(CallbackInfo ci) {
-        BreakInAreaComponent.tick((LivingEntity) (Object) this);
+        BreakInArea.tick((LivingEntity) (Object) this);
     }
 }

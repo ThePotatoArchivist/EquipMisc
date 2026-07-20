@@ -1,7 +1,7 @@
 package archives.tater.equipmisc.registry;
 
 import archives.tater.equipmisc.EquipMisc;
-import archives.tater.equipmisc.component.BreakInAreaComponent;
+import archives.tater.equipmisc.component.BreakInArea;
 import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
 
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
@@ -121,7 +121,7 @@ public class EquipMiscItems {
 
     public static final Item RAVAGER_HELMET = register(EquipMiscItemIds.RAVAGER_HELMET, new Item.Properties()
             .humanoidArmor(ArmorMaterials.DIAMOND, ArmorType.HELMET)
-            .component(EquipMiscComponents.BREAK_IN_AREA, new BreakInAreaComponent(0.2, EquipMiscBlockTags.RAVAGER_HELMET_CAN_DESTROY, EquipmentSlotGroup.HEAD)));
+            .component(EquipMiscComponents.BREAK_IN_AREA, new BreakInArea(0.2, EquipMiscBlockTags.RAVAGER_HELMET_CAN_DESTROY, EquipmentSlotGroup.HEAD)));
 
     public static void init() {
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(output -> {

@@ -1,7 +1,8 @@
 package archives.tater.equipmisc.registry;
 
 import archives.tater.equipmisc.EquipMisc;
-import archives.tater.equipmisc.component.BreakInAreaComponent;
+import archives.tater.equipmisc.component.BreakInArea;
+import archives.tater.equipmisc.component.ChainmailUpgrade;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.Registry;
@@ -10,7 +11,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.Identifier;
-import net.minecraft.util.Unit;
 
 public class EquipMiscComponents {
     private static <T> DataComponentType<T> register(Identifier id, Codec<T> codec, StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec, boolean cache) {
@@ -27,9 +27,9 @@ public class EquipMiscComponents {
         return register(path, codec, streamCodec, true);
     }
 
-    public static final DataComponentType<Unit> CHAINMAIL_UPGRADE = register("chainmail_upgrade", Unit.CODEC, Unit.STREAM_CODEC, false);
+    public static final DataComponentType<ChainmailUpgrade> CHAINMAIL_UPGRADE = register("chainmail_upgrade", ChainmailUpgrade.CODEC, ChainmailUpgrade.STREAM_CODEC, false);
 
-    public static final DataComponentType<BreakInAreaComponent> BREAK_IN_AREA = register("break_in_area", BreakInAreaComponent.CODEC, BreakInAreaComponent.STREAM_CODEC);
+    public static final DataComponentType<BreakInArea> BREAK_IN_AREA = register("break_in_area", BreakInArea.CODEC, BreakInArea.STREAM_CODEC);
 
     public static void init() {
 

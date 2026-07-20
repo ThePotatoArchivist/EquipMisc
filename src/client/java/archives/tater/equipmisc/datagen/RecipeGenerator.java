@@ -1,6 +1,7 @@
 package archives.tater.equipmisc.datagen;
 
 import archives.tater.equipmisc.EquipMisc;
+import archives.tater.equipmisc.component.ChainmailUpgrade;
 import archives.tater.equipmisc.recipe.SmithingPatchRecipe;
 import archives.tater.equipmisc.registry.EquipMiscComponents;
 import archives.tater.equipmisc.registry.EquipMiscItemTags;
@@ -23,7 +24,6 @@ import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.Unit;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
@@ -80,7 +80,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         Ingredient.of(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE),
                         tag(input),
                         Ingredient.of(addition),
-                        DataComponentPatch.builder().set(EquipMiscComponents.CHAINMAIL_UPGRADE, Unit.INSTANCE).build()
+                        DataComponentPatch.builder().set(EquipMiscComponents.CHAINMAIL_UPGRADE, ChainmailUpgrade.INSTANCE).build()
                 ), advancement);
             }
 
