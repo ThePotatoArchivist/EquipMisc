@@ -84,7 +84,9 @@ public class EquipMiscItems {
             EquipMiscItemTags.BRONZE_TOOL_MATERIALS
     );
 
-    public static final Item BRONZE_UPGRADE_SMITHING_TEMPLATE = register(EquipMiscItemIds.BRONZE_UPGRADE_SMITHING_TEMPLATE, EquipMiscSmithingTemplates::createBronzeUpgrade);
+    public static final Item BRONZE_UPGRADE_SMITHING_TEMPLATE = register(EquipMiscItemIds.BRONZE_UPGRADE_SMITHING_TEMPLATE, EquipMiscSmithingTemplates::createBronzeUpgrade, new Item.Properties()
+            .rarity(Rarity.UNCOMMON)
+    );
     public static final Item RAW_BRONZE = register(EquipMiscItemIds.RAW_BRONZE, new Item.Properties());
     public static final Item BRONZE_INGOT = register(EquipMiscItemIds.BRONZE_INGOT, new Item.Properties());
     public static final Item BRONZE_BLOCK = register(EquipMiscBlockItemIds.BRONZE_BLOCK, EquipMiscBlocks.BRONZE_BLOCK);
@@ -130,7 +132,9 @@ public class EquipMiscItems {
                     .stacksTo(1)
                     .durability(BRONZE_TOOL_DURABILITY));
 
-    public static final Item CHAINMAIL_UPGRADE_SMITHING_TEMPLATE = register(EquipMiscItemIds.CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, EquipMiscSmithingTemplates::createChainmailUpgrade);
+    public static final Item CHAINMAIL_UPGRADE_SMITHING_TEMPLATE = register(EquipMiscItemIds.CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, EquipMiscSmithingTemplates::createChainmailUpgrade, new Item.Properties()
+            .rarity(Rarity.UNCOMMON)
+    );
 
 //    public static final Item RAVAGER_HELMET = register(EquipMiscItemIds.RAVAGER_HELMET, new Item.Properties()
 //            .humanoidArmor(ArmorMaterials.DIAMOND, ArmorType.HELMET)
