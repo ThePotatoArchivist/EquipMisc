@@ -20,34 +20,39 @@ import net.minecraft.world.item.component.TooltipProvider;
 
 import io.netty.buffer.ByteBuf;
 
-import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
+
+import static archives.tater.equipmisc.EquipMiscUtil.weakMemoize;
+import static java.lang.Math.min;
 
 public class ChainmailUpgrade implements TooltipProvider {
     public static final ChainmailUpgrade INSTANCE = new ChainmailUpgrade();
     public static final Codec<ChainmailUpgrade> CODEC = MapCodec.unitCodec(INSTANCE);
     public static final StreamCodec<ByteBuf, ChainmailUpgrade> STREAM_CODEC = StreamCodec.unit(INSTANCE);
 
-    public static final Map<EquipmentSlot, ItemAttributeModifiers> MODIFIERS = Map.of(
-            EquipmentSlot.HEAD, createModifier(EquipmentSlot.HEAD),
-            EquipmentSlot.CHEST, createModifier(EquipmentSlot.CHEST),
-            EquipmentSlot.LEGS, createModifier(EquipmentSlot.LEGS),
-            EquipmentSlot.FEET, createModifier(EquipmentSlot.FEET)
-    );
-
     public static final Translation.Unit TOOLTIP = Translation.unit("item.equipmisc.chainmail_upgrade.tooltip", ChatFormatting.GRAY);
 
-    private static ItemAttributeModifiers createModifier(EquipmentSlot slot) {
-        return ItemAttributeModifiers.builder().add(
-                Attributes.ARMOR_TOUGHNESS,
-                new AttributeModifier(
-                        EquipMisc.id("chainmail." + slot.getName()),
-                        2.0,
-                        AttributeModifier.Operation.ADD_VALUE
-                ),
-                EquipmentSlotGroup.bySlot(slot)
-        ).build();
+    // TODO dehardcode
+    private static int getMaxArmor(EquipmentSlot slot) {
+        return switch (slot) {
+            case HEAD, FEET -> 3;
+            case CHEST -> 8;
+            case LEGS -> 6;
+            default -> 0;
+        };
     }
+
+    public static final BiFunction<EquipmentSlot, ItemAttributeModifiers, ItemAttributeModifiers> MODIFIERS = weakMemoize((slot, attributes) -> {
+        var baseArmor = attributes.compute(Attributes.ARMOR, 0, slot);
+        var bonus = 2;
+        var armorBonus = min(bonus, getMaxArmor(slot) - baseArmor);
+        var toughnessBonus = bonus - armorBonus;
+        var builder = ItemAttributeModifiers.builder();
+        if (armorBonus > 0) builder.add(Attributes.ARMOR, new AttributeModifier(EquipMisc.id("chainmail." + slot.getName()), armorBonus, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.bySlot(slot));
+        if (toughnessBonus > 0) builder.add(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(EquipMisc.id("chainmail." + slot.getName()), toughnessBonus, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.bySlot(slot));
+        return builder.build();
+    });
 
     private ChainmailUpgrade() {}
 
