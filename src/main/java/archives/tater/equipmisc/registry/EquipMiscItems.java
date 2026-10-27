@@ -148,6 +148,7 @@ public class EquipMiscItems {
                         Stream.of(
                                 RAW_BRONZE,
                                 BRONZE_INGOT,
+                                BRONZE_BLOCK,
                                 BRONZE_UPGRADE_SMITHING_TEMPLATE,
                                 BRONZE_HELMET,
                                 BRONZE_CHESTPLATE,
