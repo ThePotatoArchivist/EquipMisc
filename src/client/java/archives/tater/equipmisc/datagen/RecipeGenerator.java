@@ -34,6 +34,7 @@ import vectorwing.farmersdelight.common.registry.ModItems;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import static archives.tater.equipmisc.registry.EquipMiscItemTags.BRONZE_INGOTS;
 import static archives.tater.equipmisc.registry.EquipMiscItems.*;
 import static net.minecraft.world.item.Items.*;
 
@@ -104,9 +105,9 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 offerBronzeUpgrade(SHEARS, BRONZE_SHEARS);
                 offerBronzeUpgrade(FLINT_AND_STEEL, FLINT_AND_BRONZE);
                 shapeless(RecipeCategory.TOOLS, FLINT_AND_BRONZE)
-                        .requires(BRONZE_INGOT)
+                        .requires(BRONZE_INGOTS)
                         .requires(FLINT)
-                        .unlockedBy(getHasName(BRONZE_INGOT), has(BRONZE_INGOT))
+                        .unlockedBy(getHasName(BRONZE_INGOT), has(BRONZE_INGOTS))
                         .save(output);
                 offerBronzeUpgrade(ModItems.IRON_KNIFE.get(), BRONZE_KNIFE, withConditions(output, new AllModsLoadedResourceCondition(List.of(EquipMisc.FARMERS_DELIGHT))));
 

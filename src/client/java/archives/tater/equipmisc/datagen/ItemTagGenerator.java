@@ -18,6 +18,8 @@ import vectorwing.farmersdelight.common.tag.ModTags;
 import java.util.concurrent.CompletableFuture;
 
 import static archives.tater.equipmisc.registry.EquipMiscItemIds.*;
+import static archives.tater.equipmisc.registry.EquipMiscItemTags.BRONZE_INGOTS;
+import static archives.tater.equipmisc.registry.EquipMiscItemTags.BRONZE_RAW_MATERIALS;
 import static net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags.*;
 import static net.minecraft.tags.ItemTags.*;
 
@@ -29,8 +31,8 @@ public class ItemTagGenerator extends FabricTagsProvider.ItemTagsProvider {
 
     @Override
     protected void addTags(Provider wrapperLookup) {
-        builder(EquipMiscItemTags.REPAIRS_BRONZE_ARMOR).add(BRONZE_INGOT);
-        builder(EquipMiscItemTags.BRONZE_TOOL_MATERIALS).add(BRONZE_INGOT);
+        builder(EquipMiscItemTags.REPAIRS_BRONZE_ARMOR).addTag(BRONZE_INGOTS);
+        builder(EquipMiscItemTags.BRONZE_TOOL_MATERIALS).addTag(BRONZE_INGOTS);
         builder(EquipMiscItemTags.BRONZE_EQUIPMENT).add(
                 BRONZE_HELMET,
                 BRONZE_CHESTPLATE,
@@ -78,10 +80,10 @@ public class ItemTagGenerator extends FabricTagsProvider.ItemTagsProvider {
         builder(SHEAR_TOOLS).add(BRONZE_SHEARS);
         builder(commonTag("tools/knife")).add(BRONZE_KNIFE);
         builder(ARMORS).add(BRONZE_HELMET, BRONZE_CHESTPLATE, BRONZE_LEGGINGS, BRONZE_BOOTS);
-        builder(INGOTS).add(BRONZE_INGOT);
-        builder(RAW_MATERIALS).add(RAW_BRONZE);
-        builder(commonTag("ingots/bronze")).add(BRONZE_INGOT);
-        builder(commonTag("raw_materials/bronze")).add(RAW_BRONZE);
+        builder(INGOTS).addTag(BRONZE_INGOTS);
+        builder(RAW_MATERIALS).addTag(BRONZE_RAW_MATERIALS);
+        builder(BRONZE_INGOTS).add(BRONZE_INGOT);
+        builder(BRONZE_RAW_MATERIALS).add(RAW_BRONZE);
 
         builder(ModTags.Items.KNIVES).add(BRONZE_KNIFE);
     }

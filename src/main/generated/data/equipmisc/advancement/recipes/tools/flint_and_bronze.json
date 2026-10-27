@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "equipmisc:bronze_ingot"
+            "items": "#c:ingots/bronze"
           }
         ]
       },

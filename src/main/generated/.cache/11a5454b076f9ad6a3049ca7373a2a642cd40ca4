@@ -1,8 +1,8 @@
 // 26.3	-999999999-01-01T00:00:00	EquipMisc/Tags for minecraft:item
 815b3b3f58650caf9d2429a2484fdf6d0e951416 data/c/tags/item/armors.json
-05588bd80b47996a219f3828b29c80dccc5d2361 data/c/tags/item/ingots.json
+c6df181eeab0231ab5626ece4d0cc2519463a995 data/c/tags/item/ingots.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/c/tags/item/ingots/bronze.json
-60cb77862f9d28cee2fe29a4143af70df78cf86a data/c/tags/item/raw_materials.json
+42a48c982252fa80e2f90a30a3a37a100ae5e350 data/c/tags/item/raw_materials.json
 60cb77862f9d28cee2fe29a4143af70df78cf86a data/c/tags/item/raw_materials/bronze.json
 fe367b407427137bdb321635672e039e3e2ea137 data/c/tags/item/tools/igniter.json
 1662b4afe6c001fb5cd9ff956c84724c802c4a17 data/c/tags/item/tools/knife.json
@@ -11,9 +11,9 @@ ce0f2ffe001bcb8dfc131006c48593d19fe54c2a data/c/tags/item/tools/melee_weapon.jso
 ac8e06adb7f67108be4cb97e96681870bfa24060 data/c/tags/item/tools/shear.json
 ab5becde6d81be0a773f66ed180771ae6e47956e data/c/tags/item/tools/shield.json
 4fa9587b9f1c04dc73e87fed27afe52db05350b7 data/equipmisc/tags/item/bronze_equipment.json
-05588bd80b47996a219f3828b29c80dccc5d2361 data/equipmisc/tags/item/bronze_tool_materials.json
+c6df181eeab0231ab5626ece4d0cc2519463a995 data/equipmisc/tags/item/bronze_tool_materials.json
 c5a26a067322c2b399964ab7cff330066442dc1d data/equipmisc/tags/item/enchanted_invisible_equipment.json
-05588bd80b47996a219f3828b29c80dccc5d2361 data/equipmisc/tags/item/repairs_bronze_armor.json
+c6df181eeab0231ab5626ece4d0cc2519463a995 data/equipmisc/tags/item/repairs_bronze_armor.json
 1662b4afe6c001fb5cd9ff956c84724c802c4a17 data/farmersdelight/tags/item/tools/knives.json
 a12cf1beeed81bb7026b91e97f8ed7f9297b18b2 data/minecraft/tags/item/axes.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/minecraft/tags/item/beacon_payment_items.json

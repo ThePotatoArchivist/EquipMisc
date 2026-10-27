@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    "equipmisc:bronze_ingot",
+    "#c:ingots/bronze",
     "minecraft:flint"
   ],
   "result": {
