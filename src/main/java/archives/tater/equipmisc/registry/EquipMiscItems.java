@@ -166,7 +166,14 @@ public class EquipMiscItems {
                         ).forEach(output::accept);
                         if (EquipMisc.FARMERS_DELIGHT_INSTALLED)
                             output.accept(BRONZE_KNIFE);
-                        output.accept(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE);
+                        Stream.of(
+                                CHAINMAIL_UPGRADE_SMITHING_TEMPLATE,
+                                Items.CHAINMAIL_HELMET,
+                                Items.CHAINMAIL_CHESTPLATE,
+                                Items.CHAINMAIL_LEGGINGS,
+                                Items.CHAINMAIL_BOOTS,
+                                Items.TURTLE_HELMET
+                        ).forEach(output::accept);
 //                        output.accept(RAVAGER_HELMET);
                     })
                     .build()
