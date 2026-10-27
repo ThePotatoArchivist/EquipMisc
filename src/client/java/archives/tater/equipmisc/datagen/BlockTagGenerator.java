@@ -35,5 +35,10 @@ public class BlockTagGenerator extends FabricTagsProvider.BlockTagsProvider {
 
         builder(ConventionalBlockItemTags.STORAGE_BLOCKS)
                 .addTag(EquipMiscBlockItemTags.STORAGE_BLOCKS_BRONZE.block());
+
+        builder(BlockTags.MINEABLE_WITH_PICKAXE).add(EquipMiscBlockItemIds.BRONZE_BLOCK);
+        builder(BlockTags.NEEDS_STONE_TOOL).add(EquipMiscBlockItemIds.BRONZE_BLOCK);
+        builder(BlockTags.BEACON_BASE_BLOCKS).add(EquipMiscBlockItemIds.BRONZE_BLOCK);
+        builder(BlockTags.BLOCKS_MOTION_NO_LEAVES).add(EquipMiscBlockItemIds.BRONZE_BLOCK);
     }
 }

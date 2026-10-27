@@ -2,3 +2,7 @@
 882f5c7713d372a5dba89feb03ab5f44bad86a5b data/c/tags/block/storage_blocks.json
 d0ddae9fcdd3bc5ae3ff91844c1a34566b8428ba data/c/tags/block/storage_blocks/bronze.json
 ab984618b74e569c27b8d7a21e61239f87039fe4 data/equipmisc/tags/block/ravager_helmet_can_destroy.json
+d0ddae9fcdd3bc5ae3ff91844c1a34566b8428ba data/minecraft/tags/block/beacon_base_blocks.json
+d0ddae9fcdd3bc5ae3ff91844c1a34566b8428ba data/minecraft/tags/block/blocks_motion_no_leaves.json
+d0ddae9fcdd3bc5ae3ff91844c1a34566b8428ba data/minecraft/tags/block/mineable/pickaxe.json
+d0ddae9fcdd3bc5ae3ff91844c1a34566b8428ba data/minecraft/tags/block/needs_stone_tool.json

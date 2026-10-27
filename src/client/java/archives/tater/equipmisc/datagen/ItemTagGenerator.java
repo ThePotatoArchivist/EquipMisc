@@ -20,9 +20,9 @@ import vectorwing.farmersdelight.common.tag.ModTags;
 
 import java.util.concurrent.CompletableFuture;
 
+import static archives.tater.equipmisc.registry.EquipMiscBlockItemIds.BRONZE_BLOCK;
 import static archives.tater.equipmisc.registry.EquipMiscItemIds.*;
-import static archives.tater.equipmisc.registry.EquipMiscItemTags.BRONZE_INGOTS;
-import static archives.tater.equipmisc.registry.EquipMiscItemTags.BRONZE_RAW_MATERIALS;
+import static archives.tater.equipmisc.registry.EquipMiscItemTags.*;
 import static net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags.*;
 import static net.minecraft.tags.ItemTags.*;
 
@@ -72,12 +72,13 @@ public class ItemTagGenerator extends FabricTagsProvider.ItemTagsProvider {
         builder(CHEST_ARMOR).add(BRONZE_CHESTPLATE);
         builder(LEG_ARMOR).add(BRONZE_LEGGINGS);
         builder(FOOT_ARMOR).add(BRONZE_BOOTS);
-        builder(BEACON_PAYMENT_ITEMS).add(BRONZE_INGOT);
 
         builder(CREEPER_IGNITERS).add(FLINT_AND_BRONZE);
         builder(MINING_ENCHANTABLE).add(BRONZE_SHEARS);
         builder(DURABILITY_ENCHANTABLE).add(FLINT_AND_BRONZE, BRONZE_SHEARS, BRONZE_SHIELD);
         builder(CLUSTER_MAX_HARVESTABLES).add(BRONZE_PICKAXE);
+        builder(BEACON_PAYMENT_ITEMS).add(BRONZE_INGOT);
+        builder(SULFUR_CUBE_ARCHETYPE_SLOW_FLAT).add(BRONZE_BLOCK);
 
         builder(MELEE_WEAPON_TOOLS).add(BRONZE_SWORD, BRONZE_AXE);
         builder(MINING_TOOL_TOOLS).add(BRONZE_PICKAXE);
