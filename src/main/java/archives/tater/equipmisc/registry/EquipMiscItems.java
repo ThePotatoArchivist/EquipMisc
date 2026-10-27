@@ -1,7 +1,6 @@
 package archives.tater.equipmisc.registry;
 
 import archives.tater.equipmisc.EquipMisc;
-import archives.tater.equipmisc.component.BreakInArea;
 import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
 import archives.tater.equipmisc.util.Translation;
 
@@ -126,9 +125,9 @@ public class EquipMiscItems {
 
     public static final Item CHAINMAIL_UPGRADE_SMITHING_TEMPLATE = register(EquipMiscItemIds.CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, EquipMiscSmithingTemplates::createChainmailUpgrade);
 
-    public static final Item RAVAGER_HELMET = register(EquipMiscItemIds.RAVAGER_HELMET, new Item.Properties()
-            .humanoidArmor(ArmorMaterials.DIAMOND, ArmorType.HELMET)
-            .component(EquipMiscComponents.BREAK_IN_AREA, new BreakInArea(0.2, EquipMiscBlockTags.RAVAGER_HELMET_CAN_DESTROY, EquipmentSlotGroup.HEAD)));
+//    public static final Item RAVAGER_HELMET = register(EquipMiscItemIds.RAVAGER_HELMET, new Item.Properties()
+//            .humanoidArmor(ArmorMaterials.DIAMOND, ArmorType.HELMET)
+//            .component(EquipMiscComponents.BREAK_IN_AREA, new BreakInArea(0.2, EquipMiscBlockTags.RAVAGER_HELMET_CAN_DESTROY, EquipmentSlotGroup.HEAD)));
 
     public static final Identifier EQUIPMISC_TAB_ID = EquipMisc.id(EquipMisc.MOD_ID);
     public static final Translation.Unit EQUIPMISC_TAB_TITLE = Translation.unit(makeDescriptionId("itemGroup", EQUIPMISC_TAB_ID));
@@ -159,10 +158,8 @@ public class EquipMiscItems {
                         ).forEach(output::accept);
                         if (EquipMisc.FARMERS_DELIGHT_INSTALLED)
                             output.accept(BRONZE_KNIFE);
-                        Stream.of(
-                                CHAINMAIL_UPGRADE_SMITHING_TEMPLATE,
-                                RAVAGER_HELMET
-                        ).forEach(output::accept);
+                        output.accept(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE);
+//                        output.accept(RAVAGER_HELMET);
                     })
                     .build()
     );

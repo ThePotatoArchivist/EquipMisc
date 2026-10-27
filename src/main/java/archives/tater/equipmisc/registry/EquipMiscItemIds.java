@@ -33,5 +33,5 @@ public interface EquipMiscItemIds {
     ResourceKey<Item> BRONZE_KNIFE = create("bronze_knife");
 
     ResourceKey<Item> CHAINMAIL_UPGRADE_SMITHING_TEMPLATE = create("chainmail_upgrade_smithing_template");
-    ResourceKey<Item> RAVAGER_HELMET = create("ravager_helmet");
+//    ResourceKey<Item> RAVAGER_HELMET = create("ravager_helmet");
 }
