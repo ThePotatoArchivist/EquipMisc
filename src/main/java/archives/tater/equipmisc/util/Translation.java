@@ -1,11 +1,12 @@
 package archives.tater.equipmisc.util;
 
-import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Consumer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+
+import org.jspecify.annotations.Nullable;
+
+import java.util.function.Consumer;
 
 public sealed class Translation {
     public final String key;
@@ -46,11 +47,11 @@ public sealed class Translation {
 
     private static final Consumer<MutableComponent> NO_OP = ignored -> {};
 
-    public static Unit unit(String key, String fallback, Consumer<MutableComponent> init) {
+    public static Unit unit(String key, @Nullable String fallback, Consumer<MutableComponent> init) {
         return new Unit(key, fallback, init);
     }
 
-    public static Unit unit(String key, String fallback, ChatFormatting... formatting) {
+    public static Unit unit(String key, @Nullable String fallback, ChatFormatting... formatting) {
         return new Unit(key, fallback, text -> text.withStyle(formatting));
     }
 
@@ -62,7 +63,7 @@ public sealed class Translation {
         return unit(key, null, text -> text.withStyle(formatting));
     }
 
-    public static Unit unit(String key, String fallback) {
+    public static Unit unit(String key, @Nullable String fallback) {
         return unit(key, fallback, NO_OP);
     }
 
@@ -70,11 +71,11 @@ public sealed class Translation {
         return unit(key, NO_OP);
     }
 
-    public static Arg arg(String key, String fallback, Consumer<MutableComponent> init) {
+    public static Arg arg(String key, @Nullable String fallback, Consumer<MutableComponent> init) {
         return new Arg(key, fallback, init);
     }
 
-    public static Arg arg(String key, String fallback, ChatFormatting... formatting) {
+    public static Arg arg(String key, @Nullable String fallback, ChatFormatting... formatting) {
         return new Arg(key, fallback, text -> text.withStyle(formatting));
     }
 
