@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "equipmisc:bronze_shield_smithing"
+        "recipes": "equipmisc:bronze_shield_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

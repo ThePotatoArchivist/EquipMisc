@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "equipmisc:chainmail_chestplate_upgrade_smithing"
+        "recipes": "equipmisc:chainmail_chestplate_upgrade_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

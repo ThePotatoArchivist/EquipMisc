@@ -18,7 +18,7 @@ public class LangGenerator extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(Provider registryLookup, TranslationBuilder translationBuilder) {
-        translationBuilder.add(EquipMiscAttributes.MAX_AIR, "Max Air");
+        translationBuilder.addAttribute(EquipMiscAttributes.MAX_AIR, "Max Air");
 
         translationBuilder.add(EquipMiscItemTags.BRONZE_TOOL_MATERIALS, "Bronze Tool Materials");
         translationBuilder.add(EquipMiscItemTags.REPAIRS_BRONZE_ARMOR, "Repairs Bronze Armor");

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "equipmisc:bronze_leggings_smithing"
+        "recipes": "equipmisc:bronze_leggings_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

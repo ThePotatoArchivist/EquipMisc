@@ -12,6 +12,9 @@ import cc.cassian.rrv.common.recipe.inventory.SlotContent;
 
 import java.util.Objects;
 import java.util.function.BiPredicate;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toUnmodifiableSet;
 
 public class SmithingPatchClientRecipe extends SmithingClientRecipe {
     private final SlotContent template;
@@ -28,8 +31,13 @@ public class SmithingPatchClientRecipe extends SmithingClientRecipe {
         this.additionIngredient = additionIngredient;
         this.result = result;
         this.patch = patch;
-        this.patchCheck = (stack1, stack2) -> patch.entrySet().stream().allMatch(entry ->
-                Objects.equals(stack1.get(entry.getKey()), stack2.get(entry.getKey()))
+        var split = patch.split();
+        var types = Stream.concat(
+                split.added().keySet().stream(),
+                split.removed().stream()
+        ).collect(toUnmodifiableSet());
+        this.patchCheck = (stack1, stack2) -> types.stream().allMatch(type ->
+                Objects.equals(stack1.get(type), stack2.get(type))
         );
     }
 

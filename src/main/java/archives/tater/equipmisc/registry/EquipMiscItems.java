@@ -90,10 +90,10 @@ public class EquipMiscItems {
 
     public static final Item BRONZE_SWORD = register(EquipMiscItemIds.BRONZE_SWORD, new Item.Properties().sword(BRONZE_TOOL, 3f, -2.4f));
     public static final Item BRONZE_SPEAR = register(EquipMiscItemIds.BRONZE_SPEAR, new Item.Properties().spear(BRONZE_TOOL, 0.95F, 0.95F, 0.6F, 2.5F, 8.0F, 6.75F, 5.1F, 11.25F, 4.6F));
-    public static final Item BRONZE_SHOVEL = register(EquipMiscItemIds.BRONZE_SHOVEL, settings -> new ShovelItem(BRONZE_TOOL, 1.5f, -3.0f, settings));
+    public static final Item BRONZE_SHOVEL = register(EquipMiscItemIds.BRONZE_SHOVEL, new Item.Properties().shovel(BRONZE_TOOL, 1.5f, -3.0f));
     public static final Item BRONZE_PICKAXE = register(EquipMiscItemIds.BRONZE_PICKAXE, new Item.Properties().pickaxe(BRONZE_TOOL, 1f, -2.8f));
-    public static final Item BRONZE_AXE = register(EquipMiscItemIds.BRONZE_AXE, settings -> new AxeItem(BRONZE_TOOL, 6f, -3.1f, settings));
-    public static final Item BRONZE_HOE = register(EquipMiscItemIds.BRONZE_HOE, settings -> new HoeItem(BRONZE_TOOL, -2f, -1f, settings));
+    public static final Item BRONZE_AXE = register(EquipMiscItemIds.BRONZE_AXE, new Item.Properties().axe(BRONZE_TOOL, 6f, -3.1f));
+    public static final Item BRONZE_HOE = register(EquipMiscItemIds.BRONZE_HOE, new Item.Properties().hoe(BRONZE_TOOL, -2f, -1f));
 
     public static final Item BRONZE_SHIELD = register(EquipMiscItemIds.BRONZE_SHIELD, ShieldItem::new, new Properties()
             .durability(BRONZE_TOOL_DURABILITY)
@@ -120,7 +120,9 @@ public class EquipMiscItems {
     );
     public static final Item BRONZE_KNIFE = EquipMisc.FARMERS_DELIGHT_INSTALLED
             ? register(EquipMiscItemIds.BRONZE_KNIFE, KnifeItem::new, ModItems.knifeItem(BRONZE_TOOL))
-            : register(EquipMiscItemIds.BRONZE_KNIFE, new Item.Properties());
+            : register(EquipMiscItemIds.BRONZE_KNIFE, new Item.Properties()
+                    .stacksTo(1)
+                    .durability(BRONZE_TOOL_DURABILITY));
 
     public static final Item CHAINMAIL_UPGRADE_SMITHING_TEMPLATE = register(EquipMiscItemIds.CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, EquipMiscSmithingTemplates::createChainmailUpgrade);
 

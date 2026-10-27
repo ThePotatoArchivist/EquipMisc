@@ -6,7 +6,6 @@ import archives.tater.equipmisc.client.render.item.model.TexturedShieldModelRend
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 
-import net.minecraft.client.data.*;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.model.ItemModelUtils;
@@ -15,6 +14,8 @@ import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.renderer.special.ShieldSpecialRenderer;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Items;
+
+import java.util.Map;
 
 import static archives.tater.equipmisc.registry.EquipMiscItems.*;
 import static net.minecraft.client.data.models.ItemModelGenerators.*;
@@ -38,10 +39,10 @@ public class ModelGenerator extends FabricModelProvider {
         itemModelGenerator.generateFlatItem(RAW_BRONZE, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(BRONZE_INGOT, ModelTemplates.FLAT_ITEM);
 
-        itemModelGenerator.generateTrimmableItem(BRONZE_HELMET, BRONZE_ARMOR.assetId(), TRIM_PREFIX_HELMET, false);
-        itemModelGenerator.generateTrimmableItem(BRONZE_CHESTPLATE, BRONZE_ARMOR.assetId(), TRIM_PREFIX_CHESTPLATE, false);
-        itemModelGenerator.generateTrimmableItem(BRONZE_LEGGINGS, BRONZE_ARMOR.assetId(), TRIM_PREFIX_LEGGINGS, false);
-        itemModelGenerator.generateTrimmableItem(BRONZE_BOOTS, BRONZE_ARMOR.assetId(), TRIM_PREFIX_BOOTS, false);
+        itemModelGenerator.generateTrimmableItem(BRONZE_HELMET, TRIM_PREFIX_HELMET, false, Map.of());
+        itemModelGenerator.generateTrimmableItem(BRONZE_CHESTPLATE, TRIM_PREFIX_CHESTPLATE, false, Map.of());
+        itemModelGenerator.generateTrimmableItem(BRONZE_LEGGINGS, TRIM_PREFIX_LEGGINGS, false, Map.of());
+        itemModelGenerator.generateTrimmableItem(BRONZE_BOOTS, TRIM_PREFIX_BOOTS, false, Map.of());
 
         itemModelGenerator.generateFlatItem(BRONZE_SWORD, ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModelGenerator.generateFlatItem(BRONZE_SHOVEL, ModelTemplates.FLAT_HANDHELD_ITEM);

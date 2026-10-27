@@ -21,7 +21,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "equipmisc:bronze_knife_smithing"
+        "recipes": "equipmisc:bronze_knife_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

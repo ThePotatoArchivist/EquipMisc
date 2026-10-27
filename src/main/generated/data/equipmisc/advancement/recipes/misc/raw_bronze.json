@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "equipmisc:raw_bronze"
+        "recipes": "equipmisc:raw_bronze"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

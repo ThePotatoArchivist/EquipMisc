@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "equipmisc:flint_and_bronze"
+        "recipes": "equipmisc:flint_and_bronze"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

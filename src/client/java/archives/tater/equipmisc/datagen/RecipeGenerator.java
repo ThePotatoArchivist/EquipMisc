@@ -11,13 +11,12 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.fabricmc.fabric.impl.resource.conditions.conditions.AllModsLoadedResourceCondition;
 
-import net.minecraft.advancements.AdvancementRequirements;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.triggers.RecipeUnlockedTrigger;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.*;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -26,6 +25,7 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.ShieldDecorationRecipe;
 import net.minecraft.world.level.ItemLike;
 
@@ -45,8 +45,8 @@ public class RecipeGenerator extends FabricRecipeProvider {
     }
 
     @Override
-    protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-        return new RecipeProvider(registries, output) {
+    protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, BootstrapContext<Recipe<?>> recipes, BootstrapContext<Advancement> advancements) {
+        return new RecipeProvider(recipes, advancements) {
 
             private void offerBronzeUpgrade(ItemLike input, Item result, RecipeOutput output) {
                 SmithingTransformRecipeBuilder.smithing(
@@ -68,19 +68,15 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 var id = EquipMisc.id("chainmail_" + name + "_upgrade_smithing");
                 var recipeKey = ResourceKey.create(Registries.RECIPE, id);
 
-                var advancement = output.advancement()
-                        .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(recipeKey))
-                        .addCriterion(getHasName(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE), has(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE))
-                        .rewards(AdvancementRewards.Builder.recipe(recipeKey))
-                        .requirements(AdvancementRequirements.Strategy.OR)
-                        .build(id.withPrefix("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/"));
+                var advancement = new RecipeUnlockAdvancementBuilder();
+                advancement.unlockedBy(getHasName(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE), has(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE));
 
                 output.accept(recipeKey, new SmithingPatchRecipe(
                         Ingredient.of(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE),
                         tag(input),
                         Ingredient.of(addition),
                         DataComponentPatch.builder().set(EquipMiscComponents.CHAINMAIL_UPGRADE, ChainmailUpgrade.INSTANCE).build()
-                ), advancement);
+                ), advancement.build(output, recipeKey, RecipeCategory.COMBAT));
             }
 
             @Override
@@ -134,10 +130,5 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .save(output, "bronze_shield_decoration");
             }
         };
-    }
-
-    @Override
-    public String getName() {
-        return "Recipes";
     }
 }

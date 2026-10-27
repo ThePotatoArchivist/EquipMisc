@@ -1,12 +1,14 @@
 package archives.tater.equipmisc;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
+
+import static net.minecraft.world.level.storage.loot.entries.NestedLootTable.lootTableReference;
 
 public class EquipMiscLoot {
     private static ResourceKey<LootTable> of(String path) {
@@ -24,11 +26,11 @@ public class EquipMiscLoot {
     public static void init() {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             if (key == BuiltInLootTables.UNDERWATER_RUIN_SMALL)
-                tableBuilder.pool(LootPool.lootPool().add(NestedLootTable.lootTableReference(OCEAN_RUINS_SMALL_INJECT)).build());
+                tableBuilder.pool(LootPool.lootPool().add(lootTableReference(registries.getOrThrow(OCEAN_RUINS_SMALL_INJECT))).build());
             if (key == BuiltInLootTables.UNDERWATER_RUIN_BIG)
-                tableBuilder.pool(LootPool.lootPool().add(NestedLootTable.lootTableReference(OCEAN_RUINS_BIG_INJECT)).build());
+                tableBuilder.pool(LootPool.lootPool().add(lootTableReference(registries.getOrThrow(OCEAN_RUINS_BIG_INJECT))).build());
             if (key == BuiltInLootTables.NETHER_BRIDGE)
-                tableBuilder.pool(LootPool.lootPool().add(NestedLootTable.lootTableReference(NETHER_FORTRESS_INJECT)).build());
+                tableBuilder.pool(LootPool.lootPool().add(lootTableReference(registries.getOrThrow(NETHER_FORTRESS_INJECT))).build());
         });
     }
 }
