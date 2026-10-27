@@ -68,7 +68,7 @@ public abstract class InGameHudMixin {
 
     @ModifyArg(
             method = "extractAirBubbles",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V"),
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V"),
             index = 3
     )
     private int shiftRows(int x, @Share("posIndex") LocalIntRef posIndex) {

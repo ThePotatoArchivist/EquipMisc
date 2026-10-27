@@ -14,6 +14,7 @@ public class EquipMiscDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(AdvancementGenerator::new);
         pack.addProvider(RecipeGenerator::new);
         pack.addProvider(LootTableGenerator::new);
+        pack.addProvider(PredicateGenerator::new);
 
         pack.addProvider(ModelGenerator::new);
         pack.addProvider(LangGenerator::new);

@@ -6,7 +6,6 @@
     "chainmail.ItemStackMixin",
     "ravager.LivingEntityMixin",
     "shears.HardcodedShearsCheckMixin",
-    "shears.ItemPredicateMixin",
     "turtle.EntityMixin",
     "turtle.LivingEntityMixin",
     "turtle.PlayerEntityMixin"
