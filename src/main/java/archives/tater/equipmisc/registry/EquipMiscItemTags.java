@@ -26,4 +26,5 @@ public class EquipMiscItemTags {
 
     public static final TagKey<Item> BRONZE_INGOTS = createCommon("ingots/bronze");
     public static final TagKey<Item> BRONZE_RAW_MATERIALS = createCommon("raw_materials/bronze");
+    public static final TagKey<Item> BRONZE_BLOCKS = createCommon("storage_blocks/bronze");
 }

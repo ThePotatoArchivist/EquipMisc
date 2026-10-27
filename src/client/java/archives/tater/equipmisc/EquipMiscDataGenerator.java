@@ -9,8 +9,9 @@ public class EquipMiscDataGenerator implements DataGeneratorEntrypoint {
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         var pack = fabricDataGenerator.createPack();
-        pack.addProvider(ItemTagGenerator::new);
-        pack.addProvider(BlockTagGenerator::new);
+        var blockTags = pack.addProvider(BlockTagGenerator::new);
+        pack.addProvider((output, registriesFuture) -> new ItemTagGenerator(output, registriesFuture, blockTags));
+        pack.addProvider(BlockLootTableGenerator::new);
         pack.addProvider(AdvancementGenerator::new);
         pack.addProvider(RecipeGenerator::new);
         pack.addProvider(LootTableGenerator::new);

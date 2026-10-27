@@ -1,9 +1,11 @@
 package archives.tater.equipmisc.datagen;
 
+import archives.tater.equipmisc.registry.EquipMiscBlockItemTags;
 import archives.tater.equipmisc.registry.EquipMiscItemTags;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockItemTags;
 import net.fabricmc.fabric.api.tag.convention.v2.TagUtil;
 
 import net.minecraft.core.HolderLookup.Provider;
@@ -13,6 +15,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
+import org.jspecify.annotations.Nullable;
 import vectorwing.farmersdelight.common.tag.ModTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -25,12 +28,15 @@ import static net.minecraft.tags.ItemTags.*;
 
 public class ItemTagGenerator extends FabricTagsProvider.ItemTagsProvider {
 
-    public ItemTagGenerator(FabricPackOutput output, CompletableFuture<Provider> registriesFuture) {
-        super(output, registriesFuture);
+    public ItemTagGenerator(FabricPackOutput output, CompletableFuture<Provider> registryLookupFuture, @Nullable BlockTagsProvider blockTagsProvider) {
+        super(output, registryLookupFuture, blockTagsProvider);
     }
 
     @Override
     protected void addTags(Provider wrapperLookup) {
+        copy(EquipMiscBlockItemTags.STORAGE_BLOCKS_BRONZE);
+        copy(ConventionalBlockItemTags.STORAGE_BLOCKS);
+
         builder(EquipMiscItemTags.REPAIRS_BRONZE_ARMOR).addTag(BRONZE_INGOTS);
         builder(EquipMiscItemTags.BRONZE_TOOL_MATERIALS).addTag(BRONZE_INGOTS);
         builder(EquipMiscItemTags.BRONZE_EQUIPMENT).add(

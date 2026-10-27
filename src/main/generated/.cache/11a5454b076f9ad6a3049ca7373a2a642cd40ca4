@@ -4,6 +4,8 @@ c6df181eeab0231ab5626ece4d0cc2519463a995 data/c/tags/item/ingots.json
 05588bd80b47996a219f3828b29c80dccc5d2361 data/c/tags/item/ingots/bronze.json
 42a48c982252fa80e2f90a30a3a37a100ae5e350 data/c/tags/item/raw_materials.json
 60cb77862f9d28cee2fe29a4143af70df78cf86a data/c/tags/item/raw_materials/bronze.json
+882f5c7713d372a5dba89feb03ab5f44bad86a5b data/c/tags/item/storage_blocks.json
+d0ddae9fcdd3bc5ae3ff91844c1a34566b8428ba data/c/tags/item/storage_blocks/bronze.json
 fe367b407427137bdb321635672e039e3e2ea137 data/c/tags/item/tools/igniter.json
 1662b4afe6c001fb5cd9ff956c84724c802c4a17 data/c/tags/item/tools/knife.json
 ce0f2ffe001bcb8dfc131006c48593d19fe54c2a data/c/tags/item/tools/melee_weapon.json

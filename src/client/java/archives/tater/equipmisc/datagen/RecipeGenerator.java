@@ -91,6 +91,8 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 oreSmelting(List.of(RAW_BRONZE), RecipeCategory.MISC, CookingBookCategory.MISC, BRONZE_INGOT, 1.5f, 200, "");
                 oreBlasting(List.of(RAW_BRONZE), RecipeCategory.MISC, CookingBookCategory.MISC, BRONZE_INGOT, 1.5f, 100, "");
 
+                nineBlockStorageRecipes(RecipeCategory.MISC, BRONZE_INGOT, RecipeCategory.BUILDING_BLOCKS, BRONZE_BLOCK);
+
                 offerBronzeUpgrade(IRON_HELMET, BRONZE_HELMET);
                 offerBronzeUpgrade(IRON_CHESTPLATE, BRONZE_CHESTPLATE);
                 offerBronzeUpgrade(IRON_LEGGINGS, BRONZE_LEGGINGS);

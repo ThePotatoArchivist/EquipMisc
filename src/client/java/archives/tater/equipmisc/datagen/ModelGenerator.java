@@ -2,6 +2,7 @@ package archives.tater.equipmisc.datagen;
 
 import archives.tater.equipmisc.EquipMisc;
 import archives.tater.equipmisc.client.render.item.model.TexturedShieldModelRenderer.Unbaked;
+import archives.tater.equipmisc.registry.EquipMiscBlocks;
 
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
@@ -30,7 +31,7 @@ public class ModelGenerator extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
-
+        blockStateModelGenerator.createTrivialCube(EquipMiscBlocks.BRONZE_BLOCK);
     }
 
     @Override

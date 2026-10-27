@@ -13,6 +13,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.references.BlockItemId;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
@@ -30,6 +31,7 @@ import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorMaterials;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.equipment.EquipmentAssets;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 
@@ -54,6 +56,10 @@ public class EquipMiscItems {
 
     private static Item register(ResourceKey<Item> key, Function<Item.Properties, Item> item) {
         return register(key, item, new Item.Properties());
+    }
+
+    private static Item register(BlockItemId id, Block block) {
+        return register(id.item(), properties -> new BlockItem(block, properties), new Item.Properties().useBlockDescriptionPrefix());
     }
 
     public static final ArmorMaterial BRONZE_ARMOR = new ArmorMaterial(
@@ -81,6 +87,7 @@ public class EquipMiscItems {
     public static final Item BRONZE_UPGRADE_SMITHING_TEMPLATE = register(EquipMiscItemIds.BRONZE_UPGRADE_SMITHING_TEMPLATE, EquipMiscSmithingTemplates::createBronzeUpgrade);
     public static final Item RAW_BRONZE = register(EquipMiscItemIds.RAW_BRONZE, new Item.Properties());
     public static final Item BRONZE_INGOT = register(EquipMiscItemIds.BRONZE_INGOT, new Item.Properties());
+    public static final Item BRONZE_BLOCK = register(EquipMiscBlockItemIds.BRONZE_BLOCK, EquipMiscBlocks.BRONZE_BLOCK);
 
     public static final Item BRONZE_HELMET = register(EquipMiscItemIds.BRONZE_HELMET, new Item.Properties().humanoidArmor(BRONZE_ARMOR, ArmorType.HELMET));
     public static final Item BRONZE_CHESTPLATE = register(EquipMiscItemIds.BRONZE_CHESTPLATE, new Item.Properties().humanoidArmor(BRONZE_ARMOR, ArmorType.CHESTPLATE));
@@ -181,6 +188,9 @@ public class EquipMiscItems {
             output.insertAfter(Items.IRON_INGOT, BRONZE_INGOT);
             output.insertAfter(Items.RAW_IRON, RAW_BRONZE);
             output.insertBefore(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, BRONZE_UPGRADE_SMITHING_TEMPLATE, CHAINMAIL_UPGRADE_SMITHING_TEMPLATE);
+        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register(output -> {
+            output.insertAfter(Items.IRON_BLOCK, BRONZE_BLOCK);
         });
         if (EquipMisc.FARMERS_DELIGHT_INSTALLED)
             CreativeModeTabEvents.modifyOutputEvent(ResourceKey.create(Registries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(EquipMisc.FARMERS_DELIGHT, EquipMisc.FARMERS_DELIGHT))).register(output -> {

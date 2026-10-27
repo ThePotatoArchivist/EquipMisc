@@ -1,9 +1,12 @@
 package archives.tater.equipmisc.datagen;
 
+import archives.tater.equipmisc.registry.EquipMiscBlockItemIds;
+import archives.tater.equipmisc.registry.EquipMiscBlockItemTags;
 import archives.tater.equipmisc.registry.EquipMiscBlockTags;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockItemTags;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.references.BlockIds;
@@ -26,5 +29,11 @@ public class BlockTagGenerator extends FabricTagsProvider.BlockTagsProvider {
                 )
                 .add(BlockIds.BAMBOO_SAPLING)
                 .forceAddTag(BlockTags.LEAVES);
+
+        builder(EquipMiscBlockItemTags.STORAGE_BLOCKS_BRONZE)
+                .add(EquipMiscBlockItemIds.BRONZE_BLOCK);
+
+        builder(ConventionalBlockItemTags.STORAGE_BLOCKS)
+                .addTag(EquipMiscBlockItemTags.STORAGE_BLOCKS_BRONZE.block());
     }
 }

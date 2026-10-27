@@ -1,9 +1,6 @@
 package archives.tater.equipmisc;
 
-import archives.tater.equipmisc.registry.EquipMiscAttributes;
-import archives.tater.equipmisc.registry.EquipMiscComponents;
-import archives.tater.equipmisc.registry.EquipMiscItems;
-import archives.tater.equipmisc.registry.EquipMiscRecipes;
+import archives.tater.equipmisc.registry.*;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
@@ -41,6 +38,7 @@ public class EquipMisc implements ModInitializer {
 		// Proceed with mild caution.
         EquipMiscAttributes.init();
         EquipMiscComponents.init();
+        EquipMiscBlocks.init();
         EquipMiscItems.init();
         EquipMiscRecipes.init();
         EquipMiscLoot.init();

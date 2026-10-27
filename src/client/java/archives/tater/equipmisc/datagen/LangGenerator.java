@@ -3,6 +3,7 @@ package archives.tater.equipmisc.datagen;
 import archives.tater.equipmisc.component.ChainmailUpgrade;
 import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
 import archives.tater.equipmisc.registry.EquipMiscAttributes;
+import archives.tater.equipmisc.registry.EquipMiscBlocks;
 import archives.tater.equipmisc.registry.EquipMiscItemTags;
 import archives.tater.equipmisc.registry.EquipMiscItems;
 
@@ -39,6 +40,7 @@ public class LangGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(EquipMiscItems.RAW_BRONZE, "Raw Bronze");
         translationBuilder.add(EquipMiscItems.BRONZE_INGOT, "Bronze Ingot");
+        translationBuilder.add(EquipMiscBlocks.BRONZE_BLOCK, "Block of Bronze");
         translationBuilder.add(EquipMiscItems.BRONZE_HELMET, "Bronze Helmet");
         translationBuilder.add(EquipMiscItems.BRONZE_CHESTPLATE, "Bronze Chestplate");
         translationBuilder.add(EquipMiscItems.BRONZE_LEGGINGS, "Bronze Leggings");
