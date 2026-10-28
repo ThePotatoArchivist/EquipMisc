@@ -21,9 +21,6 @@
 		"client": [
 			"archives.tater.equipmisc.EquipMiscClient"
 		],
-		"fabric-datagen": [
-			"archives.tater.equipmisc.EquipMiscDataGenerator"
-		],
 		"rrv_client": [
 			"archives.tater.equipmisc.client.rrv.EquipMiscClientIntegration"
 		]

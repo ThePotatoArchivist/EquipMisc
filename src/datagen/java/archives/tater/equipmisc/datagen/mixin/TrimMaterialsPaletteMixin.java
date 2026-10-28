@@ -1,4 +1,4 @@
-package archives.tater.equipmisc.mixin;
+package archives.tater.equipmisc.datagen.mixin;
 
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;

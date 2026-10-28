@@ -1,4 +1,4 @@
-package archives.tater.equipmisc.mixin.client;
+package archives.tater.equipmisc.datagen.mixin;
 
 import archives.tater.equipmisc.registry.EquipMiscTrimMaterials;
 

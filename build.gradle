@@ -56,7 +56,8 @@ loom {
 fabricApi {
 	configureDataGeneration {
 		client = true
-        modId = project.archives_base_name
+        modId = "${project.archives_base_name}-datagen"
+		createSourceSet = true
 	}
 }
 
