@@ -1,4 +1,4 @@
 @NullMarked
-package archives.tater.equipmisc;
+package archives.tater.equipmisc.client;
 
 import org.jspecify.annotations.NullMarked;

@@ -1,6 +1,6 @@
-package archives.tater.equipmisc.mixin.client;
+package archives.tater.equipmisc.client.mixin;
 
-import archives.tater.equipmisc.EquipMiscClient;
+import archives.tater.equipmisc.client.EquipMiscClient;
 
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;

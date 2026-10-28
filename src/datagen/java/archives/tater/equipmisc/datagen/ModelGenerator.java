@@ -1,7 +1,7 @@
 package archives.tater.equipmisc.datagen;
 
 import archives.tater.equipmisc.EquipMisc;
-import archives.tater.equipmisc.EquipMiscClient;
+import archives.tater.equipmisc.client.EquipMiscClient;
 import archives.tater.equipmisc.client.render.item.model.TexturedShieldModelRenderer.Unbaked;
 import archives.tater.equipmisc.registry.EquipMiscBlocks;
 

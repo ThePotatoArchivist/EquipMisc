@@ -1,5 +1,6 @@
-package archives.tater.equipmisc;
+package archives.tater.equipmisc.client;
 
+import archives.tater.equipmisc.EquipMisc;
 import archives.tater.equipmisc.client.render.item.model.TexturedShieldModelRenderer;
 import archives.tater.equipmisc.registry.EquipMiscComponents;
 import archives.tater.equipmisc.registry.EquipMiscTrimMaterials;

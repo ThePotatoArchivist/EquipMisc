@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "archives.tater.equipmisc.mixin.client",
+  "package": "archives.tater.equipmisc.client.mixin",
   "compatibilityLevel": "JAVA_25",
   "client": [
     "EquipmentRendererMixin",

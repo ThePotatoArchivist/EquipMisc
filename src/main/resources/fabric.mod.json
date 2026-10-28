@@ -19,7 +19,7 @@
           "archives.tater.equipmisc.EquipMisc"
 		],
 		"client": [
-			"archives.tater.equipmisc.EquipMiscClient"
+			"archives.tater.equipmisc.client.EquipMiscClient"
 		],
 		"rrv_client": [
 			"archives.tater.equipmisc.client.rrv.EquipMiscClientIntegration"
