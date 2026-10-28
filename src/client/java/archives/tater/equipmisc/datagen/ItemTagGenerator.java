@@ -78,6 +78,7 @@ public class ItemTagGenerator extends FabricTagsProvider.ItemTagsProvider {
         builder(DURABILITY_ENCHANTABLE).add(FLINT_AND_BRONZE, BRONZE_SHEARS, BRONZE_SHIELD);
         builder(CLUSTER_MAX_HARVESTABLES).add(BRONZE_PICKAXE);
         builder(BEACON_PAYMENT_ITEMS).add(BRONZE_INGOT);
+        builder(TRIM_MATERIALS).add(BRONZE_INGOT);
         builder(SULFUR_CUBE_ARCHETYPE_SLOW_FLAT).add(BRONZE_BLOCK);
 
         builder(MELEE_WEAPON_TOOLS).add(BRONZE_SWORD, BRONZE_AXE);

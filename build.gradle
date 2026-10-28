@@ -50,6 +50,7 @@ loom {
 		}
 	}
 
+	accessWidenerPath = file("src/main/resources/equipmisc-dev.classtweaker")
 }
 
 fabricApi {

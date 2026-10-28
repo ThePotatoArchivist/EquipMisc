@@ -58,7 +58,7 @@ public class SmithingPatchRecipe extends SimpleSmithingRecipe {
     }
 
     public static ItemStack withChanges(ItemStack base, DataComponentPatch changes) {
-        var stack = base.copy();
+        var stack = base.copyWithCount(1);
         stack.applyComponentsAndValidate(changes);
         return stack;
     }

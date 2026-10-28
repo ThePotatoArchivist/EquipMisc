@@ -3,6 +3,7 @@
   "package": "archives.tater.equipmisc.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
+    "TrimMaterialsPaletteMixin",
     "chainmail.ItemStackMixin",
     "ravager.LivingEntityMixin",
     "shears.HardcodedShearsCheckMixin",

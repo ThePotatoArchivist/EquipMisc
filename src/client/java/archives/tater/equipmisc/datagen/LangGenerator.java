@@ -2,15 +2,14 @@ package archives.tater.equipmisc.datagen;
 
 import archives.tater.equipmisc.component.ChainmailUpgrade;
 import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
-import archives.tater.equipmisc.registry.EquipMiscAttributes;
-import archives.tater.equipmisc.registry.EquipMiscBlocks;
-import archives.tater.equipmisc.registry.EquipMiscItemTags;
-import archives.tater.equipmisc.registry.EquipMiscItems;
+import archives.tater.equipmisc.registry.*;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.core.HolderLookup.Provider;
 import java.util.concurrent.CompletableFuture;
+
+import static net.minecraft.util.Util.makeDescriptionId;
 
 public class LangGenerator extends FabricLanguageProvider {
     public LangGenerator(FabricPackOutput dataOutput, CompletableFuture<Provider> registryLookup) {
@@ -62,5 +61,7 @@ public class LangGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(AdvancementGenerator.BRONZE_TOOLS_TITLE, "Incremental Upgrades");
         translationBuilder.add(AdvancementGenerator.BRONZE_TOOLS_DESCRIPTION, "Improve the durability of your iron tools by upgrading them with bronze");
+
+        translationBuilder.add(makeDescriptionId("trim_material", EquipMiscTrimMaterials.BRONZE.identifier()), "Bronze Material");
     }
 }

@@ -88,7 +88,9 @@ public class EquipMiscItems {
             .rarity(Rarity.UNCOMMON)
     );
     public static final Item RAW_BRONZE = register(EquipMiscItemIds.RAW_BRONZE, new Item.Properties());
-    public static final Item BRONZE_INGOT = register(EquipMiscItemIds.BRONZE_INGOT, new Item.Properties());
+    public static final Item BRONZE_INGOT = register(EquipMiscItemIds.BRONZE_INGOT, new Item.Properties()
+            .delayedHolderComponent(DataComponents.PROVIDES_TRIM_MATERIAL, EquipMiscTrimMaterials.BRONZE)
+    );
     public static final Item BRONZE_BLOCK = register(EquipMiscBlockItemIds.BRONZE_BLOCK, EquipMiscBlocks.BRONZE_BLOCK);
 
     public static final Item BRONZE_HELMET = register(EquipMiscItemIds.BRONZE_HELMET, new Item.Properties().humanoidArmor(BRONZE_ARMOR, ArmorType.HELMET));

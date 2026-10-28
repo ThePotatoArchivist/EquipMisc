@@ -78,6 +78,13 @@
           "model": "equipmisc:item/bronze_boots_resin_trim"
         },
         "when": "minecraft:resin"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "equipmisc:item/bronze_boots_equipmisc_bronze_trim"
+        },
+        "when": "equipmisc:bronze"
       }
     ],
     "fallback": {
