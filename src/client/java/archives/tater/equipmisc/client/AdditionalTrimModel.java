@@ -11,52 +11,61 @@ import net.minecraft.references.ItemIds;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.equipment.trim.TrimMaterial;
 
 import java.util.Map;
 
+import static java.util.Map.entry;
 import static net.minecraft.client.data.models.model.ItemModelUtils.*;
+import static net.minecraft.util.Util.toMap;
 
-public record AdditionalTrimModel(Identifier modelId, Item item, Identifier prefix, boolean dyed) {
+public record AdditionalTrimModel(Map<ResourceKey<TrimMaterial>, Identifier> modelIds, Item item, Identifier prefix, boolean dyed) {
 
-    public static final Map<Identifier, AdditionalTrimModel> BRONZE_TRIM_MODELS = Map.ofEntries(
-            createBronzeTrimModel(ItemIds.LEATHER_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET, true),
-            createBronzeTrimModel(ItemIds.CHAINMAIL_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
-            createBronzeTrimModel(ItemIds.COPPER_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
-            createBronzeTrimModel(ItemIds.IRON_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
-            createBronzeTrimModel(ItemIds.GOLDEN_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
-            createBronzeTrimModel(ItemIds.DIAMOND_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
-            createBronzeTrimModel(ItemIds.NETHERITE_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
-            createBronzeTrimModel(ItemIds.TURTLE_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
-            createBronzeTrimModel(ItemIds.LEATHER_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, true),
-            createBronzeTrimModel(ItemIds.CHAINMAIL_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE),
-            createBronzeTrimModel(ItemIds.COPPER_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE),
-            createBronzeTrimModel(ItemIds.IRON_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE),
-            createBronzeTrimModel(ItemIds.GOLDEN_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE),
-            createBronzeTrimModel(ItemIds.DIAMOND_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE),
-            createBronzeTrimModel(ItemIds.NETHERITE_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE),
-            createBronzeTrimModel(ItemIds.LEATHER_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, true),
-            createBronzeTrimModel(ItemIds.CHAINMAIL_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS),
-            createBronzeTrimModel(ItemIds.COPPER_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS),
-            createBronzeTrimModel(ItemIds.IRON_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS),
-            createBronzeTrimModel(ItemIds.GOLDEN_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS),
-            createBronzeTrimModel(ItemIds.DIAMOND_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS),
-            createBronzeTrimModel(ItemIds.NETHERITE_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS),
-            createBronzeTrimModel(ItemIds.LEATHER_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS, true),
-            createBronzeTrimModel(ItemIds.CHAINMAIL_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS),
-            createBronzeTrimModel(ItemIds.COPPER_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS),
-            createBronzeTrimModel(ItemIds.IRON_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS),
-            createBronzeTrimModel(ItemIds.GOLDEN_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS),
-            createBronzeTrimModel(ItemIds.DIAMOND_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS),
-            createBronzeTrimModel(ItemIds.NETHERITE_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS)
+    private static final Map<ResourceKey<TrimMaterial>, String> MATERIALS = Map.of(
+            EquipMiscTrimMaterials.BRONZE, "bronze"
     );
 
-    private static Map.Entry<Identifier, AdditionalTrimModel> createBronzeTrimModel(ResourceKey<Item> item, Identifier prefix) {
-        return createBronzeTrimModel(item, prefix, false);
+    public static final Map<Identifier, AdditionalTrimModel> MODELS = Map.ofEntries(
+            createTrimModels(ItemIds.LEATHER_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET, true),
+            createTrimModels(ItemIds.CHAINMAIL_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
+            createTrimModels(ItemIds.COPPER_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
+            createTrimModels(ItemIds.IRON_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
+            createTrimModels(ItemIds.GOLDEN_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
+            createTrimModels(ItemIds.DIAMOND_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
+            createTrimModels(ItemIds.NETHERITE_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
+            createTrimModels(ItemIds.TURTLE_HELMET, ItemModelGenerators.TRIM_PREFIX_HELMET),
+            createTrimModels(ItemIds.LEATHER_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, true),
+            createTrimModels(ItemIds.CHAINMAIL_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE),
+            createTrimModels(ItemIds.COPPER_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE),
+            createTrimModels(ItemIds.IRON_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE),
+            createTrimModels(ItemIds.GOLDEN_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE),
+            createTrimModels(ItemIds.DIAMOND_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE),
+            createTrimModels(ItemIds.NETHERITE_CHESTPLATE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE),
+            createTrimModels(ItemIds.LEATHER_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, true),
+            createTrimModels(ItemIds.CHAINMAIL_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS),
+            createTrimModels(ItemIds.COPPER_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS),
+            createTrimModels(ItemIds.IRON_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS),
+            createTrimModels(ItemIds.GOLDEN_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS),
+            createTrimModels(ItemIds.DIAMOND_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS),
+            createTrimModels(ItemIds.NETHERITE_LEGGINGS, ItemModelGenerators.TRIM_PREFIX_LEGGINGS),
+            createTrimModels(ItemIds.LEATHER_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS, true),
+            createTrimModels(ItemIds.CHAINMAIL_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS),
+            createTrimModels(ItemIds.COPPER_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS),
+            createTrimModels(ItemIds.IRON_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS),
+            createTrimModels(ItemIds.GOLDEN_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS),
+            createTrimModels(ItemIds.DIAMOND_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS),
+            createTrimModels(ItemIds.NETHERITE_BOOTS, ItemModelGenerators.TRIM_PREFIX_BOOTS)
+    );
+
+    private static Map.Entry<Identifier, AdditionalTrimModel> createTrimModels(ResourceKey<Item> item, Identifier prefix) {
+        return createTrimModels(item, prefix, false);
     }
 
-    private static Map.Entry<Identifier, AdditionalTrimModel> createBronzeTrimModel(ResourceKey<Item> item, Identifier prefix, boolean dyed) {
-        return Map.entry(item.identifier(), new AdditionalTrimModel(
-                EquipMisc.id(item.identifier().getPath() + "_bronze_trim"),
+    private static Map.Entry<Identifier, AdditionalTrimModel> createTrimModels(ResourceKey<Item> item, Identifier prefix, boolean dyed) {
+        return entry(item.identifier(), new AdditionalTrimModel(
+                MATERIALS.entrySet().stream()
+                        .map(entry -> entry(entry.getKey(), EquipMisc.id(item.identifier().getPath() + "_" + entry.getValue() + "_trim")))
+                        .collect(toMap()),
                 BuiltInRegistries.ITEM.getValueOrThrow(item),
                 prefix,
                 dyed
@@ -64,13 +73,15 @@ public record AdditionalTrimModel(Identifier modelId, Item item, Identifier pref
     }
 
     public static ClientItem modifyModel(Identifier itemId, ClientItem model) {
-        var trimModel = AdditionalTrimModel.BRONZE_TRIM_MODELS.get(itemId);
+        var trimModel = AdditionalTrimModel.MODELS.get(itemId);
         if (trimModel == null) return model;
         return new ClientItem(
                 select(
                         new TrimMaterialProperty(),
                         model.model(),
-                        when(EquipMiscTrimMaterials.BRONZE, plainModel(trimModel.modelId()))
+                        trimModel.modelIds.entrySet().stream()
+                                .map(entry -> when(entry.getKey(), plainModel(entry.getValue())))
+                                .toList()
                 ),
                 model.properties(),
                 model.registrySwapper()

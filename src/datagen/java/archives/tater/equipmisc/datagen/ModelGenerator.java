@@ -4,6 +4,7 @@ import archives.tater.equipmisc.EquipMisc;
 import archives.tater.equipmisc.client.AdditionalTrimModel;
 import archives.tater.equipmisc.client.render.item.model.TexturedShieldModelRenderer.Unbaked;
 import archives.tater.equipmisc.registry.EquipMiscBlocks;
+import archives.tater.equipmisc.registry.EquipMiscTrimMaterials;
 
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
@@ -17,8 +18,10 @@ import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.renderer.special.ShieldSpecialRenderer;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.item.equipment.trim.TrimMaterials;
 
 import java.util.Map;
@@ -52,8 +55,10 @@ public class ModelGenerator extends FabricModelProvider {
         itemModelGenerator.generateTrimmableItem(BRONZE_LEGGINGS, TRIM_PREFIX_LEGGINGS, false, bronzeOverrides);
         itemModelGenerator.generateTrimmableItem(BRONZE_BOOTS, TRIM_PREFIX_BOOTS, false, bronzeOverrides);
 
-        for (var model : AdditionalTrimModel.BRONZE_TRIM_MODELS.values()) {
-            generateTrimModel(itemModelGenerator, model.modelId(), model.item(), model.prefix(), "_equipmisc_bronze", model.dyed());
+        for (var model : AdditionalTrimModel.MODELS.values()) {
+            model.modelIds().forEach((material, modelId) ->
+                    generateTrimModel(itemModelGenerator, modelId, model.item(), model.prefix(), "_" + getPalette(material).suffix(), model.dyed())
+            );
         }
 
         itemModelGenerator.generateFlatItem(BRONZE_SWORD, ModelTemplates.FLAT_HANDHELD_ITEM);
@@ -80,5 +85,10 @@ public class ModelGenerator extends FabricModelProvider {
             itemModelGenerator.generateLayeredItem(modelId, TextureMapping.getItemTexture(item), TextureMapping.getItemTexture(item, "_overlay"), new Material(prefix.withSuffix(suffix)));
         else
             itemModelGenerator.generateLayeredItem(modelId, TextureMapping.getItemTexture(item), new Material(prefix.withSuffix(suffix)));
+    }
+
+    private static TrimMaterials.Palette getPalette(ResourceKey<TrimMaterial> material) {
+        if (material == EquipMiscTrimMaterials.BRONZE) return TrimMaterials.Palette.EQUIPMISC_BRONZE;
+        throw new IllegalArgumentException();
     }
 }
