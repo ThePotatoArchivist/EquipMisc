@@ -1,7 +1,7 @@
 package archives.tater.equipmisc.datagen;
 
 import archives.tater.equipmisc.EquipMisc;
-import archives.tater.equipmisc.client.EquipMiscClient;
+import archives.tater.equipmisc.client.AdditionalTrimModel;
 import archives.tater.equipmisc.client.render.item.model.TexturedShieldModelRenderer.Unbaked;
 import archives.tater.equipmisc.registry.EquipMiscBlocks;
 
@@ -52,7 +52,7 @@ public class ModelGenerator extends FabricModelProvider {
         itemModelGenerator.generateTrimmableItem(BRONZE_LEGGINGS, TRIM_PREFIX_LEGGINGS, false, bronzeOverrides);
         itemModelGenerator.generateTrimmableItem(BRONZE_BOOTS, TRIM_PREFIX_BOOTS, false, bronzeOverrides);
 
-        for (var model : EquipMiscClient.BRONZE_TRIM_MODELS.values()) {
+        for (var model : AdditionalTrimModel.BRONZE_TRIM_MODELS.values()) {
             generateTrimModel(itemModelGenerator, model.modelId(), model.item(), model.prefix(), "_equipmisc_bronze", model.dyed());
         }
 
