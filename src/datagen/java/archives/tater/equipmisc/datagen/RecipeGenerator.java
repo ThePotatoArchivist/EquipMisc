@@ -120,7 +120,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 shaped(RecipeCategory.MISC, BRONZE_UPGRADE_SMITHING_TEMPLATE, 2)
                         .define('#', COPPER_INGOT)
-                        .define('C', COBBLESTONE)
+                        .define('C', SANDSTONE)
                         .define('S', BRONZE_UPGRADE_SMITHING_TEMPLATE)
                         .pattern("#S#")
                         .pattern("#C#")

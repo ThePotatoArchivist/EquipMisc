@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "#": "minecraft:copper_ingot",
-    "C": "minecraft:cobblestone",
+    "C": "minecraft:sandstone",
     "S": "equipmisc:bronze_upgrade_smithing_template"
   },
   "pattern": [
