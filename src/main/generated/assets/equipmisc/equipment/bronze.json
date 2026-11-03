@@ -1,0 +1,27 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "equipmisc:bronze"
+      }
+    ],
+    "humanoid_baby": [
+      {
+        "texture": "equipmisc:bronze"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "equipmisc:bronze"
+      }
+    ]
+  },
+  "trim_overrides": [
+    {
+      "palette": "equipmisc:trim/bronze_darker",
+      "when": {
+        "material": "equipmisc:bronze"
+      }
+    }
+  ]
+}

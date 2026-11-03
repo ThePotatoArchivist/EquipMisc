@@ -37,5 +37,6 @@ public class EquipMiscDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModelGenerator::new);
         pack.addProvider(LangGenerator::new);
         pack.addProvider(AtlasGenerator::new);
+        pack.addProvider(EquipmentGenerator::new);
 	}
 }
