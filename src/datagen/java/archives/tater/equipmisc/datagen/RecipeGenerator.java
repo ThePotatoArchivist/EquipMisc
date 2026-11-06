@@ -127,7 +127,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("###")
                         .unlockedBy(getHasName(BRONZE_UPGRADE_SMITHING_TEMPLATE), has(BRONZE_UPGRADE_SMITHING_TEMPLATE))
                         .save(output);
-                copySmithingTemplate(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, NETHER_BRICK);
+                copySmithingTemplate(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, NETHER_BRICKS);
 
                 SpecialRecipeBuilder.special(() -> new ShieldDecorationRecipe(tag(ItemTags.BANNERS), Ingredient.of(BRONZE_SHIELD), new ItemStackTemplate(BRONZE_SHIELD)))
                         .save(output, "bronze_shield_decoration");

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "#": "minecraft:diamond",
-    "C": "minecraft:nether_brick",
+    "C": "minecraft:nether_bricks",
     "S": "equipmisc:chainmail_upgrade_smithing_template"
   },
   "pattern": [
