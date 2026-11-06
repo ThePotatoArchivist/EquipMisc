@@ -1,6 +1,6 @@
 package archives.tater.equipmisc.client.mixin;
 
-import archives.tater.equipmisc.registry.EquipMiscItemTags;
+import archives.tater.equipmisc.EquipMisc;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,7 +28,7 @@ public class EquipmentRendererMixin {
             cancellable = true
     )
     private <S> void invisibleEquipment(LayerType layerType, ResourceKey<EquipmentAsset> equipmentAssetId, Model<? super S> model, S state, ItemStack itemStack, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int lightCoords, @Nullable Identifier playerTextureOverride, int outlineColor, int order, CallbackInfo ci) {
-        if (state instanceof LivingEntityRenderState renderState && renderState.isInvisible && itemStack.is(EquipMiscItemTags.ENCHANTED_INVISIBLE_EQUIPMENT) && itemStack.isEnchanted())
+        if (state instanceof LivingEntityRenderState renderState && renderState.isInvisible && EquipMisc.isInvisibleEquipment(itemStack))
             ci.cancel();
     }
 }

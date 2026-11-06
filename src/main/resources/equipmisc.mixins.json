@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_25",
   "mixins": [
     "chainmail.ItemStackMixin",
+    "invisible.LivingEntityMixin",
     "ravager.LivingEntityMixin",
     "shears.HardcodedShearsCheckMixin",
     "turtle.EntityMixin",

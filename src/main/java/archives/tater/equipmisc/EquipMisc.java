@@ -11,6 +11,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.animal.turtle.Turtle;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import org.slf4j.Logger;
@@ -31,7 +32,11 @@ public class EquipMisc implements ModInitializer {
     public static final String FARMERS_DELIGHT = "farmersdelight";
     public static final boolean FARMERS_DELIGHT_INSTALLED = FabricLoader.getInstance().isModLoaded(FARMERS_DELIGHT);
 
-	@Override
+    public static boolean isInvisibleEquipment(ItemStack itemStack) {
+        return itemStack.is(EquipMiscItemTags.ENCHANTED_INVISIBLE_EQUIPMENT) && itemStack.isEnchanted();
+    }
+
+    @Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
