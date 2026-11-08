@@ -12,7 +12,6 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.references.BlockItemId;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -36,6 +35,7 @@ import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 
 import vectorwing.farmersdelight.common.item.KnifeItem;
+import vectorwing.farmersdelight.common.registry.ModCreativeTabs;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
 import java.util.List;
@@ -207,8 +207,8 @@ public class EquipMiscItems {
             output.insertAfter(Items.IRON_BLOCK, BRONZE_BLOCK);
         });
         if (EquipMisc.FARMERS_DELIGHT_INSTALLED)
-            CreativeModeTabEvents.modifyOutputEvent(ResourceKey.create(Registries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(EquipMisc.FARMERS_DELIGHT, EquipMisc.FARMERS_DELIGHT))).register(output -> {
-                output.insertAfter(BuiltInRegistries.ITEM.getValue(Identifier.fromNamespaceAndPath(EquipMisc.FARMERS_DELIGHT, "copper_knife")), BRONZE_KNIFE);
+            CreativeModeTabEvents.modifyOutputEvent(BuiltInRegistries.CREATIVE_MODE_TAB.getResourceKey(ModCreativeTabs.TAB_FARMERS_DELIGHT.get()).orElseThrow()).register(output -> {
+                output.insertAfter(ModItems.COPPER_KNIFE.get(), BRONZE_KNIFE);
             });
 
         DefaultItemComponentEvents.MODIFY.register(context -> {
