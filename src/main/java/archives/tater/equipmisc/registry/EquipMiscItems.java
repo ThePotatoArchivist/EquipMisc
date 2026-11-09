@@ -41,7 +41,6 @@ import vectorwing.farmersdelight.common.registry.ModItems;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
 import static net.minecraft.util.Util.makeDescriptionId;
 
@@ -149,35 +148,31 @@ public class EquipMiscItems {
                     .icon(BRONZE_PICKAXE::getDefaultInstance)
                     .title(EQUIPMISC_TAB_TITLE.text)
                     .displayItems((_, output) -> {
-                        Stream.of(
-                                RAW_BRONZE,
-                                BRONZE_INGOT,
-                                BRONZE_BLOCK,
-                                BRONZE_UPGRADE_SMITHING_TEMPLATE,
-                                BRONZE_HELMET,
-                                BRONZE_CHESTPLATE,
-                                BRONZE_LEGGINGS,
-                                BRONZE_BOOTS,
-                                BRONZE_SWORD,
-                                BRONZE_SPEAR,
-                                BRONZE_SHOVEL,
-                                BRONZE_PICKAXE,
-                                BRONZE_AXE,
-                                BRONZE_HOE,
-                                BRONZE_SHIELD,
-                                BRONZE_SHEARS,
-                                FLINT_AND_BRONZE
-                        ).forEach(output::accept);
+                        output.accept(RAW_BRONZE);
+                        output.accept(BRONZE_INGOT);
+                        output.accept(BRONZE_BLOCK);
+                        output.accept(BRONZE_UPGRADE_SMITHING_TEMPLATE);
+                        output.accept(BRONZE_HELMET);
+                        output.accept(BRONZE_CHESTPLATE);
+                        output.accept(BRONZE_LEGGINGS);
+                        output.accept(BRONZE_BOOTS);
+                        output.accept(BRONZE_SWORD);
+                        output.accept(BRONZE_SPEAR);
+                        output.accept(BRONZE_SHOVEL);
+                        output.accept(BRONZE_PICKAXE);
+                        output.accept(BRONZE_AXE);
+                        output.accept(BRONZE_HOE);
+                        output.accept(BRONZE_SHIELD);
+                        output.accept(BRONZE_SHEARS);
+                        output.accept(FLINT_AND_BRONZE);
                         if (EquipMisc.FARMERS_DELIGHT_INSTALLED)
                             output.accept(BRONZE_KNIFE);
-                        Stream.of(
-                                CHAINMAIL_UPGRADE_SMITHING_TEMPLATE,
-                                Items.CHAINMAIL_HELMET,
-                                Items.CHAINMAIL_CHESTPLATE,
-                                Items.CHAINMAIL_LEGGINGS,
-                                Items.CHAINMAIL_BOOTS,
-                                Items.TURTLE_HELMET
-                        ).forEach(output::accept);
+                        output.accept(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE);
+                        output.accept(Items.CHAINMAIL_HELMET);
+                        output.accept(Items.CHAINMAIL_CHESTPLATE);
+                        output.accept(Items.CHAINMAIL_LEGGINGS);
+                        output.accept(Items.CHAINMAIL_BOOTS);
+                        output.accept(Items.TURTLE_HELMET);
 //                        output.accept(RAVAGER_HELMET);
                     })
                     .build()
