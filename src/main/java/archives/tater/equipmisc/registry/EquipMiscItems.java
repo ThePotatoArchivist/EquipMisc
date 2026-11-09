@@ -73,11 +73,9 @@ public class EquipMiscItems {
             ResourceKey.create(EquipmentAssets.ROOT_ID, EquipMisc.id("bronze"))
     );
 
-    private static final int BRONZE_TOOL_DURABILITY = 831;
-
     public static final ToolMaterial BRONZE_TOOL = new ToolMaterial(
             BlockTags.INCORRECT_FOR_IRON_TOOL,
-            BRONZE_TOOL_DURABILITY,
+            831,
             6.0F,
             2.0F,
             15,
@@ -106,7 +104,7 @@ public class EquipMiscItems {
     public static final Item BRONZE_HOE = register(EquipMiscItemIds.BRONZE_HOE, new Item.Properties().hoe(BRONZE_TOOL, -2f, -1f));
 
     public static final Item BRONZE_SHIELD = register(EquipMiscItemIds.BRONZE_SHIELD, ShieldItem::new, new Properties()
-            .durability(BRONZE_TOOL_DURABILITY)
+            .durability(1110)
             .component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY)
             .repairable(ItemTags.WOODEN_TOOL_MATERIALS)
             .equippableUnswappable(EquipmentSlot.OFFHAND)
@@ -122,17 +120,17 @@ public class EquipMiscItems {
             .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK)
     );
     public static final Item BRONZE_SHEARS = register(EquipMiscItemIds.BRONZE_SHEARS, ShearsItem::new, new Item.Properties()
-            .durability(BRONZE_TOOL_DURABILITY)
+            .durability(831)
             .component(DataComponents.TOOL, ShearsItem.createToolProperties())
     );
     public static final Item FLINT_AND_BRONZE = register(EquipMiscItemIds.FLINT_AND_BRONZE, FlintAndSteelItem::new, new Item.Properties()
-            .durability(BRONZE_TOOL_DURABILITY)
+            .durability(213)
     );
     public static final Item BRONZE_KNIFE = EquipMisc.FARMERS_DELIGHT_INSTALLED
             ? register(EquipMiscItemIds.BRONZE_KNIFE, KnifeItem::new, ModItems.knifeItem(BRONZE_TOOL))
             : register(EquipMiscItemIds.BRONZE_KNIFE, new Item.Properties()
                     .stacksTo(1)
-                    .durability(BRONZE_TOOL_DURABILITY));
+                    .durability(BRONZE_TOOL.durability()));
 
     public static final Item CHAINMAIL_UPGRADE_SMITHING_TEMPLATE = register(EquipMiscItemIds.CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, EquipMiscSmithingTemplates::createChainmailUpgrade, new Item.Properties()
             .rarity(Rarity.UNCOMMON)
