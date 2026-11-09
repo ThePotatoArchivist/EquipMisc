@@ -25,19 +25,19 @@ public class EquipMiscDataGenerator implements DataGeneratorEntrypoint {
     @Override
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         var pack = fabricDataGenerator.createPack();
-        var blockTags = pack.addProvider(BlockTagGenerator::new);
-        pack.addProvider((output, registriesFuture) -> new ItemTagGenerator(output, registriesFuture, blockTags));
-        pack.addProvider(BlockLootTableGenerator::new);
-        pack.addProvider(AdvancementGenerator::new);
-        pack.addProvider(RecipeGenerator::new);
-        pack.addProvider(LootTableGenerator::new);
-        pack.addProvider(PredicateGenerator::new);
-        pack.addProvider(TrimMaterialGenerator::new);
+        var blockTags = pack.addProvider(ModBlockTagProvider::new);
+        pack.addProvider((output, registriesFuture) -> new ModItemTagProvider(output, registriesFuture, blockTags));
+        pack.addProvider(ModBlockLootProvider::new);
+        pack.addProvider(ModAdvancementProvider::new);
+        pack.addProvider(ModRecipeProvider::new);
+        pack.addProvider(ModChestLootProvider::new);
+        pack.addProvider(ModPredicateProvider::new);
+        pack.addProvider(ModTrimMaterialProvider::new);
 
-        pack.addProvider(ModelGenerator::new);
-        pack.addProvider(LangGenerator::new);
-        pack.addProvider(AtlasGenerator::new);
-        pack.addProvider(EquipmentGenerator::new);
-        pack.addProvider(SoundsGenerator::new);
+        pack.addProvider(ModModelProvider::new);
+        pack.addProvider(ModLangProvider::new);
+        pack.addProvider(ModAtlasProvider::new);
+        pack.addProvider(ModEquipmentProvider::new);
+        pack.addProvider(ModSoundsProvider::new);
 	}
 }

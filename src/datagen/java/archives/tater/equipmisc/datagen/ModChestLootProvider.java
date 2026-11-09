@@ -18,8 +18,8 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
-public class LootTableGenerator extends SimpleFabricLootTableSubProvider {
-    public LootTableGenerator(FabricPackOutput output, CompletableFuture<Provider> registryLookup) {
+public class ModChestLootProvider extends SimpleFabricLootTableSubProvider {
+    public ModChestLootProvider(FabricPackOutput output, CompletableFuture<Provider> registryLookup) {
         super(output, registryLookup, LootContextParamSets.CHEST);
     }
 

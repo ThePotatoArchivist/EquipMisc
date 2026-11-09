@@ -14,8 +14,8 @@ import java.util.concurrent.CompletableFuture;
 
 import static net.minecraft.util.Util.makeDescriptionId;
 
-public class LangGenerator extends FabricLanguageProvider {
-    public LangGenerator(FabricPackOutput dataOutput, CompletableFuture<Provider> registryLookup) {
+public class ModLangProvider extends FabricLanguageProvider {
+    public ModLangProvider(FabricPackOutput dataOutput, CompletableFuture<Provider> registryLookup) {
         super(dataOutput, registryLookup);
     }
 
@@ -62,8 +62,8 @@ public class LangGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(getKey(ChainmailUpgrade.TOOLTIP), "Chainmail Upgrade");
 
-        translationBuilder.add(AdvancementGenerator.BRONZE_TOOLS_TITLE, "Incremental Upgrades");
-        translationBuilder.add(AdvancementGenerator.BRONZE_TOOLS_DESCRIPTION, "Improve the durability of your iron tools by upgrading them with bronze");
+        translationBuilder.add(ModAdvancementProvider.BRONZE_TOOLS_TITLE, "Incremental Upgrades");
+        translationBuilder.add(ModAdvancementProvider.BRONZE_TOOLS_DESCRIPTION, "Improve the durability of your iron tools by upgrading them with bronze");
 
         translationBuilder.add(makeDescriptionId("trim_material", EquipMiscTrimMaterials.BRONZE.identifier()), "Bronze Material");
 

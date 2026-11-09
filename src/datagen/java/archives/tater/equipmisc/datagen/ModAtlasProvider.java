@@ -18,8 +18,8 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
-public class AtlasGenerator extends FabricCodecDataProvider<List<SpriteSource>> {
-    public AtlasGenerator(FabricPackOutput packOutput, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class ModAtlasProvider extends FabricCodecDataProvider<List<SpriteSource>> {
+    public ModAtlasProvider(FabricPackOutput packOutput, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(packOutput, registriesFuture, PackOutput.Target.RESOURCE_PACK, "atlases", SpriteSources.FILE_CODEC);
     }
 

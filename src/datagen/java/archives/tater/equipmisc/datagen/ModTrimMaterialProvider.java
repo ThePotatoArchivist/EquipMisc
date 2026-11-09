@@ -8,8 +8,8 @@ import net.minecraft.core.registries.Registries;
 
 import java.util.concurrent.CompletableFuture;
 
-public class TrimMaterialGenerator extends FabricDynamicRegistryProvider {
-    public TrimMaterialGenerator(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class ModTrimMaterialProvider extends FabricDynamicRegistryProvider {
+    public ModTrimMaterialProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 

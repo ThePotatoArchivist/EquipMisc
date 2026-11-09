@@ -9,8 +9,8 @@ import net.minecraft.core.HolderLookup;
 
 import java.util.concurrent.CompletableFuture;
 
-public class BlockLootTableGenerator extends FabricBlockLootSubProvider {
-    public BlockLootTableGenerator(FabricPackOutput packOutput, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class ModBlockLootProvider extends FabricBlockLootSubProvider {
+    public ModBlockLootProvider(FabricPackOutput packOutput, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(packOutput, registriesFuture);
     }
 

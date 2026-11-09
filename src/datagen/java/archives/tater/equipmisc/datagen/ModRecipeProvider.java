@@ -39,9 +39,9 @@ import static archives.tater.equipmisc.registry.EquipMiscItems.*;
 import static net.minecraft.world.item.Items.*;
 
 @SuppressWarnings("UnstableApiUsage")
-public class RecipeGenerator extends FabricRecipeProvider {
+public class ModRecipeProvider extends FabricRecipeProvider {
 
-    public RecipeGenerator(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public ModRecipeProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 

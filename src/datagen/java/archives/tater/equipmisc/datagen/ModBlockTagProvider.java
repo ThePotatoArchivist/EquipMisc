@@ -15,8 +15,8 @@ import net.minecraft.tags.BlockTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class BlockTagGenerator extends FabricTagsProvider.BlockTagsProvider {
-    public BlockTagGenerator(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
+    public ModBlockTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 

@@ -13,8 +13,8 @@ import java.util.concurrent.CompletableFuture;
 
 import static net.fabricmc.fabric.api.client.datagen.v1.builder.SoundTypeBuilder.RegistrationBuilder.ofEvent;
 
-public class SoundsGenerator extends FabricSoundsProvider {
-    public SoundsGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class ModSoundsProvider extends FabricSoundsProvider {
+    public ModSoundsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 

@@ -29,9 +29,9 @@ import java.util.Map;
 import static archives.tater.equipmisc.registry.EquipMiscItems.*;
 import static net.minecraft.client.data.models.ItemModelGenerators.*;
 
-public class ModelGenerator extends FabricModelProvider {
+public class ModModelProvider extends FabricModelProvider {
 
-    public ModelGenerator(FabricPackOutput output) {
+    public ModModelProvider(FabricPackOutput output) {
         super(output);
     }
 

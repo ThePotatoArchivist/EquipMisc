@@ -16,8 +16,8 @@ import net.minecraft.world.item.equipment.trim.TrimMaterials;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
-public class EquipmentGenerator extends FabricCodecDataProvider<EquipmentClientInfo> {
-    protected EquipmentGenerator(FabricPackOutput packOutput, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class ModEquipmentProvider extends FabricCodecDataProvider<EquipmentClientInfo> {
+    protected ModEquipmentProvider(FabricPackOutput packOutput, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(packOutput, registriesFuture, PackOutput.Target.RESOURCE_PACK, "equipment", EquipmentClientInfo.CODEC);
     }
 

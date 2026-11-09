@@ -25,8 +25,8 @@ import static archives.tater.equipmisc.registry.EquipMiscItemTags.BRONZE_EQUIPME
 import static archives.tater.equipmisc.registry.EquipMiscItems.BRONZE_PICKAXE;
 import static net.minecraft.util.Util.makeDescriptionId;
 
-public class AdvancementGenerator extends FabricAdvancementProvider {
-    public AdvancementGenerator(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
+public class ModAdvancementProvider extends FabricAdvancementProvider {
+    public ModAdvancementProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(output, registryLookup);
     }
 

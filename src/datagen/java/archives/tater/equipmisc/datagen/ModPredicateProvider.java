@@ -13,8 +13,8 @@ import java.util.concurrent.CompletableFuture;
 import static net.minecraft.advancements.predicates.ItemPredicate.Builder.item;
 import static net.minecraft.world.level.storage.loot.predicates.MatchTool.toolMatches;
 
-public class PredicateGenerator extends FabricDynamicRegistryProvider {
-    public PredicateGenerator(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class ModPredicateProvider extends FabricDynamicRegistryProvider {
+    public ModPredicateProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 

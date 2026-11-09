@@ -26,9 +26,9 @@ import static archives.tater.equipmisc.registry.EquipMiscItemTags.*;
 import static net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags.*;
 import static net.minecraft.tags.ItemTags.*;
 
-public class ItemTagGenerator extends FabricTagsProvider.ItemTagsProvider {
+public class ModItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
 
-    public ItemTagGenerator(FabricPackOutput output, CompletableFuture<Provider> registryLookupFuture, @Nullable BlockTagsProvider blockTagsProvider) {
+    public ModItemTagProvider(FabricPackOutput output, CompletableFuture<Provider> registryLookupFuture, @Nullable BlockTagsProvider blockTagsProvider) {
         super(output, registryLookupFuture, blockTagsProvider);
     }
 
