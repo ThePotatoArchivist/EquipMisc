@@ -31,6 +31,7 @@ public class EquipMiscDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModAdvancementProvider::new);
         pack.addProvider(ModRecipeProvider::new);
         pack.addProvider(ModLootModificationProvider::new);
+        pack.addProvider(ModInteractLootProvider::new);
         pack.addProvider(ModPredicateProvider::new);
         pack.addProvider(ModTrimMaterialProvider::new);
 

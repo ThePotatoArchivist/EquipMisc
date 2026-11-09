@@ -18,6 +18,8 @@ import java.util.concurrent.CompletableFuture;
 
 import static net.minecraft.world.level.storage.loot.entries.EmptyLootItem.emptyItem;
 import static net.minecraft.world.level.storage.loot.entries.LootItem.lootTableItem;
+import static net.minecraft.world.level.storage.loot.functions.SetItemCountFunction.setCount;
+import static net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders.between;
 
 public class ModLootModificationProvider extends FabricDynamicRegistryProvider {
     public ModLootModificationProvider(FabricPackOutput output, CompletableFuture<Provider> registryLookup) {
@@ -43,6 +45,9 @@ public class ModLootModificationProvider extends FabricDynamicRegistryProvider {
         register(entries, BuiltInLootTables.UNDERWATER_RUIN_BIG, LootModification.builder()
                 .pool(LootPool.lootPool()
                         .add(lootTableItem(EquipMiscItems.BRONZE_UPGRADE_SMITHING_TEMPLATE))));
+
+        register(entries, BuiltInLootTables.TURTLE_GROW, LootModification.builder()
+                .apply(setCount(between(1, 4), true)));
     }
 
     private static void register(Entries entries, ResourceKey<LootTable> target, LootModification.Builder builder) {

@@ -13,7 +13,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.animal.turtle.Turtle;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +54,7 @@ public class EquipMisc implements ModInitializer {
             var stack = player.getItemInHand(hand);
             if (!stack.is(ConventionalItemTags.BRUSH_TOOLS)) return InteractionResult.PASS;
             if (world instanceof ServerLevel serverWorld) {
-                turtleEntity.dropFromEntityInteractLootTable(serverWorld, BuiltInLootTables.TURTLE_GROW, player, stack, entity::spawnAtLocation);
+                turtleEntity.dropFromEntityInteractLootTable(serverWorld, EquipMiscLootTables.TURTLE_BRUSH, player, stack, entity::spawnAtLocation);
                 entity.playSound(EquipMiscSounds.TURTLE_BRUSH);
                 entity.gameEvent(GameEvent.ENTITY_INTERACT);
             }
