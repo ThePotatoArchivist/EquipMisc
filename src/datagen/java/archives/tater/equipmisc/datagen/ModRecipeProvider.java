@@ -49,20 +49,20 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, BootstrapContext<Recipe<?>> recipes, BootstrapContext<Advancement> advancements) {
         return new RecipeProvider(recipes, advancements) {
 
-            private void offerBronzeUpgrade(ItemLike input, Item result, RecipeOutput output) {
+            private void offerBronzeUpgrade(ItemLike input, Item result, RecipeCategory recipeCategory, RecipeOutput output) {
                 SmithingTransformRecipeBuilder.smithing(
                                 Ingredient.of(BRONZE_UPGRADE_SMITHING_TEMPLATE),
                                 Ingredient.of(input),
                                 tag(EquipMiscItemTags.BRONZE_TOOL_MATERIALS),
-                                RecipeCategory.MISC,
+                                recipeCategory,
                                 result
                         )
                         .unlocks(getHasName(BRONZE_INGOT), has(EquipMiscItemTags.BRONZE_TOOL_MATERIALS))
                         .save(output, getItemName(result) + "_smithing");
             }
 
-            private void offerBronzeUpgrade(ItemLike input, Item result) {
-                offerBronzeUpgrade(input, result, output);
+            private void offerBronzeUpgrade(ItemLike input, Item result, RecipeCategory recipeCategory) {
+                offerBronzeUpgrade(input, result, recipeCategory, output);
             }
 
             private void offerChainmailUpgrade(String name, TagKey<Item> input, ItemLike addition) {
@@ -93,25 +93,25 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
                 nineBlockStorageRecipes(RecipeCategory.MISC, BRONZE_INGOT, RecipeCategory.BUILDING_BLOCKS, BRONZE_BLOCK);
 
-                offerBronzeUpgrade(IRON_HELMET, BRONZE_HELMET);
-                offerBronzeUpgrade(IRON_CHESTPLATE, BRONZE_CHESTPLATE);
-                offerBronzeUpgrade(IRON_LEGGINGS, BRONZE_LEGGINGS);
-                offerBronzeUpgrade(IRON_BOOTS, BRONZE_BOOTS);
-                offerBronzeUpgrade(IRON_SWORD, BRONZE_SWORD);
-                offerBronzeUpgrade(IRON_SHOVEL, BRONZE_SHOVEL);
-                offerBronzeUpgrade(IRON_PICKAXE, BRONZE_PICKAXE);
-                offerBronzeUpgrade(IRON_AXE, BRONZE_AXE);
-                offerBronzeUpgrade(IRON_HOE, BRONZE_HOE);
-                offerBronzeUpgrade(IRON_SPEAR, BRONZE_SPEAR);
-                offerBronzeUpgrade(SHIELD, BRONZE_SHIELD);
-                offerBronzeUpgrade(SHEARS, BRONZE_SHEARS);
-                offerBronzeUpgrade(FLINT_AND_STEEL, FLINT_AND_BRONZE);
+                offerBronzeUpgrade(IRON_HELMET, BRONZE_HELMET, RecipeCategory.COMBAT);
+                offerBronzeUpgrade(IRON_CHESTPLATE, BRONZE_CHESTPLATE, RecipeCategory.COMBAT);
+                offerBronzeUpgrade(IRON_LEGGINGS, BRONZE_LEGGINGS, RecipeCategory.COMBAT);
+                offerBronzeUpgrade(IRON_BOOTS, BRONZE_BOOTS, RecipeCategory.COMBAT);
+                offerBronzeUpgrade(IRON_SWORD, BRONZE_SWORD, RecipeCategory.COMBAT);
+                offerBronzeUpgrade(IRON_SHOVEL, BRONZE_SHOVEL, RecipeCategory.TOOLS);
+                offerBronzeUpgrade(IRON_PICKAXE, BRONZE_PICKAXE, RecipeCategory.TOOLS);
+                offerBronzeUpgrade(IRON_AXE, BRONZE_AXE, RecipeCategory.TOOLS);
+                offerBronzeUpgrade(IRON_HOE, BRONZE_HOE, RecipeCategory.TOOLS);
+                offerBronzeUpgrade(IRON_SPEAR, BRONZE_SPEAR, RecipeCategory.COMBAT);
+                offerBronzeUpgrade(SHIELD, BRONZE_SHIELD, RecipeCategory.COMBAT);
+                offerBronzeUpgrade(SHEARS, BRONZE_SHEARS, RecipeCategory.TOOLS);
+                offerBronzeUpgrade(FLINT_AND_STEEL, FLINT_AND_BRONZE, RecipeCategory.TOOLS);
                 shapeless(RecipeCategory.TOOLS, FLINT_AND_BRONZE)
                         .requires(BRONZE_INGOTS)
                         .requires(FLINT)
                         .unlockedBy(getHasName(BRONZE_INGOT), has(BRONZE_INGOTS))
                         .save(output);
-                offerBronzeUpgrade(ModItems.IRON_KNIFE.get(), BRONZE_KNIFE, withConditions(output, new AllModsLoadedResourceCondition(List.of(EquipMisc.FARMERS_DELIGHT))));
+                offerBronzeUpgrade(ModItems.IRON_KNIFE.get(), BRONZE_KNIFE, RecipeCategory.TOOLS, withConditions(output, new AllModsLoadedResourceCondition(List.of(EquipMisc.FARMERS_DELIGHT))));
 
                 offerChainmailUpgrade("helmet", ItemTags.HEAD_ARMOR, CHAINMAIL_HELMET);
                 offerChainmailUpgrade("chestplate", ItemTags.CHEST_ARMOR, CHAINMAIL_CHESTPLATE);
