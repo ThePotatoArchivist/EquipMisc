@@ -1,7 +1,7 @@
 package archives.tater.equipmisc.datagen;
 
 import archives.tater.equipmisc.EquipMisc;
-import archives.tater.equipmisc.registry.EquipMiscItems;
+import archives.tater.equipmisc.registry.EquipMiscMaterials;
 import archives.tater.equipmisc.registry.EquipMiscTrimMaterials;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
@@ -23,7 +23,8 @@ public class EquipmentGenerator extends FabricCodecDataProvider<EquipmentClientI
 
     @Override
     protected void configure(BiConsumer<Identifier, EquipmentClientInfo> provider, HolderLookup.Provider registryLookup) {
-        provider.accept(EquipMiscItems.BRONZE_ARMOR.assetId().identifier(), EquipmentClientInfo.builder()
+        provider.accept(
+                EquipMiscMaterials.BRONZE_ARMOR.assetId().identifier(), EquipmentClientInfo.builder()
                 .addHumanoidLayers(EquipMisc.id("bronze"))
                 .replaceTrimPalette(EquipMiscTrimMaterials.BRONZE, TrimMaterials.Palette.EQUIPMISC_BRONZE_DARKER.id())
                 .build());

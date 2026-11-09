@@ -45,6 +45,7 @@ public class EquipMisc implements ModInitializer {
         EquipMiscComponents.init();
         EquipMiscBlocks.init();
         EquipMiscItems.init();
+        EquipMiscCreativeTabs.init();
         EquipMiscRecipes.init();
         EquipMiscLoot.init();
 

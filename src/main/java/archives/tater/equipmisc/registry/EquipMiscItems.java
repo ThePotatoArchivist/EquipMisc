@@ -2,10 +2,7 @@ package archives.tater.equipmisc.registry;
 
 import archives.tater.equipmisc.EquipMisc;
 import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
-import archives.tater.equipmisc.util.Translation;
 
-import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
-import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 
 import net.minecraft.core.Registry;
@@ -14,39 +11,30 @@ import net.minecraft.core.dispenser.FlintAndSteelDispenseItemBehavior;
 import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.references.BlockItemId;
-import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
-import net.minecraft.world.item.equipment.ArmorMaterial;
-import net.minecraft.world.item.equipment.ArmorMaterials;
 import net.minecraft.world.item.equipment.ArmorType;
-import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 
 import vectorwing.farmersdelight.common.item.KnifeItem;
-import vectorwing.farmersdelight.common.registry.ModCreativeTabs;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-import static net.minecraft.util.Util.makeDescriptionId;
-
-public class EquipMiscItems {
+public interface EquipMiscItems {
     private static Item register(ResourceKey<Item> key, Function<Item.Properties, Item> item, Item.Properties settings) {
         return Registry.register(BuiltInRegistries.ITEM, key, item.apply(settings.setId(key)));
     }
@@ -63,48 +51,28 @@ public class EquipMiscItems {
         return register(id.item(), properties -> new BlockItem(block, properties), new Item.Properties().useBlockDescriptionPrefix());
     }
 
-    public static final ArmorMaterial BRONZE_ARMOR = new ArmorMaterial(
-            25,
-            ArmorMaterials.IRON.defense(),
-            15,
-            SoundEvents.ARMOR_EQUIP_IRON,
-            0.0F,
-            0.0F,
-            EquipMiscItemTags.REPAIRS_BRONZE_ARMOR,
-            ResourceKey.create(EquipmentAssets.ROOT_ID, EquipMisc.id("bronze"))
-    );
-
-    public static final ToolMaterial BRONZE_TOOL = new ToolMaterial(
-            BlockTags.INCORRECT_FOR_IRON_TOOL,
-            831,
-            6.0F,
-            2.0F,
-            15,
-            EquipMiscItemTags.BRONZE_TOOL_MATERIALS
-    );
-
-    public static final Item BRONZE_UPGRADE_SMITHING_TEMPLATE = register(EquipMiscItemIds.BRONZE_UPGRADE_SMITHING_TEMPLATE, EquipMiscSmithingTemplates::createBronzeUpgrade, new Item.Properties()
+    Item BRONZE_UPGRADE_SMITHING_TEMPLATE = register(EquipMiscItemIds.BRONZE_UPGRADE_SMITHING_TEMPLATE, EquipMiscSmithingTemplates::createBronzeUpgrade, new Item.Properties()
             .rarity(Rarity.UNCOMMON)
     );
-    public static final Item RAW_BRONZE = register(EquipMiscItemIds.RAW_BRONZE, new Item.Properties());
-    public static final Item BRONZE_INGOT = register(EquipMiscItemIds.BRONZE_INGOT, new Item.Properties()
+    Item RAW_BRONZE = register(EquipMiscItemIds.RAW_BRONZE, new Item.Properties());
+    Item BRONZE_INGOT = register(EquipMiscItemIds.BRONZE_INGOT, new Item.Properties()
             .delayedHolderComponent(DataComponents.PROVIDES_TRIM_MATERIAL, EquipMiscTrimMaterials.BRONZE)
     );
-    public static final Item BRONZE_BLOCK = register(EquipMiscBlockItemIds.BRONZE_BLOCK, EquipMiscBlocks.BRONZE_BLOCK);
+    Item BRONZE_BLOCK = register(EquipMiscBlockItemIds.BRONZE_BLOCK, EquipMiscBlocks.BRONZE_BLOCK);
 
-    public static final Item BRONZE_HELMET = register(EquipMiscItemIds.BRONZE_HELMET, new Item.Properties().humanoidArmor(BRONZE_ARMOR, ArmorType.HELMET));
-    public static final Item BRONZE_CHESTPLATE = register(EquipMiscItemIds.BRONZE_CHESTPLATE, new Item.Properties().humanoidArmor(BRONZE_ARMOR, ArmorType.CHESTPLATE));
-    public static final Item BRONZE_LEGGINGS = register(EquipMiscItemIds.BRONZE_LEGGINGS, new Item.Properties().humanoidArmor(BRONZE_ARMOR, ArmorType.LEGGINGS));
-    public static final Item BRONZE_BOOTS = register(EquipMiscItemIds.BRONZE_BOOTS, new Item.Properties().humanoidArmor(BRONZE_ARMOR, ArmorType.BOOTS));
+    Item BRONZE_HELMET = register(EquipMiscItemIds.BRONZE_HELMET, new Item.Properties().humanoidArmor(EquipMiscMaterials.BRONZE_ARMOR, ArmorType.HELMET));
+    Item BRONZE_CHESTPLATE = register(EquipMiscItemIds.BRONZE_CHESTPLATE, new Item.Properties().humanoidArmor(EquipMiscMaterials.BRONZE_ARMOR, ArmorType.CHESTPLATE));
+    Item BRONZE_LEGGINGS = register(EquipMiscItemIds.BRONZE_LEGGINGS, new Item.Properties().humanoidArmor(EquipMiscMaterials.BRONZE_ARMOR, ArmorType.LEGGINGS));
+    Item BRONZE_BOOTS = register(EquipMiscItemIds.BRONZE_BOOTS, new Item.Properties().humanoidArmor(EquipMiscMaterials.BRONZE_ARMOR, ArmorType.BOOTS));
 
-    public static final Item BRONZE_SWORD = register(EquipMiscItemIds.BRONZE_SWORD, new Item.Properties().sword(BRONZE_TOOL, 3f, -2.4f));
-    public static final Item BRONZE_SPEAR = register(EquipMiscItemIds.BRONZE_SPEAR, new Item.Properties().spear(BRONZE_TOOL, 0.95F, 0.95F, 0.6F, 2.5F, 8.0F, 6.75F, 5.1F, 11.25F, 4.6F));
-    public static final Item BRONZE_SHOVEL = register(EquipMiscItemIds.BRONZE_SHOVEL, new Item.Properties().shovel(BRONZE_TOOL, 1.5f, -3.0f));
-    public static final Item BRONZE_PICKAXE = register(EquipMiscItemIds.BRONZE_PICKAXE, new Item.Properties().pickaxe(BRONZE_TOOL, 1f, -2.8f));
-    public static final Item BRONZE_AXE = register(EquipMiscItemIds.BRONZE_AXE, new Item.Properties().axe(BRONZE_TOOL, 6f, -3.1f));
-    public static final Item BRONZE_HOE = register(EquipMiscItemIds.BRONZE_HOE, new Item.Properties().hoe(BRONZE_TOOL, -2f, -1f));
+    Item BRONZE_SWORD = register(EquipMiscItemIds.BRONZE_SWORD, new Item.Properties().sword(EquipMiscMaterials.BRONZE_TOOL, 3f, -2.4f));
+    Item BRONZE_SPEAR = register(EquipMiscItemIds.BRONZE_SPEAR, new Item.Properties().spear(EquipMiscMaterials.BRONZE_TOOL, 0.95F, 0.95F, 0.6F, 2.5F, 8.0F, 6.75F, 5.1F, 11.25F, 4.6F));
+    Item BRONZE_SHOVEL = register(EquipMiscItemIds.BRONZE_SHOVEL, new Item.Properties().shovel(EquipMiscMaterials.BRONZE_TOOL, 1.5f, -3.0f));
+    Item BRONZE_PICKAXE = register(EquipMiscItemIds.BRONZE_PICKAXE, new Item.Properties().pickaxe(EquipMiscMaterials.BRONZE_TOOL, 1f, -2.8f));
+    Item BRONZE_AXE = register(EquipMiscItemIds.BRONZE_AXE, new Item.Properties().axe(EquipMiscMaterials.BRONZE_TOOL, 6f, -3.1f));
+    Item BRONZE_HOE = register(EquipMiscItemIds.BRONZE_HOE, new Item.Properties().hoe(EquipMiscMaterials.BRONZE_TOOL, -2f, -1f));
 
-    public static final Item BRONZE_SHIELD = register(EquipMiscItemIds.BRONZE_SHIELD, ShieldItem::new, new Properties()
+    Item BRONZE_SHIELD = register(EquipMiscItemIds.BRONZE_SHIELD, ShieldItem::new, new Properties()
             .durability(1110)
             .component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY)
             .repairable(ItemTags.WOODEN_TOOL_MATERIALS)
@@ -120,96 +88,32 @@ public class EquipMiscItems {
             ))
             .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK)
     );
-    public static final Item BRONZE_SHEARS = register(EquipMiscItemIds.BRONZE_SHEARS, ShearsItem::new, new Item.Properties()
+    Item BRONZE_SHEARS = register(EquipMiscItemIds.BRONZE_SHEARS, ShearsItem::new, new Item.Properties()
             .durability(831)
             .component(DataComponents.TOOL, ShearsItem.createToolProperties())
     );
-    public static final Item FLINT_AND_BRONZE = register(EquipMiscItemIds.FLINT_AND_BRONZE, FlintAndSteelItem::new, new Item.Properties()
+    Item FLINT_AND_BRONZE = register(EquipMiscItemIds.FLINT_AND_BRONZE, FlintAndSteelItem::new, new Item.Properties()
             .durability(213)
     );
-    public static final Item BRONZE_KNIFE = EquipMisc.FARMERS_DELIGHT_INSTALLED
-            ? register(EquipMiscItemIds.BRONZE_KNIFE, KnifeItem::new, ModItems.knifeItem(BRONZE_TOOL))
+    Item BRONZE_KNIFE = EquipMisc.FARMERS_DELIGHT_INSTALLED
+            ? register(EquipMiscItemIds.BRONZE_KNIFE, KnifeItem::new, ModItems.knifeItem(EquipMiscMaterials.BRONZE_TOOL))
             : register(EquipMiscItemIds.BRONZE_KNIFE, new Item.Properties()
                     .stacksTo(1)
-                    .durability(BRONZE_TOOL.durability()));
+                    .durability(EquipMiscMaterials.BRONZE_TOOL.durability()));
 
-    public static final Item CHAINMAIL_UPGRADE_SMITHING_TEMPLATE = register(EquipMiscItemIds.CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, EquipMiscSmithingTemplates::createChainmailUpgrade, new Item.Properties()
+    Item CHAINMAIL_UPGRADE_SMITHING_TEMPLATE = register(EquipMiscItemIds.CHAINMAIL_UPGRADE_SMITHING_TEMPLATE, EquipMiscSmithingTemplates::createChainmailUpgrade, new Item.Properties()
             .rarity(Rarity.UNCOMMON)
     );
 
-//    public static final Item RAVAGER_HELMET = register(EquipMiscItemIds.RAVAGER_HELMET, new Item.Properties()
+//    Item RAVAGER_HELMET = register(EquipMiscItemIds.RAVAGER_HELMET, new Item.Properties()
 //            .humanoidArmor(ArmorMaterials.DIAMOND, ArmorType.HELMET)
 //            .component(EquipMiscComponents.BREAK_IN_AREA, new BreakInArea(0.2, EquipMiscBlockTags.RAVAGER_HELMET_CAN_DESTROY, EquipmentSlotGroup.HEAD)));
 
-    public static final Identifier EQUIPMISC_TAB_ID = EquipMisc.id(EquipMisc.MOD_ID);
-    public static final Translation.Unit EQUIPMISC_TAB_TITLE = Translation.unit(makeDescriptionId("itemGroup", EQUIPMISC_TAB_ID));
-    public static final CreativeModeTab EQUIPMISC_TAB = Registry.register(
-            BuiltInRegistries.CREATIVE_MODE_TAB,
-            EQUIPMISC_TAB_ID,
-            FabricCreativeModeTab.builder()
-                    .icon(BRONZE_PICKAXE::getDefaultInstance)
-                    .title(EQUIPMISC_TAB_TITLE.text)
-                    .displayItems((_, output) -> {
-                        output.accept(RAW_BRONZE);
-                        output.accept(BRONZE_INGOT);
-                        output.accept(BRONZE_BLOCK);
-                        output.accept(BRONZE_UPGRADE_SMITHING_TEMPLATE);
-                        output.accept(BRONZE_HELMET);
-                        output.accept(BRONZE_CHESTPLATE);
-                        output.accept(BRONZE_LEGGINGS);
-                        output.accept(BRONZE_BOOTS);
-                        output.accept(BRONZE_SWORD);
-                        output.accept(BRONZE_SPEAR);
-                        output.accept(BRONZE_SHOVEL);
-                        output.accept(BRONZE_PICKAXE);
-                        output.accept(BRONZE_AXE);
-                        output.accept(BRONZE_HOE);
-                        output.accept(BRONZE_SHIELD);
-                        output.accept(BRONZE_SHEARS);
-                        output.accept(FLINT_AND_BRONZE);
-                        if (EquipMisc.FARMERS_DELIGHT_INSTALLED)
-                            output.accept(BRONZE_KNIFE);
-                        output.accept(CHAINMAIL_UPGRADE_SMITHING_TEMPLATE);
-                        output.accept(Items.CHAINMAIL_HELMET);
-                        output.accept(Items.CHAINMAIL_CHESTPLATE);
-                        output.accept(Items.CHAINMAIL_LEGGINGS);
-                        output.accept(Items.CHAINMAIL_BOOTS);
-                        output.accept(Items.TURTLE_HELMET);
-//                        output.accept(RAVAGER_HELMET);
-                    })
-                    .build()
-    );
-
-    public static void init() {
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(output -> {
-            output.insertAfter(Items.IRON_HOE, BRONZE_SHOVEL, BRONZE_PICKAXE, BRONZE_AXE, BRONZE_HOE);
-            output.insertAfter(Items.FLINT_AND_STEEL, FLINT_AND_BRONZE);
-            output.insertAfter(Items.SHEARS, BRONZE_SHEARS);
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.COMBAT).register(output -> {
-            output.insertAfter(Items.IRON_SWORD, BRONZE_SWORD);
-            output.insertAfter(Items.IRON_AXE, BRONZE_AXE);
-            output.insertAfter(Items.IRON_SPEAR, BRONZE_SPEAR);
-            output.insertAfter(Items.SHIELD, BRONZE_SHIELD);
-            output.insertAfter(Items.IRON_BOOTS, BRONZE_HELMET, BRONZE_CHESTPLATE, BRONZE_LEGGINGS, BRONZE_BOOTS);
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register(output -> {
-            output.insertAfter(Items.IRON_INGOT, BRONZE_INGOT);
-            output.insertAfter(Items.RAW_IRON, RAW_BRONZE);
-            output.insertBefore(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, BRONZE_UPGRADE_SMITHING_TEMPLATE, CHAINMAIL_UPGRADE_SMITHING_TEMPLATE);
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register(output -> {
-            output.insertAfter(Items.IRON_BLOCK, BRONZE_BLOCK);
-        });
-        if (EquipMisc.FARMERS_DELIGHT_INSTALLED)
-            CreativeModeTabEvents.modifyOutputEvent(BuiltInRegistries.CREATIVE_MODE_TAB.getResourceKey(ModCreativeTabs.TAB_FARMERS_DELIGHT.get()).orElseThrow()).register(output -> {
-                output.insertAfter(ModItems.COPPER_KNIFE.get(), BRONZE_KNIFE);
-            });
-
+    static void init() {
         DefaultItemComponentEvents.MODIFY.register(context -> {
             context.modify(Items.TURTLE_HELMET, builder -> {
                 builder.set(DataComponents.ATTRIBUTE_MODIFIERS, builder.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY)
-                        .withModifierAdded(EquipMiscAttributes.MAX_AIR, new AttributeModifier(EquipMisc.id("turtle_air"), 30.0, Operation.ADD_VALUE), EquipmentSlotGroup.HEAD)
+                        .withModifierAdded(EquipMiscAttributes.MAX_AIR, new AttributeModifier(EquipMisc.id("turtle_air"), 30.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HEAD)
                 );
             });
         });

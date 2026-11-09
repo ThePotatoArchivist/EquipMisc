@@ -9,14 +9,14 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
-public class EquipMiscRecipes {
-    public static RecipeSerializer<SmithingPatchRecipe> SMITHING_PATCH = Registry.register(
+public interface EquipMiscRecipes {
+    RecipeSerializer<SmithingPatchRecipe> SMITHING_PATCH = Registry.register(
             BuiltInRegistries.RECIPE_SERIALIZER,
             EquipMisc.id("smithing_patch"),
             new RecipeSerializer<>(SmithingPatchRecipe.CODEC, SmithingPatchRecipe.STREAM_CODEC)
     );
 
-    public static void init() {
+    static void init() {
         RecipeSynchronization.synchronizeRecipeSerializer(SMITHING_PATCH);
     }
 }
