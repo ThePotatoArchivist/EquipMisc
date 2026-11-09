@@ -1,13 +1,13 @@
 package archives.tater.equipmisc.registry;
 
 import archives.tater.equipmisc.EquipMisc;
-import archives.tater.equipmisc.util.Translation;
 
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -16,17 +16,19 @@ import net.minecraft.world.item.Items;
 import vectorwing.farmersdelight.common.registry.ModCreativeTabs;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
+import java.awt.*;
+
 import static net.minecraft.util.Util.makeDescriptionId;
 
 public interface EquipMiscCreativeTabs {
     Identifier EQUIPMISC_TAB_ID = EquipMisc.id(EquipMisc.MOD_ID);
-    Translation.Unit EQUIPMISC_TAB_TITLE = Translation.unit(makeDescriptionId("itemGroup", EQUIPMISC_TAB_ID));
+    Component EQUIPMISC_TAB_TITLE = Component.translatable(makeDescriptionId("itemGroup", EQUIPMISC_TAB_ID));
     CreativeModeTab EQUIPMISC_TAB = Registry.register(
             BuiltInRegistries.CREATIVE_MODE_TAB,
             EQUIPMISC_TAB_ID,
             FabricCreativeModeTab.builder()
                     .icon(EquipMiscItems.BRONZE_PICKAXE::getDefaultInstance)
-                    .title(EQUIPMISC_TAB_TITLE.text)
+                    .title(EQUIPMISC_TAB_TITLE)
                     .displayItems((_, output) -> {
                         output.accept(EquipMiscItems.RAW_BRONZE);
                         output.accept(EquipMiscItems.BRONZE_INGOT);

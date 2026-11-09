@@ -1,9 +1,9 @@
 package archives.tater.equipmisc.item;
 
 import archives.tater.equipmisc.EquipMisc;
-import archives.tater.equipmisc.util.Translation;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SmithingTemplateItem;
@@ -16,15 +16,15 @@ public class EquipMiscSmithingTemplates {
 
     private static final ChatFormatting DESCRIPTION_FORMATTING = ChatFormatting.BLUE;
 
-    public static final Translation.Unit BRONZE_UPRADE_APPLIES_TO = Translation.unit(makeDescriptionId("item", EquipMisc.id("smithing_template.bronze_upgrade.applies_to")), DESCRIPTION_FORMATTING);
-    public static final Translation.Unit BRONZE_UPRADE_INGREDIENTS = Translation.unit(makeDescriptionId("item", EquipMisc.id("smithing_template.bronze_upgrade.ingredients")), DESCRIPTION_FORMATTING);
-    public static final Translation.Unit BRONZE_UPGRADE_BASE_SLOT_DESCRIPTION = Translation.unit(makeDescriptionId("item", EquipMisc.id("smithing_template.bronze_upgrade.base_slot_description")));
-    public static final Translation.Unit BRONZE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Translation.unit(makeDescriptionId("item", EquipMisc.id("smithing_template.bronze_upgrade.additions_slot_description")));
+    public static final Component BRONZE_UPRADE_APPLIES_TO = Component.translatable(makeDescriptionId("item", EquipMisc.id("smithing_template.bronze_upgrade.applies_to"))).withStyle(DESCRIPTION_FORMATTING);
+    public static final Component BRONZE_UPRADE_INGREDIENTS = Component.translatable(makeDescriptionId("item", EquipMisc.id("smithing_template.bronze_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMATTING);
+    public static final Component BRONZE_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(makeDescriptionId("item", EquipMisc.id("smithing_template.bronze_upgrade.base_slot_description")));
+    public static final Component BRONZE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(makeDescriptionId("item", EquipMisc.id("smithing_template.bronze_upgrade.additions_slot_description")));
 
-    public static final Translation.Unit CHAINMAIL_UPRADE_APPLIES_TO = Translation.unit(makeDescriptionId("item", EquipMisc.id("smithing_template.chainmail_upgrade.applies_to")), DESCRIPTION_FORMATTING);
-    public static final Translation.Unit CHAINMAIL_UPRADE_INGREDIENTS = Translation.unit(makeDescriptionId("item", EquipMisc.id("smithing_template.chainmail_upgrade.ingredients")), DESCRIPTION_FORMATTING);
-    public static final Translation.Unit CHAINMAIL_UPGRADE_BASE_SLOT_DESCRIPTION = Translation.unit(makeDescriptionId("item", EquipMisc.id("smithing_template.chainmail_upgrade.base_slot_description")));
-    public static final Translation.Unit CHAINMAIL_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Translation.unit(makeDescriptionId("item", EquipMisc.id("smithing_template.chainmail_upgrade.additions_slot_description")));
+    public static final Component CHAINMAIL_UPRADE_APPLIES_TO = Component.translatable(makeDescriptionId("item", EquipMisc.id("smithing_template.chainmail_upgrade.applies_to"))).withStyle(DESCRIPTION_FORMATTING);
+    public static final Component CHAINMAIL_UPRADE_INGREDIENTS = Component.translatable(makeDescriptionId("item", EquipMisc.id("smithing_template.chainmail_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMATTING);
+    public static final Component CHAINMAIL_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(makeDescriptionId("item", EquipMisc.id("smithing_template.chainmail_upgrade.base_slot_description")));
+    public static final Component CHAINMAIL_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(makeDescriptionId("item", EquipMisc.id("smithing_template.chainmail_upgrade.additions_slot_description")));
 
     private static final Identifier EMPTY_ARMOR_SLOT_HELMET_TEXTURE = Identifier.withDefaultNamespace("container/slot/helmet");
     private static final Identifier EMPTY_ARMOR_SLOT_CHESTPLATE_TEXTURE = Identifier.withDefaultNamespace("container/slot/chestplate");
@@ -56,10 +56,10 @@ public class EquipMiscSmithingTemplates {
 
     public static SmithingTemplateItem createBronzeUpgrade(Item.Properties settings) {
         return new SmithingTemplateItem(
-                BRONZE_UPRADE_APPLIES_TO.text,
-                BRONZE_UPRADE_INGREDIENTS.text,
-                BRONZE_UPGRADE_BASE_SLOT_DESCRIPTION.text,
-                BRONZE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION.text,
+                BRONZE_UPRADE_APPLIES_TO,
+                BRONZE_UPRADE_INGREDIENTS,
+                BRONZE_UPGRADE_BASE_SLOT_DESCRIPTION,
+                BRONZE_UPGRADE_ADDITIONS_SLOT_DESCRIPTION,
                 List.of(
                         EMPTY_ARMOR_SLOT_HELMET_TEXTURE,
                         EMPTY_ARMOR_SLOT_CHESTPLATE_TEXTURE,
@@ -82,10 +82,10 @@ public class EquipMiscSmithingTemplates {
 
     public static SmithingTemplateItem createChainmailUpgrade(Item.Properties settings) {
         return new SmithingTemplateItem(
-                CHAINMAIL_UPRADE_APPLIES_TO.text,
-                CHAINMAIL_UPRADE_INGREDIENTS.text,
-                CHAINMAIL_UPGRADE_BASE_SLOT_DESCRIPTION.text,
-                CHAINMAIL_UPGRADE_ADDITIONS_SLOT_DESCRIPTION.text,
+                CHAINMAIL_UPRADE_APPLIES_TO,
+                CHAINMAIL_UPRADE_INGREDIENTS,
+                CHAINMAIL_UPGRADE_BASE_SLOT_DESCRIPTION,
+                CHAINMAIL_UPGRADE_ADDITIONS_SLOT_DESCRIPTION,
                 getArmorSlots(),
                 getArmorSlots(),
                 settings

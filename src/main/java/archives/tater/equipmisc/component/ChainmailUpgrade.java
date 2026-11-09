@@ -1,7 +1,6 @@
 package archives.tater.equipmisc.component;
 
 import archives.tater.equipmisc.EquipMisc;
-import archives.tater.equipmisc.util.Translation;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -31,7 +30,7 @@ public class ChainmailUpgrade implements TooltipProvider {
     public static final Codec<ChainmailUpgrade> CODEC = MapCodec.unitCodec(INSTANCE);
     public static final StreamCodec<ByteBuf, ChainmailUpgrade> STREAM_CODEC = StreamCodec.unit(INSTANCE);
 
-    public static final Translation.Unit TOOLTIP = Translation.unit("item.equipmisc.chainmail_upgrade.tooltip", ChatFormatting.GRAY);
+    public static final Component TOOLTIP = Component.translatable("item.equipmisc.chainmail_upgrade.tooltip", ChatFormatting.GRAY);
 
     // TODO dehardcode
     private static int getMaxArmor(EquipmentSlot slot) {
@@ -58,6 +57,6 @@ public class ChainmailUpgrade implements TooltipProvider {
 
     @Override
     public void addToTooltip(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag flag, DataComponentGetter components) {
-        consumer.accept(TOOLTIP.text);
+        consumer.accept(TOOLTIP);
     }
 }
