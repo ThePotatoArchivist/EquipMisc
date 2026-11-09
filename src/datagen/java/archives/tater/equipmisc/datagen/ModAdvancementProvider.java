@@ -5,7 +5,6 @@ import archives.tater.equipmisc.EquipMisc;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 
-import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.DisplayInfo;
@@ -23,6 +22,7 @@ import java.util.function.Consumer;
 
 import static archives.tater.equipmisc.registry.EquipMiscItemTags.BRONZE_EQUIPMENT;
 import static archives.tater.equipmisc.registry.EquipMiscItems.BRONZE_PICKAXE;
+import static net.minecraft.advancements.Advancement.Builder.recipeAdvancement;
 import static net.minecraft.util.Util.makeDescriptionId;
 
 public class ModAdvancementProvider extends FabricAdvancementProvider {
@@ -34,8 +34,8 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
     public void generateAdvancement(HolderLookup.Provider wrapperLookup, Consumer<AdvancementHolder> consumer) {
         var items = wrapperLookup.lookupOrThrow(Registries.ITEM);
 
-        consumer.accept(Advancement.Builder.recipeAdvancement()
-                .parent(new AdvancementHolder(Identifier.withDefaultNamespace("story/iron_tools"), null))
+        consumer.accept(recipeAdvancement()
+                .parent(createPlaceholder(Identifier.withDefaultNamespace("story/iron_tools")))
                 .display(new DisplayInfo(
                         new ItemStackTemplate(BRONZE_PICKAXE),
                         Component.translatable(BRONZE_TOOLS_TITLE),
