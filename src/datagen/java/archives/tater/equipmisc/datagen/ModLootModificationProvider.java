@@ -24,35 +24,33 @@ public class ModLootModificationProvider extends FabricDynamicRegistryProvider {
         super(output, registryLookup);
     }
 
-    public static ResourceKey<LootModification> createKey(ResourceKey<LootTable> key) {
-        return ResourceKey.create(LootInj.LOOT_MODIFICATION, EquipMisc.id(key.identifier().getPath()));
-    }
-
     @Override
     protected void configure(Provider registries, Entries entries) {
-        entries.add(createKey(BuiltInLootTables.NETHER_BRIDGE), LootModification.builder()
-                .target(BuiltInLootTables.NETHER_BRIDGE)
+        register(entries, BuiltInLootTables.NETHER_BRIDGE, LootModification.builder()
                 .pool(LootPool.lootPool()
                         .add(lootTableItem(EquipMiscItems.CHAINMAIL_UPGRADE_SMITHING_TEMPLATE)
                                 .setWeight(1))
                         .add(emptyItem()
-                                .setWeight(3)))
-                .build());
+                                .setWeight(3))));
 
-        entries.add(createKey(BuiltInLootTables.UNDERWATER_RUIN_SMALL), LootModification.builder()
-                .target(BuiltInLootTables.UNDERWATER_RUIN_SMALL)
+        register(entries, BuiltInLootTables.UNDERWATER_RUIN_SMALL, LootModification.builder()
                 .pool(LootPool.lootPool()
                         .add(lootTableItem(EquipMiscItems.BRONZE_UPGRADE_SMITHING_TEMPLATE)
                                 .setWeight(1))
                         .add(emptyItem()
-                                .setWeight(1)))
-                .build());
+                                .setWeight(1))));
 
-        entries.add(createKey(BuiltInLootTables.UNDERWATER_RUIN_BIG), LootModification.builder()
-                .target(BuiltInLootTables.UNDERWATER_RUIN_BIG)
+        register(entries, BuiltInLootTables.UNDERWATER_RUIN_BIG, LootModification.builder()
                 .pool(LootPool.lootPool()
-                        .add(lootTableItem(EquipMiscItems.BRONZE_UPGRADE_SMITHING_TEMPLATE)))
-                .build());
+                        .add(lootTableItem(EquipMiscItems.BRONZE_UPGRADE_SMITHING_TEMPLATE))));
+    }
+
+    private static void register(Entries entries, ResourceKey<LootTable> target, LootModification.Builder builder) {
+        entries.add(createKey(target), builder.target(target).build());
+    }
+
+    private static ResourceKey<LootModification> createKey(ResourceKey<LootTable> key) {
+        return ResourceKey.create(LootInj.LOOT_MODIFICATION, EquipMisc.id(key.identifier().getPath()));
     }
 
     @Override
