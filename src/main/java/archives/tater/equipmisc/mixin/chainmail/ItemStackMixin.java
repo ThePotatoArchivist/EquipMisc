@@ -31,11 +31,11 @@ public abstract class ItemStackMixin implements DataComponentHolder {
     )
     private void addChainmailModifier(ItemAttributeModifiers instance, EquipmentSlotGroup slot, TriConsumer<Holder<Attribute>, AttributeModifier, Display> consumer, Operation<Void> original) {
         original.call(instance, slot, consumer);
+        if (!this.has(EquipMiscComponents.CHAINMAIL_UPGRADE)) return;
         var attributes = this.get(DataComponents.ATTRIBUTE_MODIFIERS);
         var equippable = this.get(DataComponents.EQUIPPABLE);
-        if (attributes != null && equippable != null && this.has(EquipMiscComponents.CHAINMAIL_UPGRADE)) {
-            original.call(ChainmailUpgrade.MODIFIERS.apply(equippable.slot(), attributes), slot, consumer);
-        }
+        if (attributes != null && equippable != null)
+            ChainmailUpgrade.MODIFIERS.apply(equippable.slot(), attributes).forEach(slot, consumer);
     }
 
     @WrapOperation(
@@ -44,10 +44,10 @@ public abstract class ItemStackMixin implements DataComponentHolder {
     )
     private void addChainmailModifier(ItemAttributeModifiers instance, EquipmentSlot slot, BiConsumer<Holder<Attribute>, AttributeModifier> consumer, Operation<Void> original) {
         original.call(instance, slot, consumer);
+        if (!this.has(EquipMiscComponents.CHAINMAIL_UPGRADE)) return;
         var attributes = this.get(DataComponents.ATTRIBUTE_MODIFIERS);
         var equippable = this.get(DataComponents.EQUIPPABLE);
-        if (attributes != null && equippable != null && this.has(EquipMiscComponents.CHAINMAIL_UPGRADE)) {
-            original.call(ChainmailUpgrade.MODIFIERS.apply(equippable.slot(), attributes), slot, consumer);
-        }
+        if (attributes != null && equippable != null)
+            ChainmailUpgrade.MODIFIERS.apply(equippable.slot(), attributes).forEach(slot, consumer);
     }
 }
