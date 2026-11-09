@@ -7,6 +7,7 @@ import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.renderer.texture.atlas.SpriteSource;
 import net.minecraft.client.renderer.texture.atlas.SpriteSources;
 import net.minecraft.client.renderer.texture.atlas.sources.PalettedPermutations;
+import net.minecraft.client.renderer.texture.atlas.sources.SingleFile;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.AtlasIds;
 import net.minecraft.data.PackOutput;
@@ -39,6 +40,11 @@ public class ModAtlasProvider extends FabricCodecDataProvider<List<SpriteSource>
                                 TrimMaterials.Palette.EQUIPMISC_BRONZE_DARKER.suffix(), TrimMaterials.Palette.EQUIPMISC_BRONZE_DARKER.id()
                         )
                 )
+        ));
+
+        provider.accept(AtlasIds.SHIELD_PATTERNS, List.of(
+                new SingleFile(ModModelProvider.BRONZE_SHIELD_BASE),
+                new SingleFile(ModModelProvider.BRONZE_SHIELD_BASE_NO_PATTERN)
         ));
     }
 
