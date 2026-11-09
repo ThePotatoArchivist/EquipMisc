@@ -3,6 +3,7 @@ package archives.tater.equipmisc.registry;
 import archives.tater.equipmisc.EquipMisc;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -37,6 +38,12 @@ public interface EquipMiscAttributes {
 
             if (livingEntity.getAirSupply() > livingEntity.getMaxAirSupply())
                 livingEntity.setAirSupply(livingEntity.getMaxAirSupply());
+        });
+
+        FabricDefaultAttributeRegistry.MODIFY.register(context -> {
+            context.modify(_ -> true, (_, builder) ->
+                    builder.add(MAX_AIR)
+            );
         });
     }
 }

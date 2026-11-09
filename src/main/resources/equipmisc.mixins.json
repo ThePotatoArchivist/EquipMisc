@@ -8,7 +8,6 @@
     "ravager.LivingEntityMixin",
     "shears.HardcodedShearsCheckMixin",
     "turtle.EntityMixin",
-    "turtle.LivingEntityMixin",
     "turtle.PlayerMixin"
   ],
   "injectors": {
