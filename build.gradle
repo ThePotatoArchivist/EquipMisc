@@ -62,11 +62,13 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-    implementation("maven.modrinth:farmers-delight-refabricated:${fdrf_version}") {
+	implementation include("maven.modrinth:lootinj:${project.lootinj_version}")
+
+    implementation("maven.modrinth:farmers-delight-refabricated:${project.fdrf_version}") {
         exclude(group: "net.fabricmc")
     }
 
-	implementation("cc.cassian.rrv:reliable-recipe-viewer-fabric:${rrv_version}+${minecraft_version}")
+	implementation("cc.cassian.rrv:reliable-recipe-viewer-fabric:${project.rrv_version}+${project.minecraft_version}")
 }
 
 processResources {

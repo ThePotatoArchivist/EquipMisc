@@ -1,0 +1,4 @@
+// 26.3	-999999999-01-01T00:00:00	EquipMisc/Loot Modifications
+15a2da622431e55647b3d51ad83933039ac163b2 data/equipmisc/lootinj/loot_modification/chests/nether_bridge.json
+305db1687e017837046254f36af0fdd9b1572088 data/equipmisc/lootinj/loot_modification/chests/underwater_ruin_big.json
+ed84fa53dc30be906797ed7b86c42eb6975d42ef data/equipmisc/lootinj/loot_modification/chests/underwater_ruin_small.json

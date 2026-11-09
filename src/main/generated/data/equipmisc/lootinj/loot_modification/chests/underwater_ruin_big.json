@@ -1,17 +1,14 @@
 {
-  "type": "minecraft:chest",
   "pools": [
     {
       "entries": [
         {
           "type": "minecraft:item",
           "name": "equipmisc:bronze_upgrade_smithing_template"
-        },
-        {
-          "type": "minecraft:empty"
         }
       ],
       "rolls": 1
     }
-  ]
+  ],
+  "targets": "minecraft:chests/underwater_ruin_big"
 }

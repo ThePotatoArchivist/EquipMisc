@@ -48,7 +48,6 @@ public class EquipMisc implements ModInitializer {
         EquipMiscItems.init();
         EquipMiscCreativeTabs.init();
         EquipMiscRecipes.init();
-        EquipMiscLoot.init();
         EquipMiscSounds.init();
 
         UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
