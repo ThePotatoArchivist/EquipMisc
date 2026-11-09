@@ -6,14 +6,15 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.fabricmc.loader.api.FabricLoader;
+
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.animal.turtle.Turtle;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,6 +49,7 @@ public class EquipMisc implements ModInitializer {
         EquipMiscCreativeTabs.init();
         EquipMiscRecipes.init();
         EquipMiscLoot.init();
+        EquipMiscSounds.init();
 
         UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             if (!(entity instanceof Turtle turtleEntity) || turtleEntity.isBaby()) return InteractionResult.PASS;
@@ -55,7 +57,7 @@ public class EquipMisc implements ModInitializer {
             if (!stack.is(ConventionalItemTags.BRUSH_TOOLS)) return InteractionResult.PASS;
             if (world instanceof ServerLevel serverWorld) {
                 turtleEntity.dropFromEntityInteractLootTable(serverWorld, BuiltInLootTables.TURTLE_GROW, player, stack, entity::spawnAtLocation);
-                entity.playSound(SoundEvents.ARMADILLO_BRUSH); // TODO custom sound event
+                entity.playSound(EquipMiscSounds.TURTLE_BRUSH);
                 entity.gameEvent(GameEvent.ENTITY_INTERACT);
             }
             stack.hurtAndBreak(24, player, hand);

@@ -38,6 +38,7 @@ public class ChainmailUpgrade implements TooltipProvider {
             case HEAD, FEET -> 3;
             case CHEST -> 8;
             case LEGS -> 6;
+            case BODY -> 11;
             default -> 0;
         };
     }

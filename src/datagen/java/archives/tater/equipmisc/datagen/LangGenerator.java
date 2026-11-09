@@ -66,6 +66,8 @@ public class LangGenerator extends FabricLanguageProvider {
         translationBuilder.add(AdvancementGenerator.BRONZE_TOOLS_DESCRIPTION, "Improve the durability of your iron tools by upgrading them with bronze");
 
         translationBuilder.add(makeDescriptionId("trim_material", EquipMiscTrimMaterials.BRONZE.identifier()), "Bronze Material");
+
+        translationBuilder.add(EquipMiscSounds.TURTLE_BRUSH, "Scute is brushed off");
     }
 
     private static String getKey(Component translatable) {
