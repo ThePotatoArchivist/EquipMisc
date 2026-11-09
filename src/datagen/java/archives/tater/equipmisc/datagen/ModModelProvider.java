@@ -35,8 +35,8 @@ public class ModModelProvider extends FabricModelProvider {
         super(output);
     }
 
-    public static final Identifier BRONZE_SHIELD_BASE = EquipMisc.id("entity/bronze_shield_base");
-    public static final Identifier BRONZE_SHIELD_BASE_NO_PATTERN = EquipMisc.id("entity/bronze_shield_base_nopattern");
+    public static final Identifier BRONZE_SHIELD_BASE = EquipMisc.id("entity/shield/bronze_base");
+    public static final Identifier BRONZE_SHIELD_BASE_NO_PATTERN = EquipMisc.id("entity/shield/bronze_base_nopattern");
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {

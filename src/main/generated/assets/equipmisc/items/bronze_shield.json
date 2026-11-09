@@ -6,8 +6,8 @@
       "base": "minecraft:item/shield",
       "model": {
         "type": "equipmisc:shield",
-        "base_texture": "equipmisc:entity/bronze_shield_base",
-        "no_pattern_base_texture": "equipmisc:entity/bronze_shield_base_nopattern"
+        "base_texture": "equipmisc:entity/shield/bronze_base",
+        "no_pattern_base_texture": "equipmisc:entity/shield/bronze_base_nopattern"
       }
     },
     "on_true": {
@@ -15,8 +15,8 @@
       "base": "minecraft:item/shield_blocking",
       "model": {
         "type": "equipmisc:shield",
-        "base_texture": "equipmisc:entity/bronze_shield_base",
-        "no_pattern_base_texture": "equipmisc:entity/bronze_shield_base_nopattern"
+        "base_texture": "equipmisc:entity/shield/bronze_base",
+        "no_pattern_base_texture": "equipmisc:entity/shield/bronze_base_nopattern"
       }
     },
     "property": "minecraft:using_item",
