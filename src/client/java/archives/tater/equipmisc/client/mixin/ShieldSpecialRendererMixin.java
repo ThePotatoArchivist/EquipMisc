@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.special.ShieldSpecialRenderer;
 import net.minecraft.client.resources.model.sprite.SpriteId;
 
 @Mixin(ShieldSpecialRenderer.class)
-public class ShieldModelRendererMixin {
+public class ShieldSpecialRendererMixin {
     @ModifyExpressionValue(
             method = "submit(Lnet/minecraft/core/component/DataComponentMap;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;IIZI)V",
             at = @At(value = "FIELD", target = "Lnet/minecraft/client/renderer/Sheets;SHIELD_BASE:Lnet/minecraft/client/resources/model/sprite/SpriteId;", opcode = Opcodes.GETSTATIC)

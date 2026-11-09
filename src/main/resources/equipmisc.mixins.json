@@ -9,7 +9,7 @@
     "shears.HardcodedShearsCheckMixin",
     "turtle.EntityMixin",
     "turtle.LivingEntityMixin",
-    "turtle.PlayerEntityMixin"
+    "turtle.PlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

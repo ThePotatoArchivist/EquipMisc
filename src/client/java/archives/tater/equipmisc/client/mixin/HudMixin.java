@@ -22,7 +22,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
 
 @Mixin(Hud.class)
-public abstract class InGameHudMixin {
+public abstract class HudMixin {
 
     @Shadow
     private static int getCurrentAirSupplyBubble(int currentAirSupplyTicks, int maxAirSupplyTicks, int tickOffset) {

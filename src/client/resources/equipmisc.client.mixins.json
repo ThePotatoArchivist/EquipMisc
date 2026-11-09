@@ -3,9 +3,9 @@
   "package": "archives.tater.equipmisc.client.mixin",
   "compatibilityLevel": "JAVA_25",
   "client": [
-    "EquipmentRendererMixin",
-    "InGameHudMixin",
-    "ShieldModelRendererMixin"
+    "EquipmentLayerRendererMixin",
+    "HudMixin",
+    "ShieldSpecialRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,6 +1,6 @@
 package archives.tater.equipmisc.client.render.item.model;
 
-import archives.tater.equipmisc.client.mixin.ShieldModelRendererMixin;
+import archives.tater.equipmisc.client.mixin.ShieldSpecialRendererMixin;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -14,9 +14,7 @@ import net.minecraft.client.resources.model.sprite.SpriteGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.resources.Identifier;
 
-/**
- * @see ShieldModelRendererMixin
- */
+/// @see ShieldSpecialRendererMixin
 public class TexturedShieldModelRenderer extends ShieldSpecialRenderer {
     public final SpriteId baseTexture;
     public final SpriteId noPatternBaseTexture;

@@ -21,7 +21,7 @@ import net.minecraft.world.item.equipment.EquipmentAsset;
 import org.jetbrains.annotations.Nullable;
 
 @Mixin(EquipmentLayerRenderer.class)
-public class EquipmentRendererMixin {
+public class EquipmentLayerRendererMixin {
     @Inject(
             method = "renderLayers(Lnet/minecraft/client/resources/model/EquipmentClientInfo$LayerType;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/client/model/Model;Ljava/lang/Object;Lnet/minecraft/world/item/ItemStack;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;ILnet/minecraft/resources/Identifier;II)V",
             at = @At("HEAD"),
