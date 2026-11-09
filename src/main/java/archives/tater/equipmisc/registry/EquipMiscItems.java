@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.dispenser.FlintAndSteelDispenseItemBehavior;
 import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.references.BlockItemId;
@@ -26,6 +27,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.component.BlocksAttacks;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorMaterials;
 import net.minecraft.world.item.equipment.ArmorType;
@@ -206,14 +208,13 @@ public class EquipMiscItems {
 
         DefaultItemComponentEvents.MODIFY.register(context -> {
             context.modify(Items.TURTLE_HELMET, builder -> {
-                var attributes = Items.TURTLE_HELMET.components().get(DataComponents.ATTRIBUTE_MODIFIERS);
-                if (attributes == null) return;
-                builder.set(DataComponents.ATTRIBUTE_MODIFIERS, attributes
+                builder.set(DataComponents.ATTRIBUTE_MODIFIERS, builder.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY)
                         .withModifierAdded(EquipMiscAttributes.MAX_AIR, new AttributeModifier(EquipMisc.id("turtle_air"), 30.0, Operation.ADD_VALUE), EquipmentSlotGroup.HEAD)
                 );
             });
         });
 
         DispenserBlock.registerBehavior(BRONZE_SHEARS, new ShearsDispenseItemBehavior());
+        DispenserBlock.registerBehavior(FLINT_AND_BRONZE, new FlintAndSteelDispenseItemBehavior());
     }
 }
