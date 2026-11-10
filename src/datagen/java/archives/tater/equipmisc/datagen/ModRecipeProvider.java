@@ -8,6 +8,7 @@ import archives.tater.equipmisc.registry.EquipMiscItemTags;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.fabricmc.fabric.impl.resource.conditions.conditions.AllModsLoadedResourceCondition;
 
@@ -131,6 +132,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
                 SpecialRecipeBuilder.special(() -> new ShieldDecorationRecipe(tag(ItemTags.BANNERS), Ingredient.of(BRONZE_SHIELD), new ItemStackTemplate(BRONZE_SHIELD)))
                         .save(output, "bronze_shield_decoration");
+
+                SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+                        Ingredient.of(BRONZE_SHIELD),
+                        tag(ItemTags.NETHERITE_TOOL_MATERIALS),
+                        RecipeCategory.COMBAT,
+                        DatagenCompat.NETHERITE_SHIELD
+                )
+                        .unlocks(getHasName(NETHERITE_INGOT), has(ItemTags.NETHERITE_TOOL_MATERIALS))
+                        .save(withConditions(output, ResourceConditions.allModsLoaded(DatagenCompat.REARM)), "netherite_shield_from_smithing_bronze_shield");
             }
         };
     }

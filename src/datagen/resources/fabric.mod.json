@@ -15,6 +15,9 @@
 	"icon": "assets/equipmisc/icon.png",
 	"environment": "*",
 	"entrypoints": {
+		"main": [
+			"archives.tater.equipmisc.datagen.EquipMiscDataGenerator"
+		],
 		"fabric-datagen": [
 			"archives.tater.equipmisc.datagen.EquipMiscDataGenerator"
 		]

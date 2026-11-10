@@ -3,6 +3,7 @@ package archives.tater.equipmisc.datagen;
 import archives.tater.equipmisc.EquipMisc;
 import archives.tater.equipmisc.registry.EquipMiscTrimMaterials;
 
+import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -11,7 +12,7 @@ import net.minecraft.core.registries.Registries;
 
 import org.jspecify.annotations.Nullable;
 
-public class EquipMiscDataGenerator implements DataGeneratorEntrypoint {
+public class EquipMiscDataGenerator implements ModInitializer, DataGeneratorEntrypoint {
     @Override
     public @Nullable String getEffectiveModId() {
         return EquipMisc.MOD_ID;
@@ -41,4 +42,9 @@ public class EquipMiscDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModEquipmentProvider::new);
         pack.addProvider(ModSoundsProvider::new);
 	}
+
+    @Override
+    public void onInitialize() {
+        DatagenCompat.init();
+    }
 }

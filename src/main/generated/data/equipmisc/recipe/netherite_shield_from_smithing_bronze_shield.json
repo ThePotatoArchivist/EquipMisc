@@ -1,0 +1,17 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "rearm"
+      ]
+    }
+  ],
+  "type": "minecraft:smithing_transform",
+  "addition": "#minecraft:netherite_tool_materials",
+  "base": "equipmisc:bronze_shield",
+  "result": {
+    "id": "rearm:netherite_shield"
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}
