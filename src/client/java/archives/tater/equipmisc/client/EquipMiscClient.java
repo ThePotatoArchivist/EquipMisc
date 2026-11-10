@@ -5,6 +5,7 @@ import archives.tater.equipmisc.client.render.item.model.TexturedShieldModelRend
 import archives.tater.equipmisc.registry.EquipMiscComponents;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.fabricmc.fabric.api.item.v1.ItemComponentTooltipProviderRegistry;
 
 import net.minecraft.client.renderer.special.SpecialModelRenderers;
@@ -21,5 +22,10 @@ public class EquipMiscClient implements ClientModInitializer {
 		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
         SpecialModelRenderers.ID_MAPPER.put(EquipMisc.id("shield"), TexturedShieldModelRenderer.Unbaked.CODEC);
         ItemComponentTooltipProviderRegistry.addBefore(DataComponents.TRIM, EquipMiscComponents.CHAINMAIL_UPGRADE);
+        ModelLoadingPlugin.register(pluginContext -> {
+            pluginContext.modifyItemModelOnLoad().register((model, context) ->
+                    AdditionalTrimModel.modifyModel(context.itemId(), model)
+            );
+        });
 	}
 }
