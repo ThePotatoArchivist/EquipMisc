@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "equipmisc:item/bronze_leggings",
-    "layer1": "minecraft:trims/items/leggings_trim_equipmisc_bronze_darker"
+    "layer1": "minecraft:trims/items/leggings_trim_bronze_darker"
   }
 }

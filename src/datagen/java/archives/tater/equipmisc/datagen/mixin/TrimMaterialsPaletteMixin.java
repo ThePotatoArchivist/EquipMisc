@@ -28,7 +28,9 @@ public enum TrimMaterialsPaletteMixin {
             at = @At("MIXINEXTRAS:EXPRESSION")
     )
     private String namespaceSuffix(String original) {
-        return original.replace(":", "_");
+        return original.contains(":")
+                ? original.split(":", 2)[1]
+                : original;
     }
 
     @WrapOperation(

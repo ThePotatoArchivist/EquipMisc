@@ -82,7 +82,7 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "equipmisc:item/bronze_leggings_equipmisc_bronze_trim"
+          "model": "equipmisc:item/bronze_leggings_bronze_trim"
         },
         "when": "equipmisc:bronze"
       }
