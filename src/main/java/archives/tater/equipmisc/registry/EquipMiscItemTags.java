@@ -26,4 +26,14 @@ public interface EquipMiscItemTags {
 
     TagKey<Item> BRONZE_INGOTS = createCommon("ingots/bronze");
     TagKey<Item> BRONZE_RAW_MATERIALS = createCommon("raw_materials/bronze");
+
+    interface Menderman {
+        private static TagKey<Item> createMM(String path) {
+            return TagKey.create(Registries.ITEM, EquipMisc.id("menderman/" + path));
+        }
+
+        TagKey<Item> REPAIRS_BRONZE_SHIELDS = createMM("repairs_bronze_shields");
+        TagKey<Item> REPAIRS_BRONZE_SHEARS = createMM("repairs_bronze_shears");
+        TagKey<Item> REPAIRS_FLINT_AND_BRONZES = createMM("repairs_flint_and_bronzes");
+    }
 }

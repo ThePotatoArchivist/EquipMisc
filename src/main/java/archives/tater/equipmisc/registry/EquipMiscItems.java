@@ -4,6 +4,7 @@ import archives.tater.equipmisc.EquipMisc;
 import archives.tater.equipmisc.item.EquipMiscSmithingTemplates;
 
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
+import net.fabricmc.loader.api.FabricLoader;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
@@ -22,15 +23,19 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.enchantment.Repairable;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 
+import org.vulpixel.menderman.api.component.MendermanDataComponents;
+import org.vulpixel.menderman.api.component.RepairRequirements;
 import vectorwing.farmersdelight.common.item.KnifeItem;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -115,6 +120,23 @@ public interface EquipMiscItems {
                 builder.set(DataComponents.ATTRIBUTE_MODIFIERS, builder.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY)
                         .withModifierAdded(EquipMiscAttributes.MAX_AIR, new AttributeModifier(EquipMisc.id("turtle_air"), 30.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HEAD)
                 );
+            });
+        });
+
+        if (FabricLoader.getInstance().isModLoaded("menderman")) DefaultItemComponentEvents.MODIFY.register(context -> {
+            context.modify(BRONZE_SHIELD, (builder, registries, _) -> {
+                builder.set(DataComponents.REPAIRABLE, new Repairable(registries.getOrThrow(EquipMiscItemTags.Menderman.REPAIRS_BRONZE_SHIELDS)));
+                builder.set(MendermanDataComponents.REPAIR_REQUIREMENTS.get(), new RepairRequirements(Map.of(
+                        registries.getOrThrow(EquipMiscItemTags.BRONZE_TOOL_MATERIALS), 1
+                ), Optional.of(2)));
+            });
+            context.modify(BRONZE_SHEARS, (builder, registries, _) -> {
+                builder.set(DataComponents.REPAIRABLE, new Repairable(registries.getOrThrow(EquipMiscItemTags.Menderman.REPAIRS_BRONZE_SHEARS)));
+                builder.set(MendermanDataComponents.REPAIR_REQUIREMENTS.get(), new RepairRequirements(1));
+            });
+            context.modify(FLINT_AND_BRONZE, (builder, registries, _) -> {
+                builder.set(DataComponents.REPAIRABLE, new Repairable(registries.getOrThrow(EquipMiscItemTags.Menderman.REPAIRS_FLINT_AND_BRONZES)));
+                builder.set(MendermanDataComponents.REPAIR_REQUIREMENTS.get(), new RepairRequirements(1));
             });
         });
 

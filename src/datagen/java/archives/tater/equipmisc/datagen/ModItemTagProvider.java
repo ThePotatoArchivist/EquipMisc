@@ -62,6 +62,15 @@ public class ModItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
                 ItemIds.CHAINMAIL_BOOTS
         );
 
+        builder(EquipMiscItemTags.Menderman.REPAIRS_BRONZE_SHIELDS)
+                .forceAddTag(WOODEN_TOOL_MATERIALS)
+                .addTag(BRONZE_TOOL_MATERIALS);
+        builder(EquipMiscItemTags.Menderman.REPAIRS_BRONZE_SHEARS)
+                .addTag(BRONZE_TOOL_MATERIALS);
+        builder(EquipMiscItemTags.Menderman.REPAIRS_FLINT_AND_BRONZES)
+                .add(ItemIds.FLINT)
+                .addTag(BRONZE_TOOL_MATERIALS);
+
         builder(SWORDS).add(BRONZE_SWORD);
         builder(SHOVELS).add(BRONZE_SHOVEL);
         builder(PICKAXES).add(BRONZE_PICKAXE);

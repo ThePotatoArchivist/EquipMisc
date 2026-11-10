@@ -35,6 +35,9 @@
   "tag.item.equipmisc.bronze_equipment": "Bronze Equipment",
   "tag.item.equipmisc.bronze_tool_materials": "Bronze Tool Materials",
   "tag.item.equipmisc.enchanted_invisible_equipment": "Works with Invisibility when Enchanted",
+  "tag.item.equipmisc.menderman.repairs_bronze_shears": "Repairs Bronze Shears",
+  "tag.item.equipmisc.menderman.repairs_bronze_shields": "Repairs Bronze Shields",
+  "tag.item.equipmisc.menderman.repairs_flint_and_bronzes": "Repairs Flint and Bronzes",
   "tag.item.equipmisc.repairs_bronze_armor": "Repairs Bronze Armor",
   "trim_material.equipmisc.bronze": "Bronze Material"
 }

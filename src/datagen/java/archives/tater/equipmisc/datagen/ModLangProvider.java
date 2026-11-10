@@ -28,6 +28,10 @@ public class ModLangProvider extends FabricLanguageProvider {
         translationBuilder.add(EquipMiscItemTags.BRONZE_EQUIPMENT, "Bronze Equipment");
         translationBuilder.add(EquipMiscItemTags.ENCHANTED_INVISIBLE_EQUIPMENT, "Works with Invisibility when Enchanted");
 
+        translationBuilder.add(EquipMiscItemTags.Menderman.REPAIRS_BRONZE_SHIELDS, "Repairs Bronze Shields");
+        translationBuilder.add(EquipMiscItemTags.Menderman.REPAIRS_BRONZE_SHEARS, "Repairs Bronze Shears");
+        translationBuilder.add(EquipMiscItemTags.Menderman.REPAIRS_FLINT_AND_BRONZES, "Repairs Flint and Bronzes");
+
         translationBuilder.add(EquipMiscItems.BRONZE_UPGRADE_SMITHING_TEMPLATE, "Bronze Upgrade");
         translationBuilder.add(getKey(EquipMiscSmithingTemplates.BRONZE_UPRADE_APPLIES_TO), "Iron Equipment");
         translationBuilder.add(getKey(EquipMiscSmithingTemplates.BRONZE_UPRADE_INGREDIENTS), "Bronze Ingot");

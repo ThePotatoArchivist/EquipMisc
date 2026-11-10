@@ -15,6 +15,9 @@ ab5becde6d81be0a773f66ed180771ae6e47956e data/c/tags/item/tools/shield.json
 4fa9587b9f1c04dc73e87fed27afe52db05350b7 data/equipmisc/tags/item/bronze_equipment.json
 c6df181eeab0231ab5626ece4d0cc2519463a995 data/equipmisc/tags/item/bronze_tool_materials.json
 c5a26a067322c2b399964ab7cff330066442dc1d data/equipmisc/tags/item/enchanted_invisible_equipment.json
+6750f79de023700d06f61a46e4f2bacf10e3ef14 data/equipmisc/tags/item/menderman/repairs_bronze_shears.json
+cc4ddcda25531ef9fd7f3bdd7d7ece3c985ddec8 data/equipmisc/tags/item/menderman/repairs_bronze_shields.json
+55a536c3f28ede30279d91ba01558a284b1b9090 data/equipmisc/tags/item/menderman/repairs_flint_and_bronzes.json
 c6df181eeab0231ab5626ece4d0cc2519463a995 data/equipmisc/tags/item/repairs_bronze_armor.json
 1662b4afe6c001fb5cd9ff956c84724c802c4a17 data/farmersdelight/tags/item/tools/knives.json
 a12cf1beeed81bb7026b91e97f8ed7f9297b18b2 data/minecraft/tags/item/axes.json
